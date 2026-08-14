@@ -9,6 +9,7 @@ from app.diarization import router as diarization_router
 from app.evidence import router as evidence_router
 from app.fog import router as fog_router
 from app.medical_entities import router as medical_entities_router
+from app.nli import router as nli_router
 from app.soap import router as soap_router
 from app.speaker_roles import router as speaker_roles_router
 
@@ -31,6 +32,7 @@ app.include_router(speaker_roles_router)
 app.include_router(medical_entities_router)
 app.include_router(soap_router)
 app.include_router(evidence_router)
+app.include_router(nli_router)
 
 
 @app.get("/")

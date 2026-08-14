@@ -634,6 +634,10 @@ def test_repeated_retrieval_does_not_create_duplicates(active_consultation):
 
 
 def test_no_nli_fields_populated(active_consultation):
+    # Step 14A (evidence retrieval) must never itself decide or store any
+    # NLI verification outcome. The entailment/contradiction/nli_label
+    # columns exist on evidence_links (added in Step 14B) but retrieval
+    # alone must leave them unset; only running verification populates them.
     transcript_id, _ = _create_transcript_with_segments(
         active_consultation["consultation_id"],
         [("PATIENT", "I have had fever and cough for two days.")],
@@ -650,10 +654,11 @@ def test_no_nli_fields_populated(active_consultation):
     try:
         link = db.query(EvidenceLink).first()
         assert link.relationship_type == "candidate"  # never supports/contradicts/insufficient
+        assert link.entailment_score is None
+        assert link.contradiction_score is None
+        assert link.nli_label is None
+        assert link.verification_status is None
         column_names = {c.name for c in EvidenceLink.__table__.columns}
-        assert "entailment_score" not in column_names
-        assert "contradiction_score" not in column_names
-        assert "nli_label" not in column_names
         assert "hallucination_status" not in column_names
     finally:
         db.close()

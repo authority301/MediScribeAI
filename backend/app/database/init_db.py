@@ -305,6 +305,52 @@ def _ensure_soap_claim_generation_confidence_column() -> None:
         )
 
 
+def _ensure_soap_note_evidence_verification_columns() -> None:
+    """Additively migrate soap_notes for Step 14B NLI verification.
+
+    evidence_verification_status tracks whether the VERIFICATION OPERATION
+    itself ran successfully (pending/processing/completed/failed) -- kept
+    deliberately distinct from evidence_links.verification_status, which is
+    the semantic SUPPORTED/CONTRADICTED/UNGROUNDED research outcome.
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text(
+                "ALTER TABLE soap_notes ADD COLUMN IF NOT EXISTS evidence_verification_status "
+                "TEXT NOT NULL DEFAULT 'pending'"
+            )
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE soap_notes ADD COLUMN IF NOT EXISTS evidence_verification_error TEXT"
+            )
+        )
+
+
+def _ensure_evidence_link_nli_columns() -> None:
+    """Additively migrate evidence_links for Step 14B NLI verification.
+
+    Adds only the fields required for NLI results; alignment_score and
+    relationship_type (Step 14A) are preserved -- relationship_type is only
+    ever UPDATED in place (candidate -> supports/contradicts/insufficient),
+    never removed or reset.
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text("ALTER TABLE evidence_links ADD COLUMN IF NOT EXISTS entailment_score NUMERIC")
+        )
+        conn.execute(
+            text("ALTER TABLE evidence_links ADD COLUMN IF NOT EXISTS contradiction_score NUMERIC")
+        )
+        conn.execute(
+            text("ALTER TABLE evidence_links ADD COLUMN IF NOT EXISTS neutral_score NUMERIC")
+        )
+        conn.execute(text("ALTER TABLE evidence_links ADD COLUMN IF NOT EXISTS nli_label TEXT"))
+        conn.execute(
+            text("ALTER TABLE evidence_links ADD COLUMN IF NOT EXISTS verification_status TEXT")
+        )
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
     _ensure_doctor_auth_columns()
@@ -321,6 +367,8 @@ def init_db() -> None:
     _ensure_transcript_entity_extraction_columns()
     _ensure_soap_note_generation_columns()
     _ensure_soap_claim_generation_confidence_column()
+    _ensure_soap_note_evidence_verification_columns()
+    _ensure_evidence_link_nli_columns()
 
 
 if __name__ == "__main__":

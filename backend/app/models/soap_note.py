@@ -39,6 +39,13 @@ class SOAPNote(Base):
     generation_status = Column(Text, nullable=False, server_default=text("'pending'"))
     generation_error = Column(Text, nullable=True)
 
+    # Step 14B: OPERATIONAL status of the most recent NLI verification run
+    # (pending/processing/completed/failed) -- deliberately named apart from
+    # evidence_links.verification_status, which is the SEMANTIC research
+    # outcome (SUPPORTED/CONTRADICTED/UNGROUNDED). Never conflate the two.
+    evidence_verification_status = Column(Text, nullable=False, server_default=text("'pending'"))
+    evidence_verification_error = Column(Text, nullable=True)
+
     consultation = relationship("Consultation", back_populates="soap_notes")
     transcript = relationship("Transcript", back_populates="soap_notes")
     reviewed_by_doctor = relationship("Doctor", back_populates="reviewed_soap_notes")

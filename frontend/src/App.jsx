@@ -35,7 +35,8 @@ function App() {
 
   // { id, filename, processingState, processingMessage, transcribeState, transcribeResult,
   //   diarizeState, diarizeResult, identifyState, identifyResult, extractState, extractResult,
-  //   soapState, soapResult }
+  //   soapState, soapResult, soapNoteId, evidenceRetrieveState, evidenceVerifyState,
+  //   evidenceVerifyResult }
   const [audioRecords, setAudioRecords] = useState([])
 
   const mediaRecorderRef = useRef(null)
@@ -188,6 +189,10 @@ function App() {
           extractResult: null,
           soapState: 'idle',
           soapResult: null,
+          soapNoteId: null,
+          evidenceRetrieveState: 'idle',
+          evidenceVerifyState: 'idle',
+          evidenceVerifyResult: null,
         },
       ])
     } catch {
@@ -487,13 +492,100 @@ function App() {
       const data = await res.json()
       setAudioRecords((prev) =>
         prev.map((record) =>
-          record.id === audioId ? { ...record, soapState: 'completed', soapResult: data.claims } : record,
+          record.id === audioId
+            ? { ...record, soapState: 'completed', soapResult: data.claims, soapNoteId: data.soap_note_id }
+            : record,
         ),
       )
     } catch {
       setAudioRecords((prev) =>
         prev.map((record) =>
           record.id === audioId ? { ...record, soapState: 'failed' } : record,
+        ),
+      )
+    }
+  }
+
+  async function handleRetrieveEvidence(audioId, soapNoteId) {
+    setAudioRecords((prev) =>
+      prev.map((record) =>
+        record.id === audioId ? { ...record, evidenceRetrieveState: 'retrieving' } : record,
+      ),
+    )
+
+    try {
+      const res = await fetch(`${API_BASE}/consultations/${consultationId}/soap/evidence/retrieve`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ soap_note_id: soapNoteId }),
+      })
+
+      if (!res.ok) {
+        setAudioRecords((prev) =>
+          prev.map((record) =>
+            record.id === audioId ? { ...record, evidenceRetrieveState: 'failed' } : record,
+          ),
+        )
+        return
+      }
+
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId ? { ...record, evidenceRetrieveState: 'completed' } : record,
+        ),
+      )
+    } catch {
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId ? { ...record, evidenceRetrieveState: 'failed' } : record,
+        ),
+      )
+    }
+  }
+
+  async function handleVerifyEvidence(audioId, soapNoteId) {
+    setAudioRecords((prev) =>
+      prev.map((record) =>
+        record.id === audioId
+          ? { ...record, evidenceVerifyState: 'verifying', evidenceVerifyResult: null }
+          : record,
+      ),
+    )
+
+    try {
+      const res = await fetch(`${API_BASE}/consultations/${consultationId}/soap/evidence/verify`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ soap_note_id: soapNoteId }),
+      })
+
+      if (!res.ok) {
+        setAudioRecords((prev) =>
+          prev.map((record) =>
+            record.id === audioId ? { ...record, evidenceVerifyState: 'failed' } : record,
+          ),
+        )
+        return
+      }
+
+      const data = await res.json()
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId
+            ? { ...record, evidenceVerifyState: 'completed', evidenceVerifyResult: data }
+            : record,
+        ),
+      )
+    } catch {
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId ? { ...record, evidenceVerifyState: 'failed' } : record,
         ),
       )
     }
@@ -745,6 +837,75 @@ function App() {
                           )}
                           {record.soapState === 'failed' && (
                             <p className="text-sm text-red-600">❌ SOAP generation failed</p>
+                          )}
+
+                          {record.soapState === 'completed' && record.soapNoteId && (
+                            <>
+                              <button
+                                onClick={() => handleRetrieveEvidence(record.id, record.soapNoteId)}
+                                disabled={record.evidenceRetrieveState === 'retrieving'}
+                                className="bg-gray-900 text-white rounded px-3 py-1 disabled:opacity-50 text-sm"
+                              >
+                                {record.evidenceRetrieveState === 'retrieving'
+                                  ? 'Retrieving evidence...'
+                                  : 'Retrieve Evidence'}
+                              </button>
+                              {record.evidenceRetrieveState === 'completed' && (
+                                <p className="text-sm text-green-600">✅ Evidence retrieval complete</p>
+                              )}
+                              {record.evidenceRetrieveState === 'failed' && (
+                                <p className="text-sm text-red-600">❌ Evidence retrieval failed</p>
+                              )}
+                            </>
+                          )}
+
+                          {record.evidenceRetrieveState === 'completed' && (
+                            <>
+                              <button
+                                onClick={() => handleVerifyEvidence(record.id, record.soapNoteId)}
+                                disabled={record.evidenceVerifyState === 'verifying'}
+                                className="bg-gray-900 text-white rounded px-3 py-1 disabled:opacity-50 text-sm"
+                              >
+                                {record.evidenceVerifyState === 'verifying'
+                                  ? 'Verifying evidence...'
+                                  : 'Verify Evidence'}
+                              </button>
+                              {record.evidenceVerifyState === 'failed' && (
+                                <p className="text-sm text-red-600">❌ Evidence verification failed</p>
+                              )}
+                              {record.evidenceVerifyState === 'completed' && record.evidenceVerifyResult && (
+                                <div className="text-sm text-green-600 text-left w-full">
+                                  <p>✅ Evidence verification complete</p>
+                                  {record.evidenceVerifyResult.per_claim.map((claim) => (
+                                    <div key={claim.claim_id} className="mt-2 border-t pt-1">
+                                      <p className="text-gray-800">
+                                        <span className="font-semibold">[{claim.section}]</span>{' '}
+                                        {claim.claim_text}
+                                      </p>
+                                      <p className="text-gray-700 font-mono">
+                                        {claim.verification_status} ({claim.evidence.length} evidence
+                                        segment{claim.evidence.length === 1 ? '' : 's'})
+                                      </p>
+                                      {claim.evidence.map((ev, index) => (
+                                        <p key={index} className="text-gray-500 text-xs font-mono">
+                                          {ev.nli_label} — entailment {ev.entailment_score.toFixed(2)},
+                                          contradiction {ev.contradiction_score.toFixed(2)}, neutral{' '}
+                                          {ev.neutral_score.toFixed(2)}
+                                        </p>
+                                      ))}
+                                    </div>
+                                  ))}
+                                  <p className="text-gray-500 text-xs mt-2">
+                                    NLI prediction ≠ medical truth. These labels are model-derived
+                                    verification outcomes, not clinical diagnoses or proof of truth or
+                                    falsehood. UNGROUNDED means no local evidence was found or evidence
+                                    was inconclusive/conflicting -- it does not mean the claim is false.
+                                    mDeBERTa multilingual NLI has not been specifically validated for
+                                    Tanglish clinical documentation.
+                                  </p>
+                                </div>
+                              )}
+                            </>
                           )}
                         </>
                       )}
