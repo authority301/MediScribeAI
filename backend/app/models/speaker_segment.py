@@ -1,5 +1,5 @@
-from sqlalchemy import Column, DateTime, ForeignKey, Index, Integer, Numeric, Text, func
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column, DateTime, ForeignKey, Index, Integer, Numeric, Text, func, text
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import relationship
 
 from app.database.base import Base
@@ -21,6 +21,9 @@ class SpeakerSegment(Base):
     # Nullable: Step 9A writes raw ASR segments with no speaker identity yet.
     # Diarization (Step 10) is what will populate this -- never fabricated here.
     speaker_label = Column(Text, nullable=True)
+    # Step 11: DOCTOR / PATIENT / UNKNOWN -- a heuristic classification, never
+    # voice-biometric identity. Reuses the column the original design already
+    # reserved for this purpose (previously unused).
     inferred_role = Column(Text, nullable=True)
     start_time_ms = Column(Integer, nullable=False)
     end_time_ms = Column(Integer, nullable=False)
@@ -29,6 +32,14 @@ class SpeakerSegment(Base):
     segment_text = Column(Text, nullable=True)
     diarization_confidence = Column(Numeric, nullable=True)
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
+
+    # Step 11: local heuristic speaker-role identification (never a calibrated
+    # probability -- see app/speaker_roles/scoring.py for the documented method).
+    role_confidence = Column(Numeric, nullable=True)
+    # pending / completed / uncertain / failed. Defaults to "pending" for any
+    # segment created before role identification has ever been attempted.
+    role_identification_status = Column(Text, nullable=True, server_default=text("'pending'"))
+    role_evidence = Column(JSONB, nullable=True)
 
     transcript = relationship("Transcript", back_populates="speaker_segments")
     audio_record = relationship("AudioRecord", back_populates="speaker_segments")

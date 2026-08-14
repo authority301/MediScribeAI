@@ -34,7 +34,7 @@ function App() {
   const [uploadMessage, setUploadMessage] = useState(null)
 
   // { id, filename, processingState, processingMessage, transcribeState, transcribeResult,
-  //   diarizeState, diarizeResult }
+  //   diarizeState, diarizeResult, identifyState, identifyResult }
   const [audioRecords, setAudioRecords] = useState([])
 
   const mediaRecorderRef = useRef(null)
@@ -181,6 +181,8 @@ function App() {
           transcribeResult: null,
           diarizeState: 'idle',
           diarizeResult: null,
+          identifyState: 'idle',
+          identifyResult: null,
         },
       ])
     } catch {
@@ -341,6 +343,54 @@ function App() {
       setAudioRecords((prev) =>
         prev.map((record) =>
           record.id === audioId ? { ...record, diarizeState: 'failed' } : record,
+        ),
+      )
+    }
+  }
+
+  async function handleIdentifySpeakers(audioId) {
+    setAudioRecords((prev) =>
+      prev.map((record) =>
+        record.id === audioId
+          ? { ...record, identifyState: 'identifying', identifyResult: null }
+          : record,
+      ),
+    )
+
+    try {
+      const res = await fetch(
+        `${API_BASE}/consultations/${consultationId}/audio/identify-speakers`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ audio_id: audioId }),
+        },
+      )
+
+      if (!res.ok) {
+        setAudioRecords((prev) =>
+          prev.map((record) =>
+            record.id === audioId ? { ...record, identifyState: 'failed' } : record,
+          ),
+        )
+        return
+      }
+
+      const data = await res.json()
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId
+            ? { ...record, identifyState: 'completed', identifyResult: data.speakers }
+            : record,
+        ),
+      )
+    } catch {
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId ? { ...record, identifyState: 'failed' } : record,
         ),
       )
     }
@@ -527,6 +577,37 @@ function App() {
                       )}
                       {record.diarizeState === 'failed' && (
                         <p className="text-sm text-red-600">❌ Diarization failed</p>
+                      )}
+
+                      {record.diarizeState === 'completed' && (
+                        <>
+                          <button
+                            onClick={() => handleIdentifySpeakers(record.id)}
+                            disabled={record.identifyState === 'identifying'}
+                            className="bg-gray-900 text-white rounded px-3 py-1 disabled:opacity-50 text-sm"
+                          >
+                            {record.identifyState === 'identifying'
+                              ? 'Identifying speakers...'
+                              : 'Identify Speakers'}
+                          </button>
+                          {record.identifyState === 'completed' && record.identifyResult && (
+                            <div className="text-sm text-green-600 text-left w-full">
+                              <p>✅ Speaker identification complete</p>
+                              {record.identifyResult.map((speaker) => (
+                                <p key={speaker.speaker_label} className="text-gray-700 font-mono">
+                                  {speaker.speaker_label}: {speaker.role} (Confidence:{' '}
+                                  {speaker.confidence})
+                                </p>
+                              ))}
+                              <p className="text-gray-500 text-xs mt-1">
+                                Heuristic estimate, not guaranteed accuracy.
+                              </p>
+                            </div>
+                          )}
+                          {record.identifyState === 'failed' && (
+                            <p className="text-sm text-red-600">❌ Speaker identification failed</p>
+                          )}
+                        </>
                       )}
                     </>
                   )}

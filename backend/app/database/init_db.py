@@ -166,6 +166,47 @@ def _ensure_speaker_segment_diarization_columns() -> None:
         )
 
 
+def _ensure_speaker_segment_role_columns() -> None:
+    """Additively migrate speaker_segments for Step 11 heuristic role identification.
+
+    inferred_role already existed (reused for DOCTOR/PATIENT/UNKNOWN); this adds
+    only the confidence/status/evidence fields needed to make that
+    classification transparent and explainable.
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text("ALTER TABLE speaker_segments ADD COLUMN IF NOT EXISTS role_confidence NUMERIC")
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE speaker_segments ADD COLUMN IF NOT EXISTS role_identification_status TEXT"
+            )
+        )
+        conn.execute(
+            text("ALTER TABLE speaker_segments ADD COLUMN IF NOT EXISTS role_evidence JSONB")
+        )
+
+
+def _ensure_speaker_segment_role_status_default() -> None:
+    """Give role_identification_status a proper "pending" default (Step 11 review fix).
+
+    pending/completed/uncertain/failed is the full state set: pending for any
+    segment before role identification has run, completed/uncertain reflect a
+    legitimate outcome (UNKNOWN is "uncertain", never a failure), and failed
+    is reserved for the identification process itself erroring out.
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text("ALTER TABLE speaker_segments ALTER COLUMN role_identification_status SET DEFAULT 'pending'")
+        )
+        conn.execute(
+            text(
+                "UPDATE speaker_segments SET role_identification_status = 'pending' "
+                "WHERE role_identification_status IS NULL"
+            )
+        )
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
     _ensure_doctor_auth_columns()
@@ -176,6 +217,8 @@ def init_db() -> None:
     _ensure_speaker_segment_label_nullable()
     _ensure_audio_record_diarization_columns()
     _ensure_speaker_segment_diarization_columns()
+    _ensure_speaker_segment_role_columns()
+    _ensure_speaker_segment_role_status_default()
 
 
 if __name__ == "__main__":
