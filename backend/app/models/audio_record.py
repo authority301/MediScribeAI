@@ -33,5 +33,10 @@ class AudioRecord(Base):
     processed_at = Column(DateTime(timezone=True), nullable=True)
     processing_error = Column(Text, nullable=True)
 
+    # Step 10: local PyAnnote diarization metadata (pending/processing/completed/failed)
+    diarization_status = Column(Text, nullable=False, server_default=text("'pending'"))
+    diarization_error = Column(Text, nullable=True)
+
     consultation = relationship("Consultation", back_populates="audio_records")
     transcripts = relationship("Transcript", back_populates="audio_record")
+    speaker_segments = relationship("SpeakerSegment", back_populates="audio_record")

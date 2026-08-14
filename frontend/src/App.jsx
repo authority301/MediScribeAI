@@ -33,7 +33,8 @@ function App() {
   const [uploadState, setUploadState] = useState('idle') // idle | uploading | success | error
   const [uploadMessage, setUploadMessage] = useState(null)
 
-  // { id, filename, processingState, processingMessage, transcribeState, transcribeResult }
+  // { id, filename, processingState, processingMessage, transcribeState, transcribeResult,
+  //   diarizeState, diarizeResult }
   const [audioRecords, setAudioRecords] = useState([])
 
   const mediaRecorderRef = useRef(null)
@@ -178,6 +179,8 @@ function App() {
           processingMessage: null,
           transcribeState: 'idle',
           transcribeResult: null,
+          diarizeState: 'idle',
+          diarizeResult: null,
         },
       ])
     } catch {
@@ -287,6 +290,57 @@ function App() {
       setAudioRecords((prev) =>
         prev.map((record) =>
           record.id === audioId ? { ...record, transcribeState: 'failed' } : record,
+        ),
+      )
+    }
+  }
+
+  async function handleDiarizeAudio(audioId) {
+    setAudioRecords((prev) =>
+      prev.map((record) =>
+        record.id === audioId ? { ...record, diarizeState: 'diarizing', diarizeResult: null } : record,
+      ),
+    )
+
+    try {
+      const res = await fetch(`${API_BASE}/consultations/${consultationId}/audio/diarize`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ audio_id: audioId }),
+      })
+
+      if (!res.ok) {
+        setAudioRecords((prev) =>
+          prev.map((record) =>
+            record.id === audioId ? { ...record, diarizeState: 'failed' } : record,
+          ),
+        )
+        return
+      }
+
+      const data = await res.json()
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId
+            ? {
+                ...record,
+                diarizeState: 'completed',
+                diarizeResult: {
+                  speakerCount: data.speaker_count,
+                  speakers: data.speakers,
+                  segmentCount: data.segment_count,
+                },
+              }
+            : record,
+        ),
+      )
+    } catch {
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId ? { ...record, diarizeState: 'failed' } : record,
         ),
       )
     }
@@ -448,6 +502,31 @@ function App() {
                       )}
                       {record.transcribeState === 'failed' && (
                         <p className="text-sm text-red-600">❌ Transcription failed</p>
+                      )}
+
+                      <button
+                        onClick={() => handleDiarizeAudio(record.id)}
+                        disabled={record.diarizeState === 'diarizing'}
+                        className="bg-gray-900 text-white rounded px-3 py-1 disabled:opacity-50 text-sm"
+                      >
+                        {record.diarizeState === 'diarizing' ? 'Diarizing...' : 'Diarize Audio'}
+                      </button>
+                      {record.diarizeState === 'completed' && record.diarizeResult && (
+                        <div className="text-sm text-green-600 text-left w-full">
+                          <p>✅ Diarization complete</p>
+                          <p className="text-gray-700">
+                            Speakers detected: {record.diarizeResult.speakerCount}
+                          </p>
+                          <p className="text-gray-700 font-mono">
+                            {record.diarizeResult.speakers.join(', ')}
+                          </p>
+                          <p className="text-gray-700">
+                            Segments: {record.diarizeResult.segmentCount}
+                          </p>
+                        </div>
+                      )}
+                      {record.diarizeState === 'failed' && (
+                        <p className="text-sm text-red-600">❌ Diarization failed</p>
                       )}
                     </>
                   )}

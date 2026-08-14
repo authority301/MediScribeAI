@@ -126,6 +126,46 @@ def _ensure_speaker_segment_label_nullable() -> None:
         conn.execute(text("ALTER TABLE speaker_segments ALTER COLUMN speaker_label DROP NOT NULL"))
 
 
+def _ensure_audio_record_diarization_columns() -> None:
+    """Additively migrate audio_records for Step 10 local PyAnnote diarization metadata."""
+    with engine.begin() as conn:
+        conn.execute(
+            text(
+                "ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS diarization_status "
+                "TEXT NOT NULL DEFAULT 'pending'"
+            )
+        )
+        conn.execute(
+            text("ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS diarization_error TEXT")
+        )
+
+
+def _ensure_speaker_segment_diarization_columns() -> None:
+    """Decouple speaker_segments from requiring a transcript, for Step 10 diarization.
+
+    Diarization operates on the audio directly and may run before (or without)
+    an ASR transcript existing. transcript_id and segment_text are relaxed to
+    nullable, and a nullable audio_record_id is added, so a pure diarization
+    interval with no confidently-aligned ASR text can be stored honestly
+    rather than fabricating a transcript link or text.
+    """
+    with engine.begin() as conn:
+        conn.execute(text("ALTER TABLE speaker_segments ALTER COLUMN transcript_id DROP NOT NULL"))
+        conn.execute(text("ALTER TABLE speaker_segments ALTER COLUMN segment_text DROP NOT NULL"))
+        conn.execute(
+            text(
+                "ALTER TABLE speaker_segments ADD COLUMN IF NOT EXISTS audio_record_id UUID "
+                "REFERENCES audio_records(id)"
+            )
+        )
+        conn.execute(
+            text(
+                "CREATE INDEX IF NOT EXISTS ix_speaker_segments_audio_record_id "
+                "ON speaker_segments (audio_record_id)"
+            )
+        )
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
     _ensure_doctor_auth_columns()
@@ -134,6 +174,8 @@ def init_db() -> None:
     _ensure_audio_record_processing_columns()
     _ensure_transcript_asr_columns()
     _ensure_speaker_segment_label_nullable()
+    _ensure_audio_record_diarization_columns()
+    _ensure_speaker_segment_diarization_columns()
 
 
 if __name__ == "__main__":

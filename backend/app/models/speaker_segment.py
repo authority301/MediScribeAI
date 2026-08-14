@@ -12,7 +12,11 @@ class SpeakerSegment(Base):
     )
 
     id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
-    transcript_id = Column(UUID(as_uuid=True), ForeignKey("transcripts.id"), nullable=False)
+    # Nullable: Step 10 diarization can produce a speaker interval with no
+    # aligned ASR transcript yet (or ASR hasn't run at all for this audio).
+    transcript_id = Column(UUID(as_uuid=True), ForeignKey("transcripts.id"), nullable=True)
+    # Diarization operates on the audio directly, independent of any transcript.
+    audio_record_id = Column(UUID(as_uuid=True), ForeignKey("audio_records.id"), nullable=True)
     sequence_index = Column(Integer, nullable=False)
     # Nullable: Step 9A writes raw ASR segments with no speaker identity yet.
     # Diarization (Step 10) is what will populate this -- never fabricated here.
@@ -20,10 +24,13 @@ class SpeakerSegment(Base):
     inferred_role = Column(Text, nullable=True)
     start_time_ms = Column(Integer, nullable=False)
     end_time_ms = Column(Integer, nullable=False)
-    segment_text = Column(Text, nullable=False)
+    # Nullable: a pure diarization interval may have no confidently-aligned
+    # ASR text (weak/no temporal overlap) -- left empty rather than fabricated.
+    segment_text = Column(Text, nullable=True)
     diarization_confidence = Column(Numeric, nullable=True)
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
 
     transcript = relationship("Transcript", back_populates="speaker_segments")
+    audio_record = relationship("AudioRecord", back_populates="speaker_segments")
     medical_entities = relationship("MedicalEntity", back_populates="speaker_segment")
     evidence_links = relationship("EvidenceLink", back_populates="speaker_segment")
