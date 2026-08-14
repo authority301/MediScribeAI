@@ -266,6 +266,45 @@ def _ensure_transcript_entity_extraction_columns() -> None:
         )
 
 
+def _ensure_soap_note_generation_columns() -> None:
+    """Additively migrate soap_notes for Step 13 SOAP generation.
+
+    transcript_id links the note back to its source transcript. generation_status
+    is a SEPARATE concept from the pre-existing doctor-review `status` column
+    (generated/edited/approved/rejected) -- it tracks whether the generator
+    itself ran successfully (pending/processing/completed/failed); an
+    evidence-sparse note is still "completed", never "failed".
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text(
+                "ALTER TABLE soap_notes ADD COLUMN IF NOT EXISTS transcript_id UUID "
+                "REFERENCES transcripts(id)"
+            )
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE soap_notes ADD COLUMN IF NOT EXISTS generation_status "
+                "TEXT NOT NULL DEFAULT 'pending'"
+            )
+        )
+        conn.execute(
+            text("ALTER TABLE soap_notes ADD COLUMN IF NOT EXISTS generation_error TEXT")
+        )
+
+
+def _ensure_soap_claim_generation_confidence_column() -> None:
+    """Additively migrate soap_claims for Step 13 generation confidence.
+
+    generation_confidence reflects generation/evidence-availability strength
+    for the deterministic baseline -- NOT clinical correctness.
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text("ALTER TABLE soap_claims ADD COLUMN IF NOT EXISTS generation_confidence NUMERIC")
+        )
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
     _ensure_doctor_auth_columns()
@@ -280,6 +319,8 @@ def init_db() -> None:
     _ensure_speaker_segment_role_status_default()
     _ensure_medical_entity_extraction_columns()
     _ensure_transcript_entity_extraction_columns()
+    _ensure_soap_note_generation_columns()
+    _ensure_soap_claim_generation_confidence_column()
 
 
 if __name__ == "__main__":

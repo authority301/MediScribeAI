@@ -44,3 +44,4 @@ class Transcript(Base):
         "SpeakerSegment", back_populates="transcript", order_by="SpeakerSegment.sequence_index"
     )
     medical_entities = relationship("MedicalEntity", back_populates="transcript")
+    soap_notes = relationship("SOAPNote", back_populates="transcript")

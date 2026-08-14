@@ -34,7 +34,8 @@ function App() {
   const [uploadMessage, setUploadMessage] = useState(null)
 
   // { id, filename, processingState, processingMessage, transcribeState, transcribeResult,
-  //   diarizeState, diarizeResult, identifyState, identifyResult, extractState, extractResult }
+  //   diarizeState, diarizeResult, identifyState, identifyResult, extractState, extractResult,
+  //   soapState, soapResult }
   const [audioRecords, setAudioRecords] = useState([])
 
   const mediaRecorderRef = useRef(null)
@@ -185,6 +186,8 @@ function App() {
           identifyResult: null,
           extractState: 'idle',
           extractResult: null,
+          soapState: 'idle',
+          soapResult: null,
         },
       ])
     } catch {
@@ -455,6 +458,47 @@ function App() {
     }
   }
 
+  async function handleGenerateSoap(audioId, transcriptId) {
+    setAudioRecords((prev) =>
+      prev.map((record) =>
+        record.id === audioId ? { ...record, soapState: 'generating', soapResult: null } : record,
+      ),
+    )
+
+    try {
+      const res = await fetch(`${API_BASE}/consultations/${consultationId}/soap/generate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ transcript_id: transcriptId }),
+      })
+
+      if (!res.ok) {
+        setAudioRecords((prev) =>
+          prev.map((record) =>
+            record.id === audioId ? { ...record, soapState: 'failed' } : record,
+          ),
+        )
+        return
+      }
+
+      const data = await res.json()
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId ? { ...record, soapState: 'completed', soapResult: data.claims } : record,
+        ),
+      )
+    } catch {
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId ? { ...record, soapState: 'failed' } : record,
+        ),
+      )
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white text-center px-4 py-8 gap-6">
       <div>
@@ -658,6 +702,49 @@ function App() {
                           )}
                           {record.extractState === 'failed' && (
                             <p className="text-sm text-red-600">❌ Extraction failed</p>
+                          )}
+
+                          <button
+                            onClick={() =>
+                              handleGenerateSoap(record.id, record.transcribeResult.transcriptId)
+                            }
+                            disabled={record.soapState === 'generating'}
+                            className="bg-gray-900 text-white rounded px-3 py-1 disabled:opacity-50 text-sm"
+                          >
+                            {record.soapState === 'generating'
+                              ? 'Generating SOAP note...'
+                              : 'Generate SOAP Note'}
+                          </button>
+                          {record.soapState === 'completed' && record.soapResult && (
+                            <div className="text-sm text-green-600 text-left w-full">
+                              <p>✅ SOAP generation complete</p>
+                              {['SUBJECTIVE', 'OBJECTIVE', 'ASSESSMENT', 'PLAN'].map((section) => {
+                                const sectionClaims = record.soapResult.filter(
+                                  (c) => c.section === section,
+                                )
+                                return (
+                                  <div key={section} className="mt-2">
+                                    <p className="text-gray-800 font-semibold">{section}</p>
+                                    {sectionClaims.length === 0 ? (
+                                      <p className="text-gray-500">• Not documented.</p>
+                                    ) : (
+                                      sectionClaims.map((claim, index) => (
+                                        <p key={index} className="text-gray-700">
+                                          • {claim.claim_text}
+                                        </p>
+                                      ))
+                                    )}
+                                  </div>
+                                )
+                              })}
+                              <p className="text-gray-500 text-xs mt-2">
+                                Generation confidence reflects evidence availability, not clinical
+                                correctness. Claims are not yet verified against the transcript.
+                              </p>
+                            </div>
+                          )}
+                          {record.soapState === 'failed' && (
+                            <p className="text-sm text-red-600">❌ SOAP generation failed</p>
                           )}
                         </>
                       )}
