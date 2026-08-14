@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MediScribeAI NLI Evaluation Benchmark (Step 14E)",
+  "description": "Schema for datasets/nli_evaluation/benchmark.json. This is a model-independent gold-label evaluation dataset -- it must never contain NLI predictions, model confidence, retrieval scores, or hallucination scores.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "language", "premise", "claim", "ground_truth", "category", "difficulty"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique case identifier, e.g. 'EN-001', 'TL-014', 'MX-009'.",
+        "minLength": 1
+      },
+      "language": {
+        "type": "string",
+        "enum": ["en", "tanglish", "mixed"],
+        "description": "en = English only, tanglish = Romanized Tamil-English code-mixed, mixed = code-switched English/Tanglish sentence."
+      },
+      "premise": {
+        "type": "string",
+        "description": "Synthetic transcript evidence segment (never real patient data).",
+        "minLength": 1
+      },
+      "claim": {
+        "type": "string",
+        "description": "Synthetic SOAP-style claim to be verified against the premise.",
+        "minLength": 1
+      },
+      "ground_truth": {
+        "type": "string",
+        "enum": ["SUPPORTED", "CONTRADICTED", "UNGROUNDED"],
+        "description": "Human-reasoned gold label. Never derived by running the NLI model."
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "symptoms",
+          "medications",
+          "allergies",
+          "measurements",
+          "duration",
+          "frequency",
+          "medical_procedures",
+          "diagnoses",
+          "follow_up_instructions",
+          "referral_instructions",
+          "patient_history",
+          "doctor_assessment",
+          "negation",
+          "historical_statements",
+          "diagnosis_overreach"
+        ]
+      },
+      "difficulty": {
+        "type": "string",
+        "enum": ["easy", "medium", "hard"]
+      },
+      "speaker_role": {
+        "type": "string",
+        "enum": ["PATIENT", "DOCTOR"],
+        "description": "Optional. Who uttered the premise."
+      },
+      "clinical_domain": {
+        "type": "string",
+        "description": "Optional coarse clinical area tag, e.g. 'respiratory', 'cardiology'."
+      },
+      "contains_negation": { "type": "boolean" },
+      "contains_measurement": { "type": "boolean" },
+      "contains_duration": { "type": "boolean" },
+      "contains_medication": { "type": "boolean" },
+      "contains_diagnosis": { "type": "boolean" },
+      "contains_code_switching": { "type": "boolean" },
+      "rationale": {
+        "type": "string",
+        "description": "Optional short human explanation of why the ground_truth was assigned."
+      }
+    },
+    "not": {
+      "anyOf": [
+        { "required": ["nli_label"] },
+        { "required": ["entailment_score"] },
+        { "required": ["contradiction_score"] },
+        { "required": ["neutral_score"] },
+        { "required": ["model_prediction"] },
+        { "required": ["retrieval_score"] },
+        { "required": ["hallucination_status"] },
+        { "required": ["hallucination_rate"] },
+        { "required": ["confidence"] }
+      ]
+    }
+  }
+}
