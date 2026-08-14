@@ -1,0 +1,709 @@
+[
+  {
+    "case_id": "EN-002",
+    "language": "en",
+    "category": "symptoms",
+    "difficulty": "medium",
+    "premise": "I don't have any chest pain.",
+    "claim": "Patient reports chest pain.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.03240966796875,
+    "contradiction_score": 0.06463623046875,
+    "neutral_score": 0.90283203125,
+    "possible_failure_categories": [
+      "negation"
+    ]
+  },
+  {
+    "case_id": "EN-003",
+    "language": "en",
+    "category": "symptoms",
+    "difficulty": "medium",
+    "premise": "I have a mild headache today.",
+    "claim": "Patient has a severe migraine.",
+    "ground_truth": "UNGROUNDED",
+    "prediction": "CONTRADICTED",
+    "nli_label": "CONTRADICTION",
+    "entailment_score": 0.00030231475830078125,
+    "contradiction_score": 0.99755859375,
+    "neutral_score": 0.0020122528076171875,
+    "possible_failure_categories": [
+      "unspecified"
+    ]
+  },
+  {
+    "case_id": "EN-004",
+    "language": "en",
+    "category": "symptoms",
+    "difficulty": "medium",
+    "premise": "My throat has been sore since yesterday.",
+    "claim": "Patient reports a sore throat since yesterday.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.681640625,
+    "contradiction_score": 0.000415802001953125,
+    "neutral_score": 0.317626953125,
+    "possible_failure_categories": [
+      "unspecified"
+    ]
+  },
+  {
+    "case_id": "TL-001",
+    "language": "tanglish",
+    "category": "symptoms",
+    "difficulty": "medium",
+    "premise": "Enakku fever rendu naala irukku.",
+    "claim": "Patient has had fever for two days.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.0238189697265625,
+    "contradiction_score": 0.05926513671875,
+    "neutral_score": 0.9169921875,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "TL-002",
+    "language": "tanglish",
+    "category": "symptoms",
+    "difficulty": "hard",
+    "premise": "Enakku chest pain illa.",
+    "claim": "Patient reports chest pain.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.81396484375,
+    "contradiction_score": 0.00039649009704589844,
+    "neutral_score": 0.1859130859375,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "TL-003",
+    "language": "tanglish",
+    "category": "symptoms",
+    "difficulty": "medium",
+    "premise": "Enakku vayitru vali irukku.",
+    "claim": "Patient reports stomach pain.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.62158203125,
+    "contradiction_score": 0.2188720703125,
+    "neutral_score": 0.1595458984375,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "TL-004",
+    "language": "tanglish",
+    "category": "symptoms",
+    "difficulty": "hard",
+    "premise": "Enakku ippo cough illa.",
+    "claim": "Patient reports cough.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.76220703125,
+    "contradiction_score": 0.001964569091796875,
+    "neutral_score": 0.236083984375,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "MX-002",
+    "language": "mixed",
+    "category": "symptoms",
+    "difficulty": "hard",
+    "premise": "Fever irundhudhu, but ippo illa.",
+    "claim": "Patient currently has fever.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.83203125,
+    "contradiction_score": 0.08563232421875,
+    "neutral_score": 0.08233642578125,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "TL-006",
+    "language": "tanglish",
+    "category": "medications",
+    "difficulty": "hard",
+    "premise": "Naan aspirin edukkala.",
+    "claim": "Patient is taking aspirin.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.85791015625,
+    "contradiction_score": 0.0036182403564453125,
+    "neutral_score": 0.1383056640625,
+    "possible_failure_categories": [
+      "negation + code-switching",
+      "medication"
+    ]
+  },
+  {
+    "case_id": "MX-004",
+    "language": "mixed",
+    "category": "medications",
+    "difficulty": "hard",
+    "premise": "Naan insulin edukkamaatten, doctor.",
+    "claim": "Patient takes insulin.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.96728515625,
+    "contradiction_score": 0.005695343017578125,
+    "neutral_score": 0.027099609375,
+    "possible_failure_categories": [
+      "negation + code-switching",
+      "medication"
+    ]
+  },
+  {
+    "case_id": "EN-009",
+    "language": "en",
+    "category": "allergies",
+    "difficulty": "medium",
+    "premise": "I have no known drug allergies.",
+    "claim": "Patient is allergic to penicillin.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.0001747608184814453,
+    "contradiction_score": 0.01119232177734375,
+    "neutral_score": 0.98876953125,
+    "possible_failure_categories": [
+      "negation"
+    ]
+  },
+  {
+    "case_id": "MX-005",
+    "language": "mixed",
+    "category": "allergies",
+    "difficulty": "hard",
+    "premise": "Enakku edhuvum allergy kidayaadhu, no allergies.",
+    "claim": "Patient is allergic to peanuts.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.0008392333984375,
+    "contradiction_score": 0.0021724700927734375,
+    "neutral_score": 0.9970703125,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "EN-010",
+    "language": "en",
+    "category": "measurements",
+    "difficulty": "easy",
+    "premise": "Temperature was 101.2 degrees Fahrenheit.",
+    "claim": "Patient's temperature was 101.2 degrees Fahrenheit.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.036285400390625,
+    "contradiction_score": 0.0019683837890625,
+    "neutral_score": 0.9619140625,
+    "possible_failure_categories": [
+      "measurement"
+    ]
+  },
+  {
+    "case_id": "MX-007",
+    "language": "mixed",
+    "category": "measurements",
+    "difficulty": "hard",
+    "premise": "Weight kammi aayidichu, ippo 60 kilos than irukku.",
+    "claim": "Patient's weight is 75 kilograms.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.03515625,
+    "contradiction_score": 0.332763671875,
+    "neutral_score": 0.6318359375,
+    "possible_failure_categories": [
+      "code-switching / Tanglish",
+      "measurement"
+    ]
+  },
+  {
+    "case_id": "TL-013",
+    "language": "tanglish",
+    "category": "duration",
+    "difficulty": "medium",
+    "premise": "Enakku oru vaaramaa fever irukku.",
+    "claim": "Patient has had fever for one week.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.0227813720703125,
+    "contradiction_score": 0.102294921875,
+    "neutral_score": 0.875,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "TL-014",
+    "language": "tanglish",
+    "category": "duration",
+    "difficulty": "hard",
+    "premise": "Rendu naala than jaladosham irukku.",
+    "claim": "Patient has had cold for two weeks.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.00921630859375,
+    "contradiction_score": 0.044342041015625,
+    "neutral_score": 0.9462890625,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "TL-017",
+    "language": "tanglish",
+    "category": "medical_procedures",
+    "difficulty": "medium",
+    "premise": "Naan nethu ECG edutten.",
+    "claim": "Patient had an ECG done yesterday.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.0079498291015625,
+    "contradiction_score": 0.003192901611328125,
+    "neutral_score": 0.98876953125,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "EN-021",
+    "language": "en",
+    "category": "diagnoses",
+    "difficulty": "medium",
+    "premise": "This does not look like bronchitis, it's just a common cold.",
+    "claim": "Patient has been diagnosed with bronchitis.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.0013647079467773438,
+    "contradiction_score": 0.401123046875,
+    "neutral_score": 0.59765625,
+    "possible_failure_categories": [
+      "negation"
+    ]
+  },
+  {
+    "case_id": "MX-012",
+    "language": "mixed",
+    "category": "diagnoses",
+    "difficulty": "hard",
+    "premise": "Idhu asthma illa, idhu just seasonal allergy than.",
+    "claim": "Patient has been diagnosed with asthma.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.45751953125,
+    "contradiction_score": 0.0014820098876953125,
+    "neutral_score": 0.541015625,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "TL-021",
+    "language": "tanglish",
+    "category": "follow_up_instructions",
+    "difficulty": "medium",
+    "premise": "Rendu vaarathula follow-up-ku vaanga.",
+    "claim": "Patient was advised to return for a follow-up in two weeks.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.005298614501953125,
+    "contradiction_score": 0.002567291259765625,
+    "neutral_score": 0.9921875,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "TL-022",
+    "language": "tanglish",
+    "category": "follow_up_instructions",
+    "difficulty": "hard",
+    "premise": "Follow-up ku vara vendam, idhu than final visit.",
+    "claim": "Patient was advised to schedule a follow-up visit.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.84716796875,
+    "contradiction_score": 0.01366424560546875,
+    "neutral_score": 0.1392822265625,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "TL-024",
+    "language": "tanglish",
+    "category": "referral_instructions",
+    "difficulty": "hard",
+    "premise": "Ippo specialist kitta refer panna vendiya avasiyam illa.",
+    "claim": "Patient was referred to a specialist.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.99609375,
+    "contradiction_score": 0.0005435943603515625,
+    "neutral_score": 0.0033168792724609375,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "EN-027",
+    "language": "en",
+    "category": "patient_history",
+    "difficulty": "medium",
+    "premise": "My father had heart disease.",
+    "claim": "Patient has a history of heart disease.",
+    "ground_truth": "UNGROUNDED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.7109375,
+    "contradiction_score": 0.0023212432861328125,
+    "neutral_score": 0.28662109375,
+    "possible_failure_categories": [
+      "unspecified"
+    ]
+  },
+  {
+    "case_id": "TL-025",
+    "language": "tanglish",
+    "category": "patient_history",
+    "difficulty": "medium",
+    "premise": "Enakku anju varusham diabetes irukku.",
+    "claim": "Patient has a history of diabetes.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "CONTRADICTION",
+    "entailment_score": 0.21630859375,
+    "contradiction_score": 0.393310546875,
+    "neutral_score": 0.390380859375,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "TL-026",
+    "language": "tanglish",
+    "category": "patient_history",
+    "difficulty": "hard",
+    "premise": "Enakku high BP history edhuvum illa, ippo dhaan first time.",
+    "claim": "Patient has a history of high blood pressure.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.83447265625,
+    "contradiction_score": 0.1402587890625,
+    "neutral_score": 0.0251007080078125,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "MX-015",
+    "language": "mixed",
+    "category": "patient_history",
+    "difficulty": "hard",
+    "premise": "Chinna vayasula irundhe naan asthma patient.",
+    "claim": "Patient has a history of asthma since childhood.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.00035691261291503906,
+    "contradiction_score": 0.0002396106719970703,
+    "neutral_score": 0.99951171875,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "EN-028",
+    "language": "en",
+    "category": "doctor_assessment",
+    "difficulty": "easy",
+    "premise": "Your lungs sound clear on examination.",
+    "claim": "Doctor assessed that the patient's lungs sound clear.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.1702880859375,
+    "contradiction_score": 0.0003552436828613281,
+    "neutral_score": 0.8291015625,
+    "possible_failure_categories": [
+      "unspecified"
+    ]
+  },
+  {
+    "case_id": "EN-029",
+    "language": "en",
+    "category": "doctor_assessment",
+    "difficulty": "medium",
+    "premise": "I don't hear any wheezing in your chest.",
+    "claim": "Doctor assessed that the patient has wheezing.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.0024127960205078125,
+    "contradiction_score": 0.05572509765625,
+    "neutral_score": 0.94189453125,
+    "possible_failure_categories": [
+      "negation"
+    ]
+  },
+  {
+    "case_id": "TL-027",
+    "language": "tanglish",
+    "category": "doctor_assessment",
+    "difficulty": "medium",
+    "premise": "Un chest sound clear-aa irukku.",
+    "claim": "Doctor assessed that the patient's chest sounds clear.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.03857421875,
+    "contradiction_score": 0.0007715225219726562,
+    "neutral_score": 0.96044921875,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "MX-017",
+    "language": "mixed",
+    "category": "doctor_assessment",
+    "difficulty": "medium",
+    "premise": "Throat konjam red-aa irukku on examination.",
+    "claim": "Doctor assessed that the patient's throat appeared red on examination.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.09808349609375,
+    "contradiction_score": 0.00023376941680908203,
+    "neutral_score": 0.90185546875,
+    "possible_failure_categories": [
+      "code-switching / Tanglish"
+    ]
+  },
+  {
+    "case_id": "MX-018",
+    "language": "mixed",
+    "category": "doctor_assessment",
+    "difficulty": "hard",
+    "premise": "Belly-la edhuvum tenderness illa on palpation.",
+    "claim": "Doctor assessed abdominal tenderness on palpation.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.0126953125,
+    "contradiction_score": 0.0006632804870605469,
+    "neutral_score": 0.98681640625,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "TL-029",
+    "language": "tanglish",
+    "category": "negation",
+    "difficulty": "hard",
+    "premise": "Enakku ippo chest pain onnum illa.",
+    "claim": "Patient reports chest pain.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.94482421875,
+    "contradiction_score": 0.0004305839538574219,
+    "neutral_score": 0.054840087890625,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "TL-030",
+    "language": "tanglish",
+    "category": "negation",
+    "difficulty": "hard",
+    "premise": "Enakku fever illa.",
+    "claim": "Patient has fever.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.96240234375,
+    "contradiction_score": 0.0032672882080078125,
+    "neutral_score": 0.0343017578125,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "TL-031",
+    "language": "tanglish",
+    "category": "negation",
+    "difficulty": "hard",
+    "premise": "Naan ippo aspirin onnum edukkala.",
+    "claim": "Patient is taking aspirin.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.8857421875,
+    "contradiction_score": 0.00812530517578125,
+    "neutral_score": 0.1060791015625,
+    "possible_failure_categories": [
+      "negation + code-switching",
+      "medication"
+    ]
+  },
+  {
+    "case_id": "TL-032",
+    "language": "tanglish",
+    "category": "negation",
+    "difficulty": "hard",
+    "premise": "Enakku asthma history illa.",
+    "claim": "Patient has a history of asthma.",
+    "ground_truth": "CONTRADICTED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.97509765625,
+    "contradiction_score": 0.0010395050048828125,
+    "neutral_score": 0.02374267578125,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "MX-020",
+    "language": "mixed",
+    "category": "negation",
+    "difficulty": "hard",
+    "premise": "Enakku theriyala fever irukka nu.",
+    "claim": "Patient has fever.",
+    "ground_truth": "UNGROUNDED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.97314453125,
+    "contradiction_score": 0.0030975341796875,
+    "neutral_score": 0.0235137939453125,
+    "possible_failure_categories": [
+      "negation + code-switching"
+    ]
+  },
+  {
+    "case_id": "TL-033",
+    "language": "tanglish",
+    "category": "historical_statements",
+    "difficulty": "hard",
+    "premise": "Chinna vayasula asthma irundhudhu.",
+    "claim": "Patient had asthma during childhood.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.043609619140625,
+    "contradiction_score": 0.014923095703125,
+    "neutral_score": 0.94140625,
+    "possible_failure_categories": [
+      "code-switching / Tanglish",
+      "historical context"
+    ]
+  },
+  {
+    "case_id": "TL-034",
+    "language": "tanglish",
+    "category": "historical_statements",
+    "difficulty": "hard",
+    "premise": "Chinna vayasula asthma irundhudhu.",
+    "claim": "Patient currently has asthma.",
+    "ground_truth": "UNGROUNDED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.9736328125,
+    "contradiction_score": 0.011627197265625,
+    "neutral_score": 0.014556884765625,
+    "possible_failure_categories": [
+      "code-switching / Tanglish",
+      "historical context"
+    ]
+  },
+  {
+    "case_id": "MX-021",
+    "language": "mixed",
+    "category": "historical_statements",
+    "difficulty": "hard",
+    "premise": "Naan chinna vayasula TB treatment eduthirukken, adhu konjam years back.",
+    "claim": "Patient was treated for TB in childhood.",
+    "ground_truth": "SUPPORTED",
+    "prediction": "UNGROUNDED",
+    "nli_label": "NEUTRAL",
+    "entailment_score": 0.28662109375,
+    "contradiction_score": 0.0184326171875,
+    "neutral_score": 0.69482421875,
+    "possible_failure_categories": [
+      "code-switching / Tanglish",
+      "historical context",
+      "medication"
+    ]
+  },
+  {
+    "case_id": "MX-022",
+    "language": "mixed",
+    "category": "historical_statements",
+    "difficulty": "hard",
+    "premise": "Years back oru operation panniyirundhen stomach-ku.",
+    "claim": "Patient currently has stomach problems.",
+    "ground_truth": "UNGROUNDED",
+    "prediction": "SUPPORTED",
+    "nli_label": "ENTAILMENT",
+    "entailment_score": 0.80517578125,
+    "contradiction_score": 0.0880126953125,
+    "neutral_score": 0.10687255859375,
+    "possible_failure_categories": [
+      "code-switching / Tanglish",
+      "historical context"
+    ]
+  },
+  {
+    "case_id": "TL-035",
+    "language": "tanglish",
+    "category": "diagnosis_overreach",
+    "difficulty": "hard",
+    "premise": "Enakku fever and cough irukku.",
+    "claim": "Patient has pneumonia.",
+    "ground_truth": "UNGROUNDED",
+    "prediction": "CONTRADICTED",
+    "nli_label": "CONTRADICTION",
+    "entailment_score": 0.041839599609375,
+    "contradiction_score": 0.72265625,
+    "neutral_score": 0.235595703125,
+    "possible_failure_categories": [
+      "code-switching / Tanglish",
+      "diagnosis overreach"
+    ]
+  }
+]

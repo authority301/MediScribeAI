@@ -1,0 +1,66 @@
+{
+  "overall": {
+    "count": 101,
+    "accuracy": 0.594059405940594,
+    "macro_precision": 0.6559065934065934,
+    "macro_recall": 0.5972365327204037,
+    "macro_f1": 0.5829376160573801,
+    "weighted_precision": 0.6559609944510935,
+    "weighted_recall": 0.594059405940594,
+    "weighted_f1": 0.5828322162024699,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.5897435897435898,
+        "recall": 0.6216216216216216,
+        "f1": 0.6052631578947368,
+        "support": 37
+      },
+      "CONTRADICTED": {
+        "precision": 0.8571428571428571,
+        "recall": 0.36363636363636365,
+        "f1": 0.5106382978723404,
+        "support": 33
+      },
+      "UNGROUNDED": {
+        "precision": 0.5208333333333334,
+        "recall": 0.8064516129032258,
+        "f1": 0.6329113924050633,
+        "support": 31
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 23,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 14
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 12,
+        "CONTRADICTED": 12,
+        "UNGROUNDED": 9
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 4,
+        "CONTRADICTED": 2,
+        "UNGROUNDED": 25
+      }
+    },
+    "ucr_prediction_based": 0.4752475247524752,
+    "ucr_gold_based": 0.3069306930693069,
+    "cr_prediction_based": 0.13861386138613863,
+    "cr_gold_based": 0.32673267326732675
+  },
+  "metadata": {
+    "model_provider": "local",
+    "model_name": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+    "device": "cpu",
+    "entailment_threshold": 0.7,
+    "contradiction_threshold": 0.7,
+    "benchmark_path": "D:\\MediScribeAI\\MediScribeAI\\datasets\\nli_evaluation\\benchmark.json",
+    "benchmark_sha256": "db4d78a94879c2869d1abed423f46cbfd5a4a54e5d24d016c3c2f34faa4b0543",
+    "num_cases": 101,
+    "evaluation_timestamp_utc": "2026-08-14T18:08:15.511296+00:00",
+    "thresholds_tuned_against_benchmark": false,
+    "model_fine_tuned": false
+  }
+}

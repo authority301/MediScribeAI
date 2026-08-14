@@ -1,0 +1,767 @@
+{
+  "allergies": {
+    "count": 5,
+    "accuracy": 0.6,
+    "macro_precision": 0.4444444444444444,
+    "macro_recall": 0.6666666666666666,
+    "macro_f1": 0.5,
+    "weighted_precision": 0.4666666666666667,
+    "weighted_recall": 0.6,
+    "weighted_f1": 0.5,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      },
+      "UNGROUNDED": {
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1": 0.5,
+        "support": 1
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 2,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      }
+    },
+    "ucr_prediction_based": 0.6,
+    "ucr_gold_based": 0.2,
+    "cr_prediction_based": 0.0,
+    "cr_gold_based": 0.4
+  },
+  "diagnoses": {
+    "count": 5,
+    "accuracy": 0.6,
+    "macro_precision": 0.4444444444444444,
+    "macro_recall": 0.6666666666666666,
+    "macro_f1": 0.5,
+    "weighted_precision": 0.4666666666666667,
+    "weighted_recall": 0.6,
+    "weighted_f1": 0.5,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      },
+      "UNGROUNDED": {
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1": 0.5,
+        "support": 1
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 2,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      }
+    },
+    "ucr_prediction_based": 0.6,
+    "ucr_gold_based": 0.2,
+    "cr_prediction_based": 0.0,
+    "cr_gold_based": 0.4
+  },
+  "diagnosis_overreach": {
+    "count": 9,
+    "accuracy": 0.8888888888888888,
+    "macro_precision": 0.3333333333333333,
+    "macro_recall": 0.2962962962962963,
+    "macro_f1": 0.3137254901960784,
+    "weighted_precision": 1.0,
+    "weighted_recall": 0.8888888888888888,
+    "weighted_f1": 0.9411764705882353,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "UNGROUNDED": {
+        "precision": 1.0,
+        "recall": 0.8888888888888888,
+        "f1": 0.9411764705882353,
+        "support": 9
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 1,
+        "UNGROUNDED": 8
+      }
+    },
+    "ucr_prediction_based": 0.8888888888888888,
+    "ucr_gold_based": 1.0,
+    "cr_prediction_based": 0.1111111111111111,
+    "cr_gold_based": 0.0
+  },
+  "doctor_assessment": {
+    "count": 6,
+    "accuracy": 0.16666666666666666,
+    "macro_precision": 0.05555555555555555,
+    "macro_recall": 0.3333333333333333,
+    "macro_f1": 0.09523809523809523,
+    "weighted_precision": 0.027777777777777776,
+    "weighted_recall": 0.16666666666666666,
+    "weighted_f1": 0.047619047619047616,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      },
+      "UNGROUNDED": {
+        "precision": 0.16666666666666666,
+        "recall": 1.0,
+        "f1": 0.2857142857142857,
+        "support": 1
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 3
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      }
+    },
+    "ucr_prediction_based": 1.0,
+    "ucr_gold_based": 0.16666666666666666,
+    "cr_prediction_based": 0.0,
+    "cr_gold_based": 0.3333333333333333
+  },
+  "duration": {
+    "count": 7,
+    "accuracy": 0.7142857142857143,
+    "macro_precision": 0.8333333333333334,
+    "macro_recall": 0.7222222222222222,
+    "macro_f1": 0.7111111111111111,
+    "weighted_precision": 0.8571428571428571,
+    "weighted_recall": 0.7142857142857143,
+    "weighted_f1": 0.7238095238095238,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8,
+        "support": 3
+      },
+      "CONTRADICTED": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 2
+      },
+      "UNGROUNDED": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 2
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 2,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 1,
+        "UNGROUNDED": 1
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      }
+    },
+    "ucr_prediction_based": 0.5714285714285714,
+    "ucr_gold_based": 0.2857142857142857,
+    "cr_prediction_based": 0.14285714285714285,
+    "cr_gold_based": 0.2857142857142857
+  },
+  "follow_up_instructions": {
+    "count": 5,
+    "accuracy": 0.6,
+    "macro_precision": 0.38888888888888884,
+    "macro_recall": 0.5555555555555555,
+    "macro_f1": 0.4444444444444444,
+    "weighted_precision": 0.5,
+    "weighted_recall": 0.6,
+    "weighted_f1": 0.5333333333333333,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1": 0.6666666666666666,
+        "support": 3
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1
+      },
+      "UNGROUNDED": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 1
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 2,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      }
+    },
+    "ucr_prediction_based": 0.4,
+    "ucr_gold_based": 0.2,
+    "cr_prediction_based": 0.0,
+    "cr_gold_based": 0.2
+  },
+  "frequency": {
+    "count": 5,
+    "accuracy": 1.0,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "weighted_precision": 1.0,
+    "weighted_recall": 1.0,
+    "weighted_f1": 1.0,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "CONTRADICTED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "UNGROUNDED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 2,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 2,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      }
+    },
+    "ucr_prediction_based": 0.2,
+    "ucr_gold_based": 0.2,
+    "cr_prediction_based": 0.4,
+    "cr_gold_based": 0.4
+  },
+  "historical_statements": {
+    "count": 6,
+    "accuracy": 0.3333333333333333,
+    "macro_precision": 0.2222222222222222,
+    "macro_recall": 0.2222222222222222,
+    "macro_f1": 0.2222222222222222,
+    "weighted_precision": 0.3333333333333333,
+    "weighted_recall": 0.3333333333333333,
+    "weighted_f1": 0.3333333333333333,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "support": 3
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "UNGROUNDED": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "support": 3
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 2,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      }
+    },
+    "ucr_prediction_based": 0.5,
+    "ucr_gold_based": 0.5,
+    "cr_prediction_based": 0.0,
+    "cr_gold_based": 0.0
+  },
+  "measurements": {
+    "count": 8,
+    "accuracy": 0.75,
+    "macro_precision": 0.8333333333333334,
+    "macro_recall": 0.7777777777777777,
+    "macro_f1": 0.7555555555555555,
+    "weighted_precision": 0.875,
+    "weighted_recall": 0.75,
+    "weighted_f1": 0.7666666666666667,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8,
+        "support": 3
+      },
+      "CONTRADICTED": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8,
+        "support": 3
+      },
+      "UNGROUNDED": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 2
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 2,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 2,
+        "UNGROUNDED": 1
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      }
+    },
+    "ucr_prediction_based": 0.5,
+    "ucr_gold_based": 0.25,
+    "cr_prediction_based": 0.25,
+    "cr_gold_based": 0.375
+  },
+  "medical_procedures": {
+    "count": 5,
+    "accuracy": 0.8,
+    "macro_precision": 0.8888888888888888,
+    "macro_recall": 0.8333333333333334,
+    "macro_f1": 0.8222222222222223,
+    "weighted_precision": 0.8666666666666666,
+    "weighted_recall": 0.8,
+    "weighted_f1": 0.7866666666666666,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 2
+      },
+      "CONTRADICTED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1
+      },
+      "UNGROUNDED": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1": 0.8,
+        "support": 2
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 1,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      }
+    },
+    "ucr_prediction_based": 0.6,
+    "ucr_gold_based": 0.4,
+    "cr_prediction_based": 0.2,
+    "cr_gold_based": 0.2
+  },
+  "medications": {
+    "count": 8,
+    "accuracy": 0.75,
+    "macro_precision": 0.8666666666666667,
+    "macro_recall": 0.7777777777777777,
+    "macro_f1": 0.75,
+    "weighted_precision": 0.85,
+    "weighted_recall": 0.75,
+    "weighted_f1": 0.71875,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.6,
+        "recall": 1.0,
+        "f1": 0.7499999999999999,
+        "support": 3
+      },
+      "CONTRADICTED": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "support": 3
+      },
+      "UNGROUNDED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 3,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 2,
+        "CONTRADICTED": 1,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      }
+    },
+    "ucr_prediction_based": 0.25,
+    "ucr_gold_based": 0.25,
+    "cr_prediction_based": 0.125,
+    "cr_gold_based": 0.375
+  },
+  "negation": {
+    "count": 11,
+    "accuracy": 0.5454545454545454,
+    "macro_precision": 0.6666666666666666,
+    "macro_recall": 0.35185185185185186,
+    "macro_f1": 0.4603174603174603,
+    "weighted_precision": 1.0,
+    "weighted_recall": 0.5454545454545454,
+    "weighted_f1": 0.7056277056277056,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "CONTRADICTED": {
+        "precision": 1.0,
+        "recall": 0.5555555555555556,
+        "f1": 0.7142857142857143,
+        "support": 9
+      },
+      "UNGROUNDED": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 2
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 4,
+        "CONTRADICTED": 5,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      }
+    },
+    "ucr_prediction_based": 0.09090909090909091,
+    "ucr_gold_based": 0.18181818181818182,
+    "cr_prediction_based": 0.45454545454545453,
+    "cr_gold_based": 0.8181818181818182
+  },
+  "patient_history": {
+    "count": 6,
+    "accuracy": 0.3333333333333333,
+    "macro_precision": 0.2222222222222222,
+    "macro_recall": 0.27777777777777773,
+    "macro_f1": 0.24444444444444446,
+    "weighted_precision": 0.27777777777777773,
+    "weighted_recall": 0.3333333333333333,
+    "weighted_f1": 0.3,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "support": 3
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1
+      },
+      "UNGROUNDED": {
+        "precision": 0.3333333333333333,
+        "recall": 0.5,
+        "f1": 0.4,
+        "support": 2
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      }
+    },
+    "ucr_prediction_based": 0.5,
+    "ucr_gold_based": 0.3333333333333333,
+    "cr_prediction_based": 0.0,
+    "cr_gold_based": 0.16666666666666666
+  },
+  "referral_instructions": {
+    "count": 5,
+    "accuracy": 0.8,
+    "macro_precision": 0.5833333333333334,
+    "macro_recall": 0.6666666666666666,
+    "macro_f1": 0.6190476190476191,
+    "weighted_precision": 0.65,
+    "weighted_recall": 0.8,
+    "weighted_f1": 0.7142857142857142,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1": 0.8571428571428571,
+        "support": 3
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1
+      },
+      "UNGROUNDED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 3,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      }
+    },
+    "ucr_prediction_based": 0.2,
+    "ucr_gold_based": 0.2,
+    "cr_prediction_based": 0.0,
+    "cr_gold_based": 0.2
+  },
+  "symptoms": {
+    "count": 10,
+    "accuracy": 0.2,
+    "macro_precision": 0.13333333333333333,
+    "macro_recall": 0.13333333333333333,
+    "macro_f1": 0.13333333333333336,
+    "weighted_precision": 0.2,
+    "weighted_recall": 0.2,
+    "weighted_f1": 0.20000000000000004,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.4,
+        "recall": 0.4,
+        "f1": 0.4000000000000001,
+        "support": 5
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 4
+      },
+      "UNGROUNDED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 2,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 3
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 3,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 1
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 1,
+        "UNGROUNDED": 0
+      }
+    },
+    "ucr_prediction_based": 0.4,
+    "ucr_gold_based": 0.1,
+    "cr_prediction_based": 0.1,
+    "cr_gold_based": 0.4
+  }
+}

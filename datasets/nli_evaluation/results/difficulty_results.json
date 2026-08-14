@@ -1,0 +1,155 @@
+{
+  "easy": {
+    "count": 16,
+    "accuracy": 0.875,
+    "macro_precision": 0.8666666666666667,
+    "macro_recall": 0.9444444444444445,
+    "macro_f1": 0.8863636363636364,
+    "weighted_precision": 0.925,
+    "weighted_recall": 0.875,
+    "weighted_f1": 0.8849431818181818,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 1.0,
+        "recall": 0.8333333333333334,
+        "f1": 0.9090909090909091,
+        "support": 12
+      },
+      "CONTRADICTED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1
+      },
+      "UNGROUNDED": {
+        "precision": 0.6,
+        "recall": 1.0,
+        "f1": 0.7499999999999999,
+        "support": 3
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 10,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 2
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 1,
+        "UNGROUNDED": 0
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 3
+      }
+    },
+    "ucr_prediction_based": 0.3125,
+    "ucr_gold_based": 0.1875,
+    "cr_prediction_based": 0.0625,
+    "cr_gold_based": 0.0625
+  },
+  "medium": {
+    "count": 43,
+    "accuracy": 0.6511627906976745,
+    "macro_precision": 0.7224867724867724,
+    "macro_recall": 0.6784511784511785,
+    "macro_f1": 0.6556285349388798,
+    "weighted_precision": 0.7964008859357696,
+    "weighted_recall": 0.6511627906976745,
+    "weighted_f1": 0.6831761306500682,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.9285714285714286,
+        "recall": 0.5909090909090909,
+        "f1": 0.7222222222222223,
+        "support": 22
+      },
+      "CONTRADICTED": {
+        "precision": 0.8888888888888888,
+        "recall": 0.6666666666666666,
+        "f1": 0.761904761904762,
+        "support": 12
+      },
+      "UNGROUNDED": {
+        "precision": 0.35,
+        "recall": 0.7777777777777778,
+        "f1": 0.48275862068965514,
+        "support": 9
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 13,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 9
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 8,
+        "UNGROUNDED": 4
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 1,
+        "UNGROUNDED": 7
+      }
+    },
+    "ucr_prediction_based": 0.46511627906976744,
+    "ucr_gold_based": 0.20930232558139536,
+    "cr_prediction_based": 0.20930232558139536,
+    "cr_gold_based": 0.27906976744186046
+  },
+  "hard": {
+    "count": 42,
+    "accuracy": 0.42857142857142855,
+    "macro_precision": 0.4673913043478261,
+    "macro_recall": 0.31315789473684214,
+    "macro_f1": 0.32142857142857145,
+    "weighted_precision": 0.6521739130434783,
+    "weighted_recall": 0.42857142857142855,
+    "weighted_f1": 0.44217687074829926,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "CONTRADICTED": {
+        "precision": 0.75,
+        "recall": 0.15,
+        "f1": 0.24999999999999997,
+        "support": 20
+      },
+      "UNGROUNDED": {
+        "precision": 0.6521739130434783,
+        "recall": 0.7894736842105263,
+        "f1": 0.7142857142857143,
+        "support": 19
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 3
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 12,
+        "CONTRADICTED": 3,
+        "UNGROUNDED": 5
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 3,
+        "CONTRADICTED": 1,
+        "UNGROUNDED": 15
+      }
+    },
+    "ucr_prediction_based": 0.5476190476190477,
+    "ucr_gold_based": 0.4523809523809524,
+    "cr_prediction_based": 0.09523809523809523,
+    "cr_gold_based": 0.47619047619047616
+  }
+}
