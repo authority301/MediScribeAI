@@ -13,6 +13,8 @@ class AudioRecord(Base):
         UUID(as_uuid=True), ForeignKey("consultations.id"), nullable=False, index=True
     )
     storage_path = Column(Text, nullable=False)
+    original_filename = Column(Text, nullable=False)
+    content_type = Column(Text, nullable=False)
     format = Column(Text, nullable=True)
     duration_seconds = Column(Numeric, nullable=True)
     sample_rate_hz = Column(Integer, nullable=True)

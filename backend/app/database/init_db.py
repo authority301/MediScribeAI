@@ -30,10 +30,33 @@ def _ensure_consultation_status_default() -> None:
         conn.execute(text("ALTER TABLE consultations ALTER COLUMN status SET DEFAULT 'draft'"))
 
 
+def _ensure_audio_record_upload_columns() -> None:
+    """Additively migrate the pre-existing audio_records table for uploads.
+
+    audio_records already existed from Step 5B without original_filename or
+    content_type; Step 8A needs both to describe an uploaded file, so they are
+    added here via idempotent ALTER TABLE statements instead of Alembic.
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text(
+                "ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS original_filename TEXT NOT NULL DEFAULT ''"
+            )
+        )
+        conn.execute(text("ALTER TABLE audio_records ALTER COLUMN original_filename DROP DEFAULT"))
+        conn.execute(
+            text(
+                "ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS content_type TEXT NOT NULL DEFAULT ''"
+            )
+        )
+        conn.execute(text("ALTER TABLE audio_records ALTER COLUMN content_type DROP DEFAULT"))
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
     _ensure_doctor_auth_columns()
     _ensure_consultation_status_default()
+    _ensure_audio_record_upload_columns()
 
 
 if __name__ == "__main__":
