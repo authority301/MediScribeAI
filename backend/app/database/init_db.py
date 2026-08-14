@@ -18,9 +18,22 @@ def _ensure_doctor_auth_columns() -> None:
         conn.execute(text("ALTER TABLE doctors ADD COLUMN IF NOT EXISTS is_active BOOLEAN NOT NULL DEFAULT true"))
 
 
+def _ensure_consultation_status_default() -> None:
+    """Realign the consultations.status default with the approved lifecycle.
+
+    The Step 5A design originally defaulted this column to 'scheduled'. Step 7
+    defines the lifecycle as draft/active/completed/cancelled instead. status
+    is a plain TEXT column (no CHECK constraint), so only its DEFAULT clause
+    needs correcting here; the four allowed values are enforced in the API.
+    """
+    with engine.begin() as conn:
+        conn.execute(text("ALTER TABLE consultations ALTER COLUMN status SET DEFAULT 'draft'"))
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
     _ensure_doctor_auth_columns()
+    _ensure_consultation_status_default()
 
 
 if __name__ == "__main__":

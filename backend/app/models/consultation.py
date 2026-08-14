@@ -13,7 +13,7 @@ class Consultation(Base):
     patient_reference = Column(Text, nullable=True)
     consultation_date = Column(DateTime(timezone=True), nullable=False)
     language_mode = Column(Text, nullable=True)
-    status = Column(Text, nullable=False, server_default=text("'scheduled'"), index=True)
+    status = Column(Text, nullable=False, server_default=text("'draft'"), index=True)
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
     updated_at = Column(
         DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now()
