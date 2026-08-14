@@ -7,6 +7,7 @@ from app.auth import router as auth_router
 from app.consultations import router as consultations_router
 from app.diarization import router as diarization_router
 from app.fog import router as fog_router
+from app.medical_entities import router as medical_entities_router
 from app.speaker_roles import router as speaker_roles_router
 
 app = FastAPI()
@@ -25,6 +26,7 @@ app.include_router(fog_router)
 app.include_router(asr_router)
 app.include_router(diarization_router)
 app.include_router(speaker_roles_router)
+app.include_router(medical_entities_router)
 
 
 @app.get("/")

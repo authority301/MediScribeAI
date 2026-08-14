@@ -207,6 +207,65 @@ def _ensure_speaker_segment_role_status_default() -> None:
         )
 
 
+def _ensure_medical_entity_extraction_columns() -> None:
+    """Additively migrate medical_entities for Step 12 entity extraction + PHI.
+
+    transcript_id links an entity back to its source transcript; negated and
+    historical capture basic negation/temporal context detected during
+    extraction. This table is reused for both clinical entities and PHI
+    detections (entity_type prefixed "PHI_") rather than creating a new table.
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text(
+                "ALTER TABLE medical_entities ADD COLUMN IF NOT EXISTS transcript_id UUID "
+                "REFERENCES transcripts(id)"
+            )
+        )
+        conn.execute(
+            text(
+                "CREATE INDEX IF NOT EXISTS ix_medical_entities_transcript_id "
+                "ON medical_entities (transcript_id)"
+            )
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE medical_entities ADD COLUMN IF NOT EXISTS negated "
+                "BOOLEAN NOT NULL DEFAULT false"
+            )
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE medical_entities ADD COLUMN IF NOT EXISTS historical "
+                "BOOLEAN NOT NULL DEFAULT false"
+            )
+        )
+
+
+def _ensure_transcript_entity_extraction_columns() -> None:
+    """Additively migrate transcripts for Step 12 de-identification metadata.
+
+    deidentified_text is a separate downstream-processing representation;
+    full_text (the original source transcript / research evidence) is never
+    overwritten.
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text("ALTER TABLE transcripts ADD COLUMN IF NOT EXISTS deidentified_text TEXT")
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE transcripts ADD COLUMN IF NOT EXISTS entity_extraction_status "
+                "TEXT NOT NULL DEFAULT 'pending'"
+            )
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE transcripts ADD COLUMN IF NOT EXISTS entity_extraction_error TEXT"
+            )
+        )
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
     _ensure_doctor_auth_columns()
@@ -219,6 +278,8 @@ def init_db() -> None:
     _ensure_speaker_segment_diarization_columns()
     _ensure_speaker_segment_role_columns()
     _ensure_speaker_segment_role_status_default()
+    _ensure_medical_entity_extraction_columns()
+    _ensure_transcript_entity_extraction_columns()
 
 
 if __name__ == "__main__":

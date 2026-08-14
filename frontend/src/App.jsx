@@ -34,7 +34,7 @@ function App() {
   const [uploadMessage, setUploadMessage] = useState(null)
 
   // { id, filename, processingState, processingMessage, transcribeState, transcribeResult,
-  //   diarizeState, diarizeResult, identifyState, identifyResult }
+  //   diarizeState, diarizeResult, identifyState, identifyResult, extractState, extractResult }
   const [audioRecords, setAudioRecords] = useState([])
 
   const mediaRecorderRef = useRef(null)
@@ -183,6 +183,8 @@ function App() {
           diarizeResult: null,
           identifyState: 'idle',
           identifyResult: null,
+          extractState: 'idle',
+          extractResult: null,
         },
       ])
     } catch {
@@ -280,6 +282,7 @@ function App() {
                 ...record,
                 transcribeState: 'completed',
                 transcribeResult: {
+                  transcriptId: data.transcript_id,
                   language: data.language,
                   text: data.text,
                   segmentCount: data.segment_count,
@@ -391,6 +394,62 @@ function App() {
       setAudioRecords((prev) =>
         prev.map((record) =>
           record.id === audioId ? { ...record, identifyState: 'failed' } : record,
+        ),
+      )
+    }
+  }
+
+  async function handleExtractEntities(audioId, transcriptId) {
+    setAudioRecords((prev) =>
+      prev.map((record) =>
+        record.id === audioId
+          ? { ...record, extractState: 'extracting', extractResult: null }
+          : record,
+      ),
+    )
+
+    try {
+      const res = await fetch(
+        `${API_BASE}/consultations/${consultationId}/audio/extract-entities`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ transcript_id: transcriptId }),
+        },
+      )
+
+      if (!res.ok) {
+        setAudioRecords((prev) =>
+          prev.map((record) =>
+            record.id === audioId ? { ...record, extractState: 'failed' } : record,
+          ),
+        )
+        return
+      }
+
+      const data = await res.json()
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId
+            ? {
+                ...record,
+                extractState: 'completed',
+                extractResult: {
+                  count: data.medical_entity_count,
+                  phiDetected: data.phi_detected,
+                  entities: data.entities,
+                },
+              }
+            : record,
+        ),
+      )
+    } catch {
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId ? { ...record, extractState: 'failed' } : record,
         ),
       )
     }
@@ -552,6 +611,55 @@ function App() {
                       )}
                       {record.transcribeState === 'failed' && (
                         <p className="text-sm text-red-600">❌ Transcription failed</p>
+                      )}
+
+                      {record.transcribeState === 'completed' && record.transcribeResult && (
+                        <>
+                          <button
+                            onClick={() =>
+                              handleExtractEntities(
+                                record.id,
+                                record.transcribeResult.transcriptId,
+                              )
+                            }
+                            disabled={record.extractState === 'extracting'}
+                            className="bg-gray-900 text-white rounded px-3 py-1 disabled:opacity-50 text-sm"
+                          >
+                            {record.extractState === 'extracting'
+                              ? 'Extracting...'
+                              : 'Extract Medical Entities'}
+                          </button>
+                          {record.extractState === 'completed' && record.extractResult && (
+                            <div className="text-sm text-green-600 text-left w-full">
+                              <p>✅ Extraction complete</p>
+                              <p className="text-gray-700">
+                                Entities found: {record.extractResult.count}
+                              </p>
+                              <p className="text-gray-700">
+                                PHI detected: {record.extractResult.phiDetected ? 'Yes' : 'No'}
+                              </p>
+                              {record.extractResult.entities.map((entity, index) =>
+                                entity.entity_type.startsWith('PHI_') ? (
+                                  <p key={index} className="text-gray-700 font-mono">
+                                    {entity.entity_type.replace('PHI_', '')} → [REDACTED]
+                                  </p>
+                                ) : (
+                                  <p key={index} className="text-gray-700 font-mono">
+                                    {entity.entity_type}: {entity.entity_text}
+                                    {entity.negated ? ' (negated)' : ''}
+                                    {entity.historical ? ' (historical)' : ''}
+                                  </p>
+                                ),
+                              )}
+                              <p className="text-gray-500 text-xs mt-1">
+                                Extraction confidence is heuristic, not clinical certainty.
+                              </p>
+                            </div>
+                          )}
+                          {record.extractState === 'failed' && (
+                            <p className="text-sm text-red-600">❌ Extraction failed</p>
+                          )}
+                        </>
                       )}
 
                       <button

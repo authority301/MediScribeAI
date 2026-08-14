@@ -31,8 +31,16 @@ class Transcript(Base):
     processing_status = Column(Text, nullable=False, server_default=text("'pending'"))
     processing_error = Column(Text, nullable=True)
 
+    # Step 12: medical entity extraction + PHI de-identification metadata.
+    # deidentified_text is a separate downstream-processing representation --
+    # full_text (the original source transcript) is never overwritten.
+    deidentified_text = Column(Text, nullable=True)
+    entity_extraction_status = Column(Text, nullable=False, server_default=text("'pending'"))
+    entity_extraction_error = Column(Text, nullable=True)
+
     consultation = relationship("Consultation", back_populates="transcripts")
     audio_record = relationship("AudioRecord", back_populates="transcripts")
     speaker_segments = relationship(
         "SpeakerSegment", back_populates="transcript", order_by="SpeakerSegment.sequence_index"
     )
+    medical_entities = relationship("MedicalEntity", back_populates="transcript")
