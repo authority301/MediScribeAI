@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Text, DateTime, func
+from sqlalchemy import Boolean, Column, Text, DateTime, func, text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
@@ -12,6 +12,8 @@ class Doctor(Base):
     full_name = Column(Text, nullable=False)
     email = Column(Text, nullable=False, unique=True)
     specialization = Column(Text, nullable=True)
+    password_hash = Column(Text, nullable=False)
+    is_active = Column(Boolean, nullable=False, server_default=text("true"))
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
 
     voice_profiles = relationship("VoiceProfile", back_populates="doctor")
