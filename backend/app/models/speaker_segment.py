@@ -14,7 +14,9 @@ class SpeakerSegment(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
     transcript_id = Column(UUID(as_uuid=True), ForeignKey("transcripts.id"), nullable=False)
     sequence_index = Column(Integer, nullable=False)
-    speaker_label = Column(Text, nullable=False)
+    # Nullable: Step 9A writes raw ASR segments with no speaker identity yet.
+    # Diarization (Step 10) is what will populate this -- never fabricated here.
+    speaker_label = Column(Text, nullable=True)
     inferred_role = Column(Text, nullable=True)
     start_time_ms = Column(Integer, nullable=False)
     end_time_ms = Column(Integer, nullable=False)

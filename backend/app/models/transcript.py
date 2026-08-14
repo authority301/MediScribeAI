@@ -20,10 +20,16 @@ class Transcript(Base):
         UUID(as_uuid=True), ForeignKey("consultations.id"), nullable=False, index=True
     )
     audio_record_id = Column(UUID(as_uuid=True), ForeignKey("audio_records.id"), nullable=True)
-    full_text = Column(Text, nullable=False)
+    # Nullable: a transcript row exists (pending/processing) before ASR produces text.
+    full_text = Column(Text, nullable=True)
     asr_model = Column(Text, nullable=True)
     is_final = Column(Boolean, nullable=False, server_default=text("false"))
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
+
+    # Step 9A: Faster-Whisper baseline ASR metadata (pending/processing/completed/failed)
+    language = Column(Text, nullable=True)
+    processing_status = Column(Text, nullable=False, server_default=text("'pending'"))
+    processing_error = Column(Text, nullable=True)
 
     consultation = relationship("Consultation", back_populates="transcripts")
     audio_record = relationship("AudioRecord", back_populates="transcripts")

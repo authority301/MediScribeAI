@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.asr import router as asr_router
 from app.audio import router as audio_router
 from app.auth import router as auth_router
 from app.consultations import router as consultations_router
@@ -19,6 +20,7 @@ app.include_router(auth_router)
 app.include_router(consultations_router)
 app.include_router(audio_router)
 app.include_router(fog_router)
+app.include_router(asr_router)
 
 
 @app.get("/")

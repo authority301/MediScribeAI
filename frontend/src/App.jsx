@@ -33,7 +33,7 @@ function App() {
   const [uploadState, setUploadState] = useState('idle') // idle | uploading | success | error
   const [uploadMessage, setUploadMessage] = useState(null)
 
-  // { id, filename, processingState: idle|processing|completed|failed, processingMessage }
+  // { id, filename, processingState, processingMessage, transcribeState, transcribeResult }
   const [audioRecords, setAudioRecords] = useState([])
 
   const mediaRecorderRef = useRef(null)
@@ -171,7 +171,14 @@ function App() {
       setRecordedBlob(null)
       setAudioRecords((prev) => [
         ...prev,
-        { id: data.id, filename: data.original_filename, processingState: 'idle', processingMessage: null },
+        {
+          id: data.id,
+          filename: data.original_filename,
+          processingState: 'idle',
+          processingMessage: null,
+          transcribeState: 'idle',
+          transcribeResult: null,
+        },
       ])
     } catch {
       setUploadState('error')
@@ -227,6 +234,59 @@ function App() {
           record.id === audioId
             ? { ...record, processingState: 'failed', processingMessage: 'Could not reach the server.' }
             : record,
+        ),
+      )
+    }
+  }
+
+  async function handleTranscribeAudio(audioId) {
+    setAudioRecords((prev) =>
+      prev.map((record) =>
+        record.id === audioId
+          ? { ...record, transcribeState: 'transcribing', transcribeResult: null }
+          : record,
+      ),
+    )
+
+    try {
+      const res = await fetch(`${API_BASE}/consultations/${consultationId}/audio/transcribe`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ audio_id: audioId }),
+      })
+
+      if (!res.ok) {
+        setAudioRecords((prev) =>
+          prev.map((record) =>
+            record.id === audioId ? { ...record, transcribeState: 'failed' } : record,
+          ),
+        )
+        return
+      }
+
+      const data = await res.json()
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId
+            ? {
+                ...record,
+                transcribeState: 'completed',
+                transcribeResult: {
+                  language: data.language,
+                  text: data.text,
+                  segmentCount: data.segment_count,
+                },
+              }
+            : record,
+        ),
+      )
+    } catch {
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId ? { ...record, transcribeState: 'failed' } : record,
         ),
       )
     }
@@ -359,6 +419,37 @@ function App() {
                   )}
                   {record.processingState === 'failed' && (
                     <p className="text-sm text-red-600">❌ Processing failed{record.processingMessage ? `: ${record.processingMessage}` : ''}</p>
+                  )}
+
+                  {record.processingState === 'completed' && (
+                    <>
+                      <button
+                        onClick={() => handleTranscribeAudio(record.id)}
+                        disabled={record.transcribeState === 'transcribing'}
+                        className="bg-gray-900 text-white rounded px-3 py-1 disabled:opacity-50 text-sm"
+                      >
+                        {record.transcribeState === 'transcribing'
+                          ? 'Transcribing...'
+                          : 'Transcribe Audio'}
+                      </button>
+                      {record.transcribeState === 'completed' && record.transcribeResult && (
+                        <div className="text-sm text-green-600 text-left w-full">
+                          <p>✅ Transcription complete</p>
+                          <p className="text-gray-700">
+                            Language: <span className="font-mono">{record.transcribeResult.language}</span>
+                          </p>
+                          <p className="text-gray-700">
+                            Segments: {record.transcribeResult.segmentCount}
+                          </p>
+                          <p className="text-gray-700 break-words">
+                            "{record.transcribeResult.text}"
+                          </p>
+                        </div>
+                      )}
+                      {record.transcribeState === 'failed' && (
+                        <p className="text-sm text-red-600">❌ Transcription failed</p>
+                      )}
+                    </>
                   )}
                 </div>
               ))}

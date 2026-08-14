@@ -94,12 +94,46 @@ def _ensure_audio_record_processing_columns() -> None:
         )
 
 
+def _ensure_transcript_asr_columns() -> None:
+    """Additively migrate transcripts for Step 9A Faster-Whisper baseline ASR.
+
+    full_text is relaxed to nullable because a transcript row now exists
+    (pending/processing) before ASR produces any text, mirroring the
+    pending/processing/completed/failed pattern used elsewhere.
+    """
+    with engine.begin() as conn:
+        conn.execute(text("ALTER TABLE transcripts ALTER COLUMN full_text DROP NOT NULL"))
+        conn.execute(text("ALTER TABLE transcripts ADD COLUMN IF NOT EXISTS language TEXT"))
+        conn.execute(
+            text(
+                "ALTER TABLE transcripts ADD COLUMN IF NOT EXISTS processing_status "
+                "TEXT NOT NULL DEFAULT 'pending'"
+            )
+        )
+        conn.execute(
+            text("ALTER TABLE transcripts ADD COLUMN IF NOT EXISTS processing_error TEXT")
+        )
+
+
+def _ensure_speaker_segment_label_nullable() -> None:
+    """Relax speaker_segments.speaker_label to nullable for Step 9A.
+
+    Step 9A writes raw ASR segments with no speaker identity -- diarization is
+    Step 10. speaker_label must stay NULL for these rows rather than being
+    fabricated just to satisfy a NOT NULL constraint.
+    """
+    with engine.begin() as conn:
+        conn.execute(text("ALTER TABLE speaker_segments ALTER COLUMN speaker_label DROP NOT NULL"))
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
     _ensure_doctor_auth_columns()
     _ensure_consultation_status_default()
     _ensure_audio_record_upload_columns()
     _ensure_audio_record_processing_columns()
+    _ensure_transcript_asr_columns()
+    _ensure_speaker_segment_label_nullable()
 
 
 if __name__ == "__main__":
