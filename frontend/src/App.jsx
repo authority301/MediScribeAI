@@ -33,6 +33,9 @@ function App() {
   const [uploadState, setUploadState] = useState('idle') // idle | uploading | success | error
   const [uploadMessage, setUploadMessage] = useState(null)
 
+  // { id, filename, processingState: idle|processing|completed|failed, processingMessage }
+  const [audioRecords, setAudioRecords] = useState([])
+
   const mediaRecorderRef = useRef(null)
   const streamRef = useRef(null)
   const chunksRef = useRef([])
@@ -166,9 +169,66 @@ function App() {
       setUploadState('success')
       setUploadMessage(`Uploaded "${data.original_filename}" (${data.file_size} bytes).`)
       setRecordedBlob(null)
+      setAudioRecords((prev) => [
+        ...prev,
+        { id: data.id, filename: data.original_filename, processingState: 'idle', processingMessage: null },
+      ])
     } catch {
       setUploadState('error')
       setUploadMessage('Could not reach the server.')
+    }
+  }
+
+  async function handleProcessAudio(audioId) {
+    setAudioRecords((prev) =>
+      prev.map((record) =>
+        record.id === audioId
+          ? { ...record, processingState: 'processing', processingMessage: null }
+          : record,
+      ),
+    )
+
+    try {
+      const res = await fetch(`${API_BASE}/consultations/${consultationId}/audio/process`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ audio_id: audioId }),
+      })
+
+      if (!res.ok) {
+        setAudioRecords((prev) =>
+          prev.map((record) =>
+            record.id === audioId
+              ? { ...record, processingState: 'failed', processingMessage: `Processing failed (HTTP ${res.status}).` }
+              : record,
+          ),
+        )
+        return
+      }
+
+      const data = await res.json()
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId
+            ? {
+                ...record,
+                processingState: 'completed',
+                processingMessage: `${data.sample_rate} Hz, ${data.channels} channel(s), ${data.format}`,
+              }
+            : record,
+        ),
+      )
+    } catch {
+      setAudioRecords((prev) =>
+        prev.map((record) =>
+          record.id === audioId
+            ? { ...record, processingState: 'failed', processingMessage: 'Could not reach the server.' }
+            : record,
+        ),
+      )
     }
   }
 
@@ -277,6 +337,33 @@ function App() {
             <p className="text-sm text-green-600">✅ {uploadMessage}</p>
           )}
           {uploadState === 'error' && <p className="text-sm text-red-600">❌ {uploadMessage}</p>}
+
+          {audioRecords.length > 0 && (
+            <div className="flex flex-col gap-2 items-center mt-4 w-80">
+              <p className="text-sm text-gray-600">Uploaded audio</p>
+              {audioRecords.map((record) => (
+                <div
+                  key={record.id}
+                  className="flex flex-col items-center gap-1 border rounded px-3 py-2 w-full"
+                >
+                  <p className="text-sm font-mono truncate w-full text-center">{record.filename}</p>
+                  <button
+                    onClick={() => handleProcessAudio(record.id)}
+                    disabled={record.processingState === 'processing'}
+                    className="bg-gray-900 text-white rounded px-3 py-1 disabled:opacity-50 text-sm"
+                  >
+                    {record.processingState === 'processing' ? 'Processing...' : 'Process Audio'}
+                  </button>
+                  {record.processingState === 'completed' && (
+                    <p className="text-sm text-green-600">✅ Processing complete ({record.processingMessage})</p>
+                  )}
+                  {record.processingState === 'failed' && (
+                    <p className="text-sm text-red-600">❌ Processing failed{record.processingMessage ? `: ${record.processingMessage}` : ''}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

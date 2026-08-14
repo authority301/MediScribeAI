@@ -52,11 +52,54 @@ def _ensure_audio_record_upload_columns() -> None:
         conn.execute(text("ALTER TABLE audio_records ALTER COLUMN content_type DROP DEFAULT"))
 
 
+def _ensure_audio_record_processing_columns() -> None:
+    """Additively migrate audio_records for Step 8B local Fog processing metadata.
+
+    Tracks the pending/processing/completed/failed lifecycle and where the
+    normalized WAV output landed, without ever storing audio binary data.
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text(
+                "ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS processing_status "
+                "TEXT NOT NULL DEFAULT 'pending'"
+            )
+        )
+        conn.execute(
+            text("ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS processed_storage_path TEXT")
+        )
+        conn.execute(
+            text("ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS processed_content_type TEXT")
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS processed_file_size_bytes BIGINT"
+            )
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS processed_sample_rate_hz INTEGER"
+            )
+        )
+        conn.execute(
+            text("ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS processed_channels INTEGER")
+        )
+        conn.execute(
+            text(
+                "ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS processed_at TIMESTAMPTZ"
+            )
+        )
+        conn.execute(
+            text("ALTER TABLE audio_records ADD COLUMN IF NOT EXISTS processing_error TEXT")
+        )
+
+
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
     _ensure_doctor_auth_columns()
     _ensure_consultation_status_default()
     _ensure_audio_record_upload_columns()
+    _ensure_audio_record_processing_columns()
 
 
 if __name__ == "__main__":

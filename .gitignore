@@ -27,3 +27,5 @@ Thumbs.db
 # Uploaded media
 uploads/audio/*
 !uploads/audio/.gitkeep
+uploads/processed_audio/*
+!uploads/processed_audio/.gitkeep

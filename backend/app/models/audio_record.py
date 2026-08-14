@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, Column, DateTime, ForeignKey, Integer, Numeric, Text, func
+from sqlalchemy import BigInteger, Column, DateTime, ForeignKey, Integer, Numeric, Text, func, text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
@@ -22,6 +22,16 @@ class AudioRecord(Base):
     checksum = Column(Text, nullable=True)
     recorded_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
+
+    # Step 8B: local Fog audio-processing metadata (pending/processing/completed/failed)
+    processing_status = Column(Text, nullable=False, server_default=text("'pending'"))
+    processed_storage_path = Column(Text, nullable=True)
+    processed_content_type = Column(Text, nullable=True)
+    processed_file_size_bytes = Column(BigInteger, nullable=True)
+    processed_sample_rate_hz = Column(Integer, nullable=True)
+    processed_channels = Column(Integer, nullable=True)
+    processed_at = Column(DateTime(timezone=True), nullable=True)
+    processing_error = Column(Text, nullable=True)
 
     consultation = relationship("Consultation", back_populates="audio_records")
     transcripts = relationship("Transcript", back_populates="audio_record")

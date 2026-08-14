@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.audio import router as audio_router
 from app.auth import router as auth_router
 from app.consultations import router as consultations_router
+from app.fog import router as fog_router
 
 app = FastAPI()
 
@@ -17,6 +18,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(consultations_router)
 app.include_router(audio_router)
+app.include_router(fog_router)
 
 
 @app.get("/")
