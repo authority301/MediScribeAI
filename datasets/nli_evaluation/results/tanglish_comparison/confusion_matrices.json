@@ -1,0 +1,60 @@
+{
+  "row_axis": "ground_truth",
+  "column_axis": "prediction",
+  "label_order": [
+    "SUPPORTED",
+    "CONTRADICTED",
+    "UNGROUNDED"
+  ],
+  "baseline": {
+    "SUPPORTED": {
+      "SUPPORTED": 23,
+      "CONTRADICTED": 0,
+      "UNGROUNDED": 14
+    },
+    "CONTRADICTED": {
+      "SUPPORTED": 12,
+      "CONTRADICTED": 12,
+      "UNGROUNDED": 9
+    },
+    "UNGROUNDED": {
+      "SUPPORTED": 4,
+      "CONTRADICTED": 2,
+      "UNGROUNDED": 25
+    }
+  },
+  "tanglish_aware": {
+    "SUPPORTED": {
+      "SUPPORTED": 21,
+      "CONTRADICTED": 0,
+      "UNGROUNDED": 16
+    },
+    "CONTRADICTED": {
+      "SUPPORTED": 4,
+      "CONTRADICTED": 20,
+      "UNGROUNDED": 9
+    },
+    "UNGROUNDED": {
+      "SUPPORTED": 4,
+      "CONTRADICTED": 3,
+      "UNGROUNDED": 24
+    }
+  },
+  "difference_tanglish_minus_baseline": {
+    "SUPPORTED": {
+      "SUPPORTED": -2,
+      "CONTRADICTED": 0,
+      "UNGROUNDED": 2
+    },
+    "CONTRADICTED": {
+      "SUPPORTED": -8,
+      "CONTRADICTED": 8,
+      "UNGROUNDED": 0
+    },
+    "UNGROUNDED": {
+      "SUPPORTED": 0,
+      "CONTRADICTED": 1,
+      "UNGROUNDED": -1
+    }
+  }
+}
