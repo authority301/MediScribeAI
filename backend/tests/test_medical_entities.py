@@ -18,6 +18,7 @@ from fastapi.testclient import TestClient
 from app.database import SessionLocal
 from app.database.init_db import init_db
 from app.main import app
+from app.medical_entities.extraction import extract_entities
 from app.models import Consultation, Doctor, MedicalEntity, SpeakerSegment, Transcript
 
 client = TestClient(app)
@@ -560,3 +561,87 @@ def test_repeated_extraction_does_not_duplicate_entities(active_consultation):
 
     assert count_after_first == count_after_second
     assert count_after_first > 0
+
+
+# ---------------------------------------------------------------------------
+# Step 15A: vocabulary boundary-matching regression tests.
+#
+# _find_vocab_matches() used to be a plain substring search, so short
+# vocabulary terms could match inside unrelated words (e.g. BODY_PART "ear"
+# matching inside "appears"). These call extract_entities() directly (same
+# real code path used by the API, see test_soap.py for precedent) since the
+# fix is pure text-processing logic and doesn't need the DB/HTTP round trip.
+# ---------------------------------------------------------------------------
+
+
+def _normalized_values(entities, entity_type=None):
+    return {
+        e.normalized_text for e in entities if entity_type is None or e.entity_type == entity_type
+    }
+
+
+def test_partial_word_match_inside_unrelated_word_is_rejected():
+    # Exact Step 15 false positive: "ear" must not be extracted from "appears".
+    entities = extract_entities("This appears to be a viral infection.")
+    assert "ear" not in _normalized_values(entities, "BODY_PART")
+    assert entities == []  # no other vocabulary term in this sentence either
+
+
+def test_standalone_short_vocab_term_still_matches():
+    entities = extract_entities("The patient has ear pain.")
+    assert "ear" in _normalized_values(entities, "BODY_PART")
+
+
+def test_multiword_vocab_entity_still_matches_as_one_span():
+    entities = extract_entities("I have a stomach ache.")
+    symptoms = _normalized_values(entities, "SYMPTOM")
+    assert "stomach pain" in symptoms
+    # the multi-word phrase should claim the span; "stomach" must not also
+    # fire separately as a BODY_PART match on the same text.
+    assert "stomach" not in _normalized_values(entities, "BODY_PART")
+
+
+def test_case_insensitive_matching_still_works():
+    entities = extract_entities("I have a FEVER today.")
+    fevers = [e for e in entities if e.normalized_text == "fever"]
+    assert len(fevers) == 1
+    assert fevers[0].entity_text == "FEVER"  # original casing preserved
+
+
+def test_punctuation_immediately_after_entity_does_not_block_match():
+    entities = extract_entities("He has a headache, and nausea.")
+    symptoms = _normalized_values(entities, "SYMPTOM")
+    assert "headache" in symptoms
+    assert "nausea" in symptoms
+
+
+def test_hyphenated_vocab_entity_still_matches():
+    entities = extract_entities("The test confirmed covid-19.")
+    diagnoses = [e for e in entities if e.entity_type == "DIAGNOSIS_MENTION"]
+    assert len(diagnoses) == 1
+    assert diagnoses[0].normalized_text == "covid-19"
+    assert diagnoses[0].entity_text == "covid-19"
+
+
+def test_tanglish_vocabulary_matching_still_works():
+    # Tamil combining marks (vowel signs / virama) are not \w in Python's re
+    # module, so a naive \b-based boundary fix would silently break Tamil
+    # vocabulary matching. This proves the fix still matches it correctly.
+    entities = extract_entities("எனக்கு காய்ச்சல் இருக்கு.")
+    symptoms = [e for e in entities if e.entity_type == "SYMPTOM"]
+    assert len(symptoms) == 1
+    assert symptoms[0].normalized_text == "fever"
+
+
+def test_medication_extraction_unaffected_by_boundary_fix():
+    entities = extract_entities("The doctor prescribed paracetamol.")
+    medications = [e for e in entities if e.entity_type == "MEDICATION"]
+    assert len(medications) == 1
+    assert medications[0].normalized_text == "paracetamol"
+
+
+def test_measurement_extraction_unaffected_by_boundary_fix():
+    entities = extract_entities("Your blood pressure is 120/80.")
+    measurements = [e for e in entities if e.entity_type == "MEASUREMENT"]
+    assert len(measurements) == 1
+    assert "120/80" in measurements[0].entity_text

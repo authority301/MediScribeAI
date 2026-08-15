@@ -648,16 +648,22 @@ def test_no_nli_fields_populated(active_consultation):
         [("SUBJECTIVE", "Patient reports fever for two days.")],
     )
 
-    _retrieve(active_consultation["consultation_id"], soap_note_id, active_consultation["token"])
+    response = _retrieve(
+        active_consultation["consultation_id"], soap_note_id, active_consultation["token"]
+    )
+    assert response.json()["evidence_links_created"] >= 1
 
     db = SessionLocal()
     try:
-        link = db.query(EvidenceLink).first()
-        assert link.relationship_type == "candidate"  # never supports/contradicts/insufficient
-        assert link.entailment_score is None
-        assert link.contradiction_score is None
-        assert link.nli_label is None
-        assert link.verification_status is None
+        claim_id = uuid.UUID(response.json()["per_claim"][0]["claim_id"])
+        links = db.query(EvidenceLink).filter(EvidenceLink.soap_claim_id == claim_id).all()
+        assert links  # this test's own claim produced at least one evidence link
+        for link in links:
+            assert link.relationship_type == "candidate"  # never supports/contradicts/insufficient
+            assert link.entailment_score is None
+            assert link.contradiction_score is None
+            assert link.nli_label is None
+            assert link.verification_status is None
         column_names = {c.name for c in EvidenceLink.__table__.columns}
         assert "hallucination_status" not in column_names
     finally:

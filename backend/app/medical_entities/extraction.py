@@ -12,6 +12,7 @@ No ML model, no LLM, no external API -- entirely local regex/keyword
 matching over already-transcribed text, so it works fully offline.
 """
 import re
+import unicodedata
 from dataclasses import dataclass
 
 from app.medical_entities.vocabulary import VOCAB_BY_ENTITY_TYPE
@@ -133,6 +134,25 @@ def _is_family_referenced(sentence: str) -> bool:
     return any(cue in lowered for cue in FAMILY_REFERENCE_CUES)
 
 
+def _is_word_char(char: str) -> bool:
+    # Regex \w/\b are ASCII-centric: Tamil vowel signs and virama are
+    # combining marks (category Mn), which \w does not count as word chars,
+    # so \b creates a spurious boundary mid-word for Tamil. Unicode general
+    # category (letter/mark/digit vs. everything else) works for both.
+    if char == "_":
+        return True
+    return unicodedata.category(char)[0] in ("L", "M", "N")
+
+
+def _has_lexical_boundary(text: str, start: int, end: int) -> bool:
+    """True if text[start:end] is not a substring of a larger word."""
+    if start > 0 and _is_word_char(text[start - 1]):
+        return False
+    if end < len(text) and _is_word_char(text[end]):
+        return False
+    return True
+
+
 def _find_vocab_matches(text: str) -> list[ExtractedEntity]:
     matches: list[tuple[int, int, str, str, str]] = []  # start, end, type, text, normalized
     claimed: list[tuple[int, int]] = []
@@ -151,6 +171,8 @@ def _find_vocab_matches(text: str) -> list[ExtractedEntity]:
         for canonical, variant in variants:
             for match in re.finditer(re.escape(variant), text, re.IGNORECASE):
                 start, end = match.start(), match.end()
+                if not _has_lexical_boundary(text, start, end):
+                    continue  # reject partial-word matches, e.g. "ear" inside "appears"
                 if _overlaps_claimed(start, end):
                     continue
                 claimed.append((start, end))
