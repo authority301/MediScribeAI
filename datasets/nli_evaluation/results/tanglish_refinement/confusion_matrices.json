@@ -1,0 +1,77 @@
+{
+  "row_axis": "ground_truth",
+  "column_axis": "prediction",
+  "label_order": [
+    "SUPPORTED",
+    "CONTRADICTED",
+    "UNGROUNDED"
+  ],
+  "14b": {
+    "SUPPORTED": {
+      "SUPPORTED": 23,
+      "CONTRADICTED": 0,
+      "UNGROUNDED": 14
+    },
+    "CONTRADICTED": {
+      "SUPPORTED": 12,
+      "CONTRADICTED": 12,
+      "UNGROUNDED": 9
+    },
+    "UNGROUNDED": {
+      "SUPPORTED": 4,
+      "CONTRADICTED": 2,
+      "UNGROUNDED": 25
+    }
+  },
+  "14f": {
+    "SUPPORTED": {
+      "SUPPORTED": 21,
+      "CONTRADICTED": 0,
+      "UNGROUNDED": 16
+    },
+    "CONTRADICTED": {
+      "SUPPORTED": 4,
+      "CONTRADICTED": 20,
+      "UNGROUNDED": 9
+    },
+    "UNGROUNDED": {
+      "SUPPORTED": 4,
+      "CONTRADICTED": 3,
+      "UNGROUNDED": 24
+    }
+  },
+  "14h": {
+    "SUPPORTED": {
+      "SUPPORTED": 22,
+      "CONTRADICTED": 0,
+      "UNGROUNDED": 15
+    },
+    "CONTRADICTED": {
+      "SUPPORTED": 4,
+      "CONTRADICTED": 22,
+      "UNGROUNDED": 7
+    },
+    "UNGROUNDED": {
+      "SUPPORTED": 3,
+      "CONTRADICTED": 3,
+      "UNGROUNDED": 25
+    }
+  },
+  "difference_14h_minus_14f": {
+    "SUPPORTED": {
+      "SUPPORTED": 1,
+      "CONTRADICTED": 0,
+      "UNGROUNDED": -1
+    },
+    "CONTRADICTED": {
+      "SUPPORTED": 0,
+      "CONTRADICTED": 2,
+      "UNGROUNDED": -2
+    },
+    "UNGROUNDED": {
+      "SUPPORTED": -1,
+      "CONTRADICTED": 0,
+      "UNGROUNDED": 1
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "14b_vs_14f": {
+    "test": "McNemar's exact test (binomial form, two-sided, on paired binary correctness)",
+    "applies_to": "binary correct/incorrect per case, NOT the 3-class SUPPORTED/CONTRADICTED/UNGROUNDED label",
+    "n_cases_total": 101,
+    "n_discordant_pairs": 15,
+    "b_baseline_correct_tanglish_aware_incorrect": 5,
+    "c_baseline_incorrect_tanglish_aware_correct": 10,
+    "p_value": 0.3017578125,
+    "note": "Computed over a 101-case synthetic benchmark. This is a descriptive, paired-by-case statistical test, not a claim of clinical significance or real-world generalizability."
+  },
+  "14f_vs_14h": {
+    "test": "McNemar's exact test (binomial form, two-sided, on paired binary correctness)",
+    "applies_to": "binary correct/incorrect per case, NOT the 3-class SUPPORTED/CONTRADICTED/UNGROUNDED label",
+    "n_cases_total": 101,
+    "n_discordant_pairs": 6,
+    "b_baseline_correct_tanglish_aware_incorrect": 1,
+    "c_baseline_incorrect_tanglish_aware_correct": 5,
+    "p_value": 0.21875,
+    "note": "Computed over a 101-case synthetic benchmark. This is a descriptive, paired-by-case statistical test, not a claim of clinical significance or real-world generalizability."
+  },
+  "14b_vs_14h": {
+    "test": "McNemar's exact test (binomial form, two-sided, on paired binary correctness)",
+    "applies_to": "binary correct/incorrect per case, NOT the 3-class SUPPORTED/CONTRADICTED/UNGROUNDED label",
+    "n_cases_total": 101,
+    "n_discordant_pairs": 13,
+    "b_baseline_correct_tanglish_aware_incorrect": 2,
+    "c_baseline_incorrect_tanglish_aware_correct": 11,
+    "p_value": 0.0224609375,
+    "note": "Computed over a 101-case synthetic benchmark. This is a descriptive, paired-by-case statistical test, not a claim of clinical significance or real-world generalizability."
+  }
+}

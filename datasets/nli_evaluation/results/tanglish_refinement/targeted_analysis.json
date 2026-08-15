@@ -1,0 +1,404 @@
+{
+  "numeric_measurement_analysis": {
+    "categories": [
+      "duration",
+      "frequency",
+      "measurements"
+    ],
+    "14b": {
+      "count": 20,
+      "accuracy": 0.8,
+      "macro_precision": 0.8518518518518517,
+      "macro_recall": 0.8214285714285715,
+      "macro_f1": 0.8015873015873015,
+      "weighted_f1": 0.8130952380952381,
+      "ucr_prediction_based": 0.45,
+      "cr_prediction_based": 0.25
+    },
+    "14f": {
+      "count": 20,
+      "accuracy": 0.65,
+      "macro_precision": 0.8055555555555555,
+      "macro_recall": 0.6904761904761904,
+      "macro_f1": 0.6607248960190137,
+      "weighted_f1": 0.6682709447415329,
+      "ucr_prediction_based": 0.6,
+      "cr_prediction_based": 0.2
+    },
+    "14h": {
+      "count": 20,
+      "accuracy": 0.85,
+      "macro_precision": 0.875,
+      "macro_recall": 0.8690476190476191,
+      "macro_f1": 0.8498168498168498,
+      "weighted_f1": 0.8582417582417582,
+      "ucr_prediction_based": 0.4,
+      "cr_prediction_based": 0.3
+    },
+    "fixed_cases_14f_to_14h": [
+      {
+        "case_id": "TL-011",
+        "language": "tanglish",
+        "category": "measurements",
+        "difficulty": "medium",
+        "premise": "En oxygen level 98 percent irundhudhu.",
+        "claim": "Patient's oxygen saturation was 90 percent.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.002239227294921875,
+          "contradiction_score": 0.0006437301635742188,
+          "neutral_score": 0.9970703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.01467132568359375,
+          "contradiction_score": 0.9775390625,
+          "neutral_score": 0.00777435302734375
+        },
+        "normalized_premise_14f": "Patient had oxygen saturation.",
+        "normalized_premise_14h": "Patient had oxygen saturation of 98 percent.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_MEASUREMENT",
+            "input_span": "98 percent",
+            "normalized_span": "of 98 percent"
+          },
+          {
+            "rule": "TANGLISH_HISTORICAL",
+            "input_span": "oxygen level 98 percent irundhudhu",
+            "normalized_span": "had oxygen saturation of 98 percent"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-006",
+        "language": "mixed",
+        "category": "measurements",
+        "difficulty": "medium",
+        "premise": "Heart rate ippo 88 beats per minute irukku.",
+        "claim": "Patient's heart rate is 88 beats per minute.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.05718994140625,
+          "contradiction_score": 0.0015783309936523438,
+          "neutral_score": 0.94140625
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9912109375,
+          "contradiction_score": 0.003326416015625,
+          "neutral_score": 0.005451202392578125
+        },
+        "normalized_premise_14f": "Patient has heart rate.",
+        "normalized_premise_14h": "Patient has heart rate of 88 beats per minute.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_MEASUREMENT",
+            "input_span": "88 beats per minute",
+            "normalized_span": "of 88 beats per minute"
+          },
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "Heart rate ippo 88 beats per minute irukku",
+            "normalized_span": "has heart rate of 88 beats per minute"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-007",
+        "language": "mixed",
+        "category": "measurements",
+        "difficulty": "hard",
+        "premise": "Weight kammi aayidichu, ippo 60 kilos than irukku.",
+        "claim": "Patient's weight is 75 kilograms.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.002773284912109375,
+          "contradiction_score": 0.0001951456069946289,
+          "neutral_score": 0.9970703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.004253387451171875,
+          "contradiction_score": 0.99169921875,
+          "neutral_score": 0.003833770751953125
+        },
+        "normalized_premise_14f": "Patient has weight.",
+        "normalized_premise_14h": "Patient has weight of 60.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_MEASUREMENT",
+            "input_span": "60",
+            "normalized_span": "of 60"
+          },
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "Weight kammi aayidichu, ippo 60 kilos than irukku",
+            "normalized_span": "has weight of 60"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-008",
+        "language": "mixed",
+        "category": "duration",
+        "difficulty": "medium",
+        "premise": "Back pain irukku for one week already.",
+        "claim": "Patient has had back pain for one week.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00027680397033691406,
+          "contradiction_score": 0.00022029876708984375,
+          "neutral_score": 0.99951171875
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.76953125,
+          "contradiction_score": 0.051666259765625,
+          "neutral_score": 0.1788330078125
+        },
+        "normalized_premise_14f": "Patient has back pain.",
+        "normalized_premise_14h": "Patient has back pain for one week.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "Back pain irukku",
+            "normalized_span": "has back pain for one week"
+          },
+          {
+            "rule": "TANGLISH_DURATION",
+            "input_span": "one week",
+            "normalized_span": "for one week"
+          }
+        ]
+      }
+    ],
+    "regressed_cases_14f_to_14h": [],
+    "counts_14f_to_14h": {
+      "fixed": 4,
+      "regressed": 0,
+      "unchanged_correct": 13,
+      "unchanged_incorrect": 3
+    }
+  },
+  "attribution_analysis": {
+    "categories": [
+      "diagnoses",
+      "historical_statements",
+      "patient_history"
+    ],
+    "14b": {
+      "count": 17,
+      "accuracy": 0.4117647058823529,
+      "macro_precision": 0.27777777777777773,
+      "macro_recall": 0.3333333333333333,
+      "macro_f1": 0.3,
+      "weighted_f1": 0.3764705882352941,
+      "ucr_prediction_based": 0.5294117647058824,
+      "cr_prediction_based": 0.0
+    },
+    "14f": {
+      "count": 17,
+      "accuracy": 0.47058823529411764,
+      "macro_precision": 0.46296296296296297,
+      "macro_recall": 0.4305555555555555,
+      "macro_f1": 0.44052287581699345,
+      "weighted_f1": 0.46505190311418687,
+      "ucr_prediction_based": 0.35294117647058826,
+      "cr_prediction_based": 0.11764705882352941
+    },
+    "14h": {
+      "count": 17,
+      "accuracy": 0.5294117647058824,
+      "macro_precision": 0.5178571428571429,
+      "macro_recall": 0.4861111111111111,
+      "macro_f1": 0.4955128205128205,
+      "weighted_f1": 0.5276018099547511,
+      "ucr_prediction_based": 0.4117647058823529,
+      "cr_prediction_based": 0.11764705882352941
+    },
+    "fixed_cases_14f_to_14h": [
+      {
+        "case_id": "MX-016",
+        "language": "mixed",
+        "category": "patient_history",
+        "difficulty": "hard",
+        "premise": "Family-la sila peruku diabetes irukku.",
+        "claim": "Patient has diabetes.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.916015625,
+          "contradiction_score": 0.004913330078125,
+          "neutral_score": 0.07891845703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.1119384765625,
+          "contradiction_score": 0.348388671875,
+          "neutral_score": 0.53955078125
+        },
+        "normalized_premise_14f": "Patient has diabetes.",
+        "normalized_premise_14h": "Family members have diabetes.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "diabetes irukku",
+            "normalized_span": "have diabetes"
+          },
+          {
+            "rule": "TANGLISH_ATTRIBUTION_FAMILY_THIRD_PERSON",
+            "input_span": "Family-la",
+            "normalized_span": "Family members"
+          }
+        ]
+      }
+    ],
+    "regressed_cases_14f_to_14h": [],
+    "counts_14f_to_14h": {
+      "fixed": 1,
+      "regressed": 0,
+      "unchanged_correct": 8,
+      "unchanged_incorrect": 8
+    }
+  },
+  "negation_analysis": {
+    "categories": [
+      "negation"
+    ],
+    "14b": {
+      "count": 11,
+      "accuracy": 0.5454545454545454,
+      "macro_precision": 0.6666666666666666,
+      "macro_recall": 0.35185185185185186,
+      "macro_f1": 0.4603174603174603,
+      "weighted_f1": 0.7056277056277056,
+      "ucr_prediction_based": 0.09090909090909091,
+      "cr_prediction_based": 0.45454545454545453
+    },
+    "14f": {
+      "count": 11,
+      "accuracy": 0.9090909090909091,
+      "macro_precision": 0.6666666666666666,
+      "macro_recall": 0.5,
+      "macro_f1": 0.5555555555555555,
+      "weighted_f1": 0.9393939393939394,
+      "ucr_prediction_based": 0.09090909090909091,
+      "cr_prediction_based": 0.8181818181818182
+    },
+    "14h": {
+      "count": 11,
+      "accuracy": 0.9090909090909091,
+      "macro_precision": 0.6666666666666666,
+      "macro_recall": 0.5,
+      "macro_f1": 0.5555555555555555,
+      "weighted_f1": 0.9393939393939394,
+      "ucr_prediction_based": 0.09090909090909091,
+      "cr_prediction_based": 0.8181818181818182
+    },
+    "fixed_cases_14f_to_14h": [],
+    "regressed_cases_14f_to_14h": [],
+    "counts_14f_to_14h": {
+      "fixed": 0,
+      "regressed": 0,
+      "unchanged_correct": 10,
+      "unchanged_incorrect": 1
+    }
+  },
+  "historical_context_analysis": {
+    "categories": [
+      "historical_statements",
+      "patient_history"
+    ],
+    "14b": {
+      "count": 12,
+      "accuracy": 0.3333333333333333,
+      "macro_precision": 0.2222222222222222,
+      "macro_recall": 0.24444444444444446,
+      "macro_f1": 0.2323232323232323,
+      "weighted_f1": 0.3181818181818182,
+      "ucr_prediction_based": 0.5,
+      "cr_prediction_based": 0.0
+    },
+    "14f": {
+      "count": 12,
+      "accuracy": 0.3333333333333333,
+      "macro_precision": 0.2261904761904762,
+      "macro_recall": 0.2333333333333333,
+      "macro_f1": 0.22792022792022792,
+      "weighted_f1": 0.32336182336182334,
+      "ucr_prediction_based": 0.3333333333333333,
+      "cr_prediction_based": 0.08333333333333333
+    },
+    "14h": {
+      "count": 12,
+      "accuracy": 0.4166666666666667,
+      "macro_precision": 0.3,
+      "macro_recall": 0.3,
+      "macro_f1": 0.30000000000000004,
+      "weighted_f1": 0.4166666666666667,
+      "ucr_prediction_based": 0.4166666666666667,
+      "cr_prediction_based": 0.08333333333333333
+    },
+    "fixed_cases_14f_to_14h": [
+      {
+        "case_id": "MX-016",
+        "language": "mixed",
+        "category": "patient_history",
+        "difficulty": "hard",
+        "premise": "Family-la sila peruku diabetes irukku.",
+        "claim": "Patient has diabetes.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.916015625,
+          "contradiction_score": 0.004913330078125,
+          "neutral_score": 0.07891845703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.1119384765625,
+          "contradiction_score": 0.348388671875,
+          "neutral_score": 0.53955078125
+        },
+        "normalized_premise_14f": "Patient has diabetes.",
+        "normalized_premise_14h": "Family members have diabetes.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "diabetes irukku",
+            "normalized_span": "have diabetes"
+          },
+          {
+            "rule": "TANGLISH_ATTRIBUTION_FAMILY_THIRD_PERSON",
+            "input_span": "Family-la",
+            "normalized_span": "Family members"
+          }
+        ]
+      }
+    ],
+    "regressed_cases_14f_to_14h": [],
+    "counts_14f_to_14h": {
+      "fixed": 1,
+      "regressed": 0,
+      "unchanged_correct": 4,
+      "unchanged_incorrect": 7
+    }
+  }
+}

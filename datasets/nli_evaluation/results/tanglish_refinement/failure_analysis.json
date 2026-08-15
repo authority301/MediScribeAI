@@ -1,0 +1,3024 @@
+{
+  "fixed_regressed_14f_to_14h": {
+    "fixed_cases": [
+      {
+        "case_id": "TL-011",
+        "language": "tanglish",
+        "category": "measurements",
+        "difficulty": "medium",
+        "premise": "En oxygen level 98 percent irundhudhu.",
+        "claim": "Patient's oxygen saturation was 90 percent.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.002239227294921875,
+          "contradiction_score": 0.0006437301635742188,
+          "neutral_score": 0.9970703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.01467132568359375,
+          "contradiction_score": 0.9775390625,
+          "neutral_score": 0.00777435302734375
+        },
+        "normalized_premise_14f": "Patient had oxygen saturation.",
+        "normalized_premise_14h": "Patient had oxygen saturation of 98 percent.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_MEASUREMENT",
+            "input_span": "98 percent",
+            "normalized_span": "of 98 percent"
+          },
+          {
+            "rule": "TANGLISH_HISTORICAL",
+            "input_span": "oxygen level 98 percent irundhudhu",
+            "normalized_span": "had oxygen saturation of 98 percent"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-006",
+        "language": "mixed",
+        "category": "measurements",
+        "difficulty": "medium",
+        "premise": "Heart rate ippo 88 beats per minute irukku.",
+        "claim": "Patient's heart rate is 88 beats per minute.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.05718994140625,
+          "contradiction_score": 0.0015783309936523438,
+          "neutral_score": 0.94140625
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9912109375,
+          "contradiction_score": 0.003326416015625,
+          "neutral_score": 0.005451202392578125
+        },
+        "normalized_premise_14f": "Patient has heart rate.",
+        "normalized_premise_14h": "Patient has heart rate of 88 beats per minute.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_MEASUREMENT",
+            "input_span": "88 beats per minute",
+            "normalized_span": "of 88 beats per minute"
+          },
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "Heart rate ippo 88 beats per minute irukku",
+            "normalized_span": "has heart rate of 88 beats per minute"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-007",
+        "language": "mixed",
+        "category": "measurements",
+        "difficulty": "hard",
+        "premise": "Weight kammi aayidichu, ippo 60 kilos than irukku.",
+        "claim": "Patient's weight is 75 kilograms.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.002773284912109375,
+          "contradiction_score": 0.0001951456069946289,
+          "neutral_score": 0.9970703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.004253387451171875,
+          "contradiction_score": 0.99169921875,
+          "neutral_score": 0.003833770751953125
+        },
+        "normalized_premise_14f": "Patient has weight.",
+        "normalized_premise_14h": "Patient has weight of 60.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_MEASUREMENT",
+            "input_span": "60",
+            "normalized_span": "of 60"
+          },
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "Weight kammi aayidichu, ippo 60 kilos than irukku",
+            "normalized_span": "has weight of 60"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-008",
+        "language": "mixed",
+        "category": "duration",
+        "difficulty": "medium",
+        "premise": "Back pain irukku for one week already.",
+        "claim": "Patient has had back pain for one week.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00027680397033691406,
+          "contradiction_score": 0.00022029876708984375,
+          "neutral_score": 0.99951171875
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.76953125,
+          "contradiction_score": 0.051666259765625,
+          "neutral_score": 0.1788330078125
+        },
+        "normalized_premise_14f": "Patient has back pain.",
+        "normalized_premise_14h": "Patient has back pain for one week.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "Back pain irukku",
+            "normalized_span": "has back pain for one week"
+          },
+          {
+            "rule": "TANGLISH_DURATION",
+            "input_span": "one week",
+            "normalized_span": "for one week"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-016",
+        "language": "mixed",
+        "category": "patient_history",
+        "difficulty": "hard",
+        "premise": "Family-la sila peruku diabetes irukku.",
+        "claim": "Patient has diabetes.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.916015625,
+          "contradiction_score": 0.004913330078125,
+          "neutral_score": 0.07891845703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.1119384765625,
+          "contradiction_score": 0.348388671875,
+          "neutral_score": 0.53955078125
+        },
+        "normalized_premise_14f": "Patient has diabetes.",
+        "normalized_premise_14h": "Family members have diabetes.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "diabetes irukku",
+            "normalized_span": "have diabetes"
+          },
+          {
+            "rule": "TANGLISH_ATTRIBUTION_FAMILY_THIRD_PERSON",
+            "input_span": "Family-la",
+            "normalized_span": "Family members"
+          }
+        ]
+      }
+    ],
+    "regressed_cases": [
+      {
+        "case_id": "TL-008",
+        "language": "tanglish",
+        "category": "allergies",
+        "difficulty": "medium",
+        "premise": "Enakku penicillin allergy irukku.",
+        "claim": "Patient is allergic to penicillin.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.98779296875,
+          "contradiction_score": 0.0009059906005859375,
+          "neutral_score": 0.0111541748046875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0007839202880859375,
+          "contradiction_score": 0.00010710954666137695,
+          "neutral_score": 0.9990234375
+        },
+        "normalized_premise_14f": "Enakku penicillin allergy irukku.",
+        "normalized_premise_14h": "Patient has allergy.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "allergy irukku",
+            "normalized_span": "has allergy"
+          }
+        ]
+      }
+    ],
+    "unchanged_correct_cases": [
+      {
+        "case_id": "EN-001",
+        "language": "en",
+        "category": "symptoms",
+        "difficulty": "easy",
+        "premise": "I have had fever for two days.",
+        "claim": "Patient has had fever for two days.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9384765625,
+          "contradiction_score": 0.0030517578125,
+          "neutral_score": 0.058685302734375
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9384765625,
+          "contradiction_score": 0.0030517578125,
+          "neutral_score": 0.058685302734375
+        },
+        "normalized_premise_14f": "I have had fever for two days.",
+        "normalized_premise_14h": "I have had fever for two days.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-002",
+        "language": "tanglish",
+        "category": "symptoms",
+        "difficulty": "hard",
+        "premise": "Enakku chest pain illa.",
+        "claim": "Patient reports chest pain.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00214385986328125,
+          "contradiction_score": 0.94775390625,
+          "neutral_score": 0.049957275390625
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00214385986328125,
+          "contradiction_score": 0.94775390625,
+          "neutral_score": 0.049957275390625
+        },
+        "normalized_premise_14f": "Patient does not have chest pain.",
+        "normalized_premise_14h": "Patient does not have chest pain.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_NEGATION_STATE",
+            "input_span": "chest pain illa",
+            "normalized_span": "does not have chest pain"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-004",
+        "language": "tanglish",
+        "category": "symptoms",
+        "difficulty": "hard",
+        "premise": "Enakku ippo cough illa.",
+        "claim": "Patient reports cough.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.002353668212890625,
+          "contradiction_score": 0.94921875,
+          "neutral_score": 0.048187255859375
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.002353668212890625,
+          "contradiction_score": 0.94921875,
+          "neutral_score": 0.048187255859375
+        },
+        "normalized_premise_14f": "Patient does not have cough.",
+        "normalized_premise_14h": "Patient does not have cough.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_NEGATION_STATE",
+            "input_span": "cough illa",
+            "normalized_span": "does not have cough"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-002",
+        "language": "mixed",
+        "category": "symptoms",
+        "difficulty": "hard",
+        "premise": "Fever irundhudhu, but ippo illa.",
+        "claim": "Patient currently has fever.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.01349639892578125,
+          "contradiction_score": 0.97802734375,
+          "neutral_score": 0.00839996337890625
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.01349639892578125,
+          "contradiction_score": 0.97802734375,
+          "neutral_score": 0.00839996337890625
+        },
+        "normalized_premise_14f": "Patient had fever but ippo illa.",
+        "normalized_premise_14h": "Patient had fever but ippo illa.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_HISTORICAL",
+            "input_span": "Fever irundhudhu",
+            "normalized_span": "had fever"
+          }
+        ]
+      },
+      {
+        "case_id": "EN-005",
+        "language": "en",
+        "category": "medications",
+        "difficulty": "easy",
+        "premise": "I take paracetamol for the pain.",
+        "claim": "Patient takes paracetamol.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9892578125,
+          "contradiction_score": 0.0007176399230957031,
+          "neutral_score": 0.01016998291015625
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9892578125,
+          "contradiction_score": 0.0007176399230957031,
+          "neutral_score": 0.01016998291015625
+        },
+        "normalized_premise_14f": "I take paracetamol for the pain.",
+        "normalized_premise_14h": "I take paracetamol for the pain.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-006",
+        "language": "en",
+        "category": "medications",
+        "difficulty": "medium",
+        "premise": "I do not take paracetamol.",
+        "claim": "Patient takes paracetamol.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.15185546875,
+          "contradiction_score": 0.77587890625,
+          "neutral_score": 0.072509765625
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.15185546875,
+          "contradiction_score": 0.77587890625,
+          "neutral_score": 0.072509765625
+        },
+        "normalized_premise_14f": "I do not take paracetamol.",
+        "normalized_premise_14h": "I do not take paracetamol.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-007",
+        "language": "en",
+        "category": "medications",
+        "difficulty": "easy",
+        "premise": "I have a headache.",
+        "claim": "Patient takes paracetamol.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00360107421875,
+          "contradiction_score": 0.002033233642578125,
+          "neutral_score": 0.994140625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00360107421875,
+          "contradiction_score": 0.002033233642578125,
+          "neutral_score": 0.994140625
+        },
+        "normalized_premise_14f": "I have a headache.",
+        "normalized_premise_14h": "I have a headache.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-005",
+        "language": "tanglish",
+        "category": "medications",
+        "difficulty": "medium",
+        "premise": "Naan paracetamol eduthen.",
+        "claim": "Patient took paracetamol.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.95263671875,
+          "contradiction_score": 0.0081634521484375,
+          "neutral_score": 0.039459228515625
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.95263671875,
+          "contradiction_score": 0.0081634521484375,
+          "neutral_score": 0.039459228515625
+        },
+        "normalized_premise_14f": "Naan paracetamol eduthen.",
+        "normalized_premise_14h": "Naan paracetamol eduthen.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-006",
+        "language": "tanglish",
+        "category": "medications",
+        "difficulty": "hard",
+        "premise": "Naan aspirin edukkala.",
+        "claim": "Patient is taking aspirin.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.004688262939453125,
+          "contradiction_score": 0.9794921875,
+          "neutral_score": 0.015716552734375
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.004688262939453125,
+          "contradiction_score": 0.9794921875,
+          "neutral_score": 0.015716552734375
+        },
+        "normalized_premise_14f": "Patient does not take aspirin.",
+        "normalized_premise_14h": "Patient does not take aspirin.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_NEGATION_ACTION",
+            "input_span": "aspirin edukkala",
+            "normalized_span": "does not take aspirin"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-007",
+        "language": "tanglish",
+        "category": "medications",
+        "difficulty": "hard",
+        "premise": "Doctor sonna maari medicine continue panren.",
+        "claim": "Patient is taking paracetamol.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0007576942443847656,
+          "contradiction_score": 0.0007939338684082031,
+          "neutral_score": 0.99853515625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0007576942443847656,
+          "contradiction_score": 0.0007939338684082031,
+          "neutral_score": 0.99853515625
+        },
+        "normalized_premise_14f": "Doctor sonna maari medicine continue panren.",
+        "normalized_premise_14h": "Doctor sonna maari medicine continue panren.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-003",
+        "language": "mixed",
+        "category": "medications",
+        "difficulty": "medium",
+        "premise": "Naan ippo antibiotics course continue pandren, started three days ago.",
+        "claim": "Patient started an antibiotics course three days ago.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.99755859375,
+          "contradiction_score": 0.00022733211517333984,
+          "neutral_score": 0.00225067138671875
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.99755859375,
+          "contradiction_score": 0.00022733211517333984,
+          "neutral_score": 0.00225067138671875
+        },
+        "normalized_premise_14f": "Naan ippo antibiotics course continue pandren, started three days ago.",
+        "normalized_premise_14h": "Naan ippo antibiotics course continue pandren, started three days ago.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-008",
+        "language": "en",
+        "category": "allergies",
+        "difficulty": "easy",
+        "premise": "I am allergic to penicillin.",
+        "claim": "Patient is allergic to penicillin.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.87939453125,
+          "contradiction_score": 0.0016231536865234375,
+          "neutral_score": 0.1187744140625
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.87939453125,
+          "contradiction_score": 0.0016231536865234375,
+          "neutral_score": 0.1187744140625
+        },
+        "normalized_premise_14f": "I am allergic to penicillin.",
+        "normalized_premise_14h": "I am allergic to penicillin.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-009",
+        "language": "tanglish",
+        "category": "allergies",
+        "difficulty": "hard",
+        "premise": "Enakku sila medicine-ku reaction vandhudhu munnaadi.",
+        "claim": "Patient is allergic to penicillin.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.001987457275390625,
+          "contradiction_score": 0.000762939453125,
+          "neutral_score": 0.9970703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.001987457275390625,
+          "contradiction_score": 0.000762939453125,
+          "neutral_score": 0.9970703125
+        },
+        "normalized_premise_14f": "Enakku sila medicine-ku reaction vandhudhu munnaadi.",
+        "normalized_premise_14h": "Enakku sila medicine-ku reaction vandhudhu munnaadi.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-011",
+        "language": "en",
+        "category": "measurements",
+        "difficulty": "easy",
+        "premise": "My temperature was 98.4 degrees.",
+        "claim": "Patient's temperature was 101.2 degrees.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00701141357421875,
+          "contradiction_score": 0.86474609375,
+          "neutral_score": 0.12841796875
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00701141357421875,
+          "contradiction_score": 0.86474609375,
+          "neutral_score": 0.12841796875
+        },
+        "normalized_premise_14f": "My temperature was 98.4 degrees.",
+        "normalized_premise_14h": "My temperature was 98.4 degrees.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-012",
+        "language": "en",
+        "category": "measurements",
+        "difficulty": "easy",
+        "premise": "My blood pressure was checked this morning.",
+        "claim": "Patient's blood pressure was 140 over 90.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.59326171875,
+          "contradiction_score": 0.00982666015625,
+          "neutral_score": 0.396728515625
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.59326171875,
+          "contradiction_score": 0.00982666015625,
+          "neutral_score": 0.396728515625
+        },
+        "normalized_premise_14f": "My blood pressure was checked this morning.",
+        "normalized_premise_14h": "My blood pressure was checked this morning.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-010",
+        "language": "tanglish",
+        "category": "measurements",
+        "difficulty": "medium",
+        "premise": "En weight ippo 68 kilos.",
+        "claim": "Patient's weight is 68 kilograms.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.92919921875,
+          "contradiction_score": 0.00638580322265625,
+          "neutral_score": 0.064453125
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.92919921875,
+          "contradiction_score": 0.00638580322265625,
+          "neutral_score": 0.064453125
+        },
+        "normalized_premise_14f": "En weight ippo 68 kilos.",
+        "normalized_premise_14h": "En weight ippo 68 kilos.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-012",
+        "language": "tanglish",
+        "category": "measurements",
+        "difficulty": "medium",
+        "premise": "Doctor blood pressure check pannaanga.",
+        "claim": "Patient's blood pressure was 120 over 80.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0251922607421875,
+          "contradiction_score": 0.0014238357543945312,
+          "neutral_score": 0.97314453125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0251922607421875,
+          "contradiction_score": 0.0014238357543945312,
+          "neutral_score": 0.97314453125
+        },
+        "normalized_premise_14f": "Doctor blood pressure check pannaanga.",
+        "normalized_premise_14h": "Doctor blood pressure check pannaanga.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-013",
+        "language": "en",
+        "category": "duration",
+        "difficulty": "easy",
+        "premise": "I've had this cough for three days.",
+        "claim": "Patient has had cough for three days.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.98974609375,
+          "contradiction_score": 0.0005526542663574219,
+          "neutral_score": 0.00969696044921875
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.98974609375,
+          "contradiction_score": 0.0005526542663574219,
+          "neutral_score": 0.00969696044921875
+        },
+        "normalized_premise_14f": "I've had this cough for three days.",
+        "normalized_premise_14h": "I've had this cough for three days.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-014",
+        "language": "en",
+        "category": "duration",
+        "difficulty": "medium",
+        "premise": "I've had this cough for three days.",
+        "claim": "Patient has had cough for three weeks.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.001102447509765625,
+          "contradiction_score": 0.99462890625,
+          "neutral_score": 0.00433349609375
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.001102447509765625,
+          "contradiction_score": 0.99462890625,
+          "neutral_score": 0.00433349609375
+        },
+        "normalized_premise_14f": "I've had this cough for three days.",
+        "normalized_premise_14h": "I've had this cough for three days.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-015",
+        "language": "en",
+        "category": "duration",
+        "difficulty": "medium",
+        "premise": "I've had a cold recently.",
+        "claim": "Patient has had a cold for five days.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0009512901306152344,
+          "contradiction_score": 0.0170135498046875,
+          "neutral_score": 0.98193359375
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0009512901306152344,
+          "contradiction_score": 0.0170135498046875,
+          "neutral_score": 0.98193359375
+        },
+        "normalized_premise_14f": "I've had a cold recently.",
+        "normalized_premise_14h": "I've had a cold recently.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-009",
+        "language": "mixed",
+        "category": "duration",
+        "difficulty": "hard",
+        "premise": "Konjam naala fever irukku.",
+        "claim": "Patient has had fever for exactly five days.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0004355907440185547,
+          "contradiction_score": 0.00414276123046875,
+          "neutral_score": 0.99560546875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0004355907440185547,
+          "contradiction_score": 0.00414276123046875,
+          "neutral_score": 0.99560546875
+        },
+        "normalized_premise_14f": "Patient has fever.",
+        "normalized_premise_14h": "Patient has fever.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "fever irukku",
+            "normalized_span": "has fever"
+          }
+        ]
+      },
+      {
+        "case_id": "EN-016",
+        "language": "en",
+        "category": "frequency",
+        "difficulty": "easy",
+        "premise": "I take this tablet twice daily.",
+        "claim": "Patient takes the tablet twice daily.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9814453125,
+          "contradiction_score": 0.0007638931274414062,
+          "neutral_score": 0.0176849365234375
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9814453125,
+          "contradiction_score": 0.0007638931274414062,
+          "neutral_score": 0.0176849365234375
+        },
+        "normalized_premise_14f": "I take this tablet twice daily.",
+        "normalized_premise_14h": "I take this tablet twice daily.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-017",
+        "language": "en",
+        "category": "frequency",
+        "difficulty": "medium",
+        "premise": "I take the medicine once a day, every morning.",
+        "claim": "Patient takes the medicine three times a day.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.0006623268127441406,
+          "contradiction_score": 0.99853515625,
+          "neutral_score": 0.0006356239318847656
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.0006623268127441406,
+          "contradiction_score": 0.99853515625,
+          "neutral_score": 0.0006356239318847656
+        },
+        "normalized_premise_14f": "I take the medicine once a day, every morning.",
+        "normalized_premise_14h": "I take the medicine once a day, every morning.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-015",
+        "language": "tanglish",
+        "category": "frequency",
+        "difficulty": "medium",
+        "premise": "Naan andha tablet-a rendu velai saapduven, morning and night.",
+        "claim": "Patient takes the tablet twice daily.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.97412109375,
+          "contradiction_score": 0.009857177734375,
+          "neutral_score": 0.0159454345703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.97412109375,
+          "contradiction_score": 0.009857177734375,
+          "neutral_score": 0.0159454345703125
+        },
+        "normalized_premise_14f": "Naan andha tablet-a rendu velai saapduven, morning and night.",
+        "normalized_premise_14h": "Naan andha tablet-a rendu velai saapduven, morning and night.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-016",
+        "language": "tanglish",
+        "category": "frequency",
+        "difficulty": "hard",
+        "premise": "Doctor sonna maari medicine saapdaren.",
+        "claim": "Patient takes the medicine twice daily.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0079193115234375,
+          "contradiction_score": 0.044097900390625,
+          "neutral_score": 0.94775390625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0079193115234375,
+          "contradiction_score": 0.044097900390625,
+          "neutral_score": 0.94775390625
+        },
+        "normalized_premise_14f": "Doctor sonna maari medicine saapdaren.",
+        "normalized_premise_14h": "Doctor sonna maari medicine saapdaren.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-010",
+        "language": "mixed",
+        "category": "frequency",
+        "difficulty": "hard",
+        "premise": "Naan andha eye drops-a once a day than podren.",
+        "claim": "Patient uses the eye drops three times a day.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.0004906654357910156,
+          "contradiction_score": 0.9951171875,
+          "neutral_score": 0.004352569580078125
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.0004906654357910156,
+          "contradiction_score": 0.9951171875,
+          "neutral_score": 0.004352569580078125
+        },
+        "normalized_premise_14f": "Naan andha eye drops-a once a day than podren.",
+        "normalized_premise_14h": "Naan andha eye drops-a once a day than podren.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-018",
+        "language": "en",
+        "category": "medical_procedures",
+        "difficulty": "easy",
+        "premise": "I had a blood test done yesterday.",
+        "claim": "Patient had a blood test yesterday.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.98046875,
+          "contradiction_score": 0.0009918212890625,
+          "neutral_score": 0.018768310546875
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.98046875,
+          "contradiction_score": 0.0009918212890625,
+          "neutral_score": 0.018768310546875
+        },
+        "normalized_premise_14f": "I had a blood test done yesterday.",
+        "normalized_premise_14h": "I had a blood test done yesterday.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-019",
+        "language": "en",
+        "category": "medical_procedures",
+        "difficulty": "easy",
+        "premise": "I went to the lab for some tests.",
+        "claim": "Patient had an X-ray done.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0007677078247070312,
+          "contradiction_score": 0.00016951560974121094,
+          "neutral_score": 0.9990234375
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0007677078247070312,
+          "contradiction_score": 0.00016951560974121094,
+          "neutral_score": 0.9990234375
+        },
+        "normalized_premise_14f": "I went to the lab for some tests.",
+        "normalized_premise_14h": "I went to the lab for some tests.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-018",
+        "language": "tanglish",
+        "category": "medical_procedures",
+        "difficulty": "hard",
+        "premise": "Naan innum scan edukkala.",
+        "claim": "Patient has already had the scan done.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.001659393310546875,
+          "contradiction_score": 0.96630859375,
+          "neutral_score": 0.03204345703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.001659393310546875,
+          "contradiction_score": 0.96630859375,
+          "neutral_score": 0.03204345703125
+        },
+        "normalized_premise_14f": "Patient does not have scan.",
+        "normalized_premise_14h": "Patient does not have scan.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_NEGATION_ACTION",
+            "input_span": "scan edukkala",
+            "normalized_span": "does not have scan"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-011",
+        "language": "mixed",
+        "category": "medical_procedures",
+        "difficulty": "medium",
+        "premise": "Naan konjam lab work pannen last week.",
+        "claim": "Patient had an MRI scan last week.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.01427459716796875,
+          "contradiction_score": 0.309814453125,
+          "neutral_score": 0.67578125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.01427459716796875,
+          "contradiction_score": 0.309814453125,
+          "neutral_score": 0.67578125
+        },
+        "normalized_premise_14f": "Naan konjam lab work pannen last week.",
+        "normalized_premise_14h": "Naan konjam lab work pannen last week.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-020",
+        "language": "en",
+        "category": "diagnoses",
+        "difficulty": "easy",
+        "premise": "You have a mild case of bronchitis.",
+        "claim": "Patient has been diagnosed with bronchitis.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.7294921875,
+          "contradiction_score": 0.0015649795532226562,
+          "neutral_score": 0.268798828125
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.7294921875,
+          "contradiction_score": 0.0015649795532226562,
+          "neutral_score": 0.268798828125
+        },
+        "normalized_premise_14f": "You have a mild case of bronchitis.",
+        "normalized_premise_14h": "You have a mild case of bronchitis.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-019",
+        "language": "tanglish",
+        "category": "diagnoses",
+        "difficulty": "medium",
+        "premise": "Ungalukku mild bronchitis irukku.",
+        "claim": "Patient has been diagnosed with bronchitis.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9091796875,
+          "contradiction_score": 0.001850128173828125,
+          "neutral_score": 0.08880615234375
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9091796875,
+          "contradiction_score": 0.001850128173828125,
+          "neutral_score": 0.08880615234375
+        },
+        "normalized_premise_14f": "Patient has bronchitis.",
+        "normalized_premise_14h": "Patient has bronchitis.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "bronchitis irukku",
+            "normalized_span": "has bronchitis"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-020",
+        "language": "tanglish",
+        "category": "diagnoses",
+        "difficulty": "hard",
+        "premise": "Naanga konjam tests edukkanum, confirm pannunga apparam than sollalam.",
+        "claim": "Patient has been diagnosed with bronchitis.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0268096923828125,
+          "contradiction_score": 0.0088653564453125,
+          "neutral_score": 0.96435546875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0268096923828125,
+          "contradiction_score": 0.0088653564453125,
+          "neutral_score": 0.96435546875
+        },
+        "normalized_premise_14f": "Naanga konjam tests edukkanum, confirm pannunga apparam than sollalam.",
+        "normalized_premise_14h": "Naanga konjam tests edukkanum, confirm pannunga apparam than sollalam.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-012",
+        "language": "mixed",
+        "category": "diagnoses",
+        "difficulty": "hard",
+        "premise": "Idhu asthma illa, idhu just seasonal allergy than.",
+        "claim": "Patient has been diagnosed with asthma.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00030159950256347656,
+          "contradiction_score": 0.9970703125,
+          "neutral_score": 0.002407073974609375
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00030159950256347656,
+          "contradiction_score": 0.9970703125,
+          "neutral_score": 0.002407073974609375
+        },
+        "normalized_premise_14f": "Patient does not have asthma.",
+        "normalized_premise_14h": "Patient does not have asthma.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_NEGATION_STATE",
+            "input_span": "asthma illa",
+            "normalized_span": "does not have asthma"
+          }
+        ]
+      },
+      {
+        "case_id": "EN-022",
+        "language": "en",
+        "category": "follow_up_instructions",
+        "difficulty": "easy",
+        "premise": "Please come back for a follow-up in two weeks.",
+        "claim": "Patient was advised to return for a follow-up in two weeks.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9853515625,
+          "contradiction_score": 0.0001989603042602539,
+          "neutral_score": 0.01450347900390625
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9853515625,
+          "contradiction_score": 0.0001989603042602539,
+          "neutral_score": 0.01450347900390625
+        },
+        "normalized_premise_14f": "Please come back for a follow-up in two weeks.",
+        "normalized_premise_14h": "Please come back for a follow-up in two weeks.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-023",
+        "language": "en",
+        "category": "follow_up_instructions",
+        "difficulty": "medium",
+        "premise": "Let's see how you feel over the next few days.",
+        "claim": "Patient was advised to return for a follow-up in two weeks.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.000274658203125,
+          "contradiction_score": 0.0008482933044433594,
+          "neutral_score": 0.9990234375
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.000274658203125,
+          "contradiction_score": 0.0008482933044433594,
+          "neutral_score": 0.9990234375
+        },
+        "normalized_premise_14f": "Let's see how you feel over the next few days.",
+        "normalized_premise_14h": "Let's see how you feel over the next few days.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-013",
+        "language": "mixed",
+        "category": "follow_up_instructions",
+        "difficulty": "medium",
+        "premise": "Next week vaanga, wound dressing check pannanum.",
+        "claim": "Patient was advised to return next week for a wound check.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.97509765625,
+          "contradiction_score": 0.0005984306335449219,
+          "neutral_score": 0.024169921875
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.97509765625,
+          "contradiction_score": 0.0005984306335449219,
+          "neutral_score": 0.024169921875
+        },
+        "normalized_premise_14f": "Next week vaanga, wound dressing check pannanum.",
+        "normalized_premise_14h": "Next week vaanga, wound dressing check pannanum.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-024",
+        "language": "en",
+        "category": "referral_instructions",
+        "difficulty": "easy",
+        "premise": "I'm referring you to a cardiologist for further evaluation.",
+        "claim": "Patient was referred to a cardiologist.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.99658203125,
+          "contradiction_score": 0.00015735626220703125,
+          "neutral_score": 0.0031452178955078125
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.99658203125,
+          "contradiction_score": 0.00015735626220703125,
+          "neutral_score": 0.0031452178955078125
+        },
+        "normalized_premise_14f": "I'm referring you to a cardiologist for further evaluation.",
+        "normalized_premise_14h": "I'm referring you to a cardiologist for further evaluation.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-025",
+        "language": "en",
+        "category": "referral_instructions",
+        "difficulty": "medium",
+        "premise": "You may need to see a specialist depending on the test results.",
+        "claim": "Patient was referred to a cardiologist.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00044536590576171875,
+          "contradiction_score": 0.00017523765563964844,
+          "neutral_score": 0.99951171875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00044536590576171875,
+          "contradiction_score": 0.00017523765563964844,
+          "neutral_score": 0.99951171875
+        },
+        "normalized_premise_14f": "You may need to see a specialist depending on the test results.",
+        "normalized_premise_14h": "You may need to see a specialist depending on the test results.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-023",
+        "language": "tanglish",
+        "category": "referral_instructions",
+        "difficulty": "medium",
+        "premise": "Ungala cardiologist kitta refer pandren.",
+        "claim": "Patient was referred to a cardiologist.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.998046875,
+          "contradiction_score": 0.00022876262664794922,
+          "neutral_score": 0.0016069412231445312
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.998046875,
+          "contradiction_score": 0.00022876262664794922,
+          "neutral_score": 0.0016069412231445312
+        },
+        "normalized_premise_14f": "Ungala cardiologist kitta refer pandren.",
+        "normalized_premise_14h": "Ungala cardiologist kitta refer pandren.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-014",
+        "language": "mixed",
+        "category": "referral_instructions",
+        "difficulty": "medium",
+        "premise": "Naan ungala ENT specialist kitta refer pandren, next week appointment eduthukonga.",
+        "claim": "Patient was referred to an ENT specialist.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.99853515625,
+          "contradiction_score": 0.00041031837463378906,
+          "neutral_score": 0.0011148452758789062
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.99853515625,
+          "contradiction_score": 0.00041031837463378906,
+          "neutral_score": 0.0011148452758789062
+        },
+        "normalized_premise_14f": "Naan ungala ENT specialist kitta refer pandren, next week appointment eduthukonga.",
+        "normalized_premise_14h": "Naan ungala ENT specialist kitta refer pandren, next week appointment eduthukonga.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-026",
+        "language": "en",
+        "category": "patient_history",
+        "difficulty": "easy",
+        "premise": "I was diagnosed with diabetes five years ago.",
+        "claim": "Patient has a history of diabetes.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9755859375,
+          "contradiction_score": 0.0013751983642578125,
+          "neutral_score": 0.022979736328125
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9755859375,
+          "contradiction_score": 0.0013751983642578125,
+          "neutral_score": 0.022979736328125
+        },
+        "normalized_premise_14f": "I was diagnosed with diabetes five years ago.",
+        "normalized_premise_14h": "I was diagnosed with diabetes five years ago.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-028",
+        "language": "tanglish",
+        "category": "doctor_assessment",
+        "difficulty": "hard",
+        "premise": "Konjam observation pannanum innum, clear-aa sollala.",
+        "claim": "Doctor assessed that the patient's chest is clear.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0648193359375,
+          "contradiction_score": 0.28759765625,
+          "neutral_score": 0.6474609375
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0648193359375,
+          "contradiction_score": 0.28759765625,
+          "neutral_score": 0.6474609375
+        },
+        "normalized_premise_14f": "Konjam observation pannanum innum, clear-aa sollala.",
+        "normalized_premise_14h": "Konjam observation pannanum innum, clear-aa sollala.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-030",
+        "language": "en",
+        "category": "negation",
+        "difficulty": "medium",
+        "premise": "I do not have chest pain.",
+        "claim": "Patient has chest pain.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.01448822021484375,
+          "contradiction_score": 0.9375,
+          "neutral_score": 0.0479736328125
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.01448822021484375,
+          "contradiction_score": 0.9375,
+          "neutral_score": 0.0479736328125
+        },
+        "normalized_premise_14f": "I do not have chest pain.",
+        "normalized_premise_14h": "I do not have chest pain.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-031",
+        "language": "en",
+        "category": "negation",
+        "difficulty": "medium",
+        "premise": "I have no fever.",
+        "claim": "Patient has fever.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.0083465576171875,
+          "contradiction_score": 0.9541015625,
+          "neutral_score": 0.037750244140625
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.0083465576171875,
+          "contradiction_score": 0.9541015625,
+          "neutral_score": 0.037750244140625
+        },
+        "normalized_premise_14f": "I have no fever.",
+        "normalized_premise_14h": "I have no fever.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-032",
+        "language": "en",
+        "category": "negation",
+        "difficulty": "medium",
+        "premise": "I am not taking aspirin.",
+        "claim": "Patient is taking aspirin.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.07757568359375,
+          "contradiction_score": 0.7919921875,
+          "neutral_score": 0.1304931640625
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.07757568359375,
+          "contradiction_score": 0.7919921875,
+          "neutral_score": 0.1304931640625
+        },
+        "normalized_premise_14f": "I am not taking aspirin.",
+        "normalized_premise_14h": "I am not taking aspirin.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-033",
+        "language": "en",
+        "category": "negation",
+        "difficulty": "medium",
+        "premise": "I have never had asthma.",
+        "claim": "Patient has a history of asthma.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00033473968505859375,
+          "contradiction_score": 0.99755859375,
+          "neutral_score": 0.002124786376953125
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00033473968505859375,
+          "contradiction_score": 0.99755859375,
+          "neutral_score": 0.002124786376953125
+        },
+        "normalized_premise_14f": "I have never had asthma.",
+        "normalized_premise_14h": "I have never had asthma.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-034",
+        "language": "en",
+        "category": "negation",
+        "difficulty": "medium",
+        "premise": "I'm not sure if I have a fever.",
+        "claim": "Patient has fever.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00209808349609375,
+          "contradiction_score": 0.01398468017578125,
+          "neutral_score": 0.98388671875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00209808349609375,
+          "contradiction_score": 0.01398468017578125,
+          "neutral_score": 0.98388671875
+        },
+        "normalized_premise_14f": "I'm not sure if I have a fever.",
+        "normalized_premise_14h": "I'm not sure if I have a fever.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-029",
+        "language": "tanglish",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Enakku ippo chest pain onnum illa.",
+        "claim": "Patient reports chest pain.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00214385986328125,
+          "contradiction_score": 0.94775390625,
+          "neutral_score": 0.049957275390625
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00214385986328125,
+          "contradiction_score": 0.94775390625,
+          "neutral_score": 0.049957275390625
+        },
+        "normalized_premise_14f": "Patient does not have chest pain.",
+        "normalized_premise_14h": "Patient does not have chest pain.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_NEGATION_STATE",
+            "input_span": "chest pain onnum illa",
+            "normalized_span": "does not have chest pain"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-030",
+        "language": "tanglish",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Enakku fever illa.",
+        "claim": "Patient has fever.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.0005145072937011719,
+          "contradiction_score": 0.99853515625,
+          "neutral_score": 0.0011472702026367188
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.0005145072937011719,
+          "contradiction_score": 0.99853515625,
+          "neutral_score": 0.0011472702026367188
+        },
+        "normalized_premise_14f": "Patient does not have fever.",
+        "normalized_premise_14h": "Patient does not have fever.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_NEGATION_STATE",
+            "input_span": "fever illa",
+            "normalized_span": "does not have fever"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-031",
+        "language": "tanglish",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Naan ippo aspirin onnum edukkala.",
+        "claim": "Patient is taking aspirin.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.004688262939453125,
+          "contradiction_score": 0.9794921875,
+          "neutral_score": 0.015716552734375
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.004688262939453125,
+          "contradiction_score": 0.9794921875,
+          "neutral_score": 0.015716552734375
+        },
+        "normalized_premise_14f": "Patient does not take aspirin.",
+        "normalized_premise_14h": "Patient does not take aspirin.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_NEGATION_ACTION",
+            "input_span": "aspirin onnum edukkala",
+            "normalized_span": "does not take aspirin"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-032",
+        "language": "tanglish",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Enakku asthma history illa.",
+        "claim": "Patient has a history of asthma.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00018203258514404297,
+          "contradiction_score": 0.94873046875,
+          "neutral_score": 0.05108642578125
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00018203258514404297,
+          "contradiction_score": 0.94873046875,
+          "neutral_score": 0.05108642578125
+        },
+        "normalized_premise_14f": "Patient does not have asthma.",
+        "normalized_premise_14h": "Patient does not have asthma.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_NEGATION_STATE",
+            "input_span": "asthma history illa",
+            "normalized_span": "does not have asthma"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-019",
+        "language": "mixed",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Enakku sugar problem kidayaadhu, no diabetes.",
+        "claim": "Patient has diabetes.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.004543304443359375,
+          "contradiction_score": 0.98291015625,
+          "neutral_score": 0.012603759765625
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.004543304443359375,
+          "contradiction_score": 0.98291015625,
+          "neutral_score": 0.012603759765625
+        },
+        "normalized_premise_14f": "Enakku sugar problem kidayaadhu, no diabetes.",
+        "normalized_premise_14h": "Enakku sugar problem kidayaadhu, no diabetes.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-035",
+        "language": "en",
+        "category": "historical_statements",
+        "difficulty": "medium",
+        "premise": "I had asthma as a child.",
+        "claim": "Patient currently has asthma.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.219970703125,
+          "contradiction_score": 0.142822265625,
+          "neutral_score": 0.63720703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.219970703125,
+          "contradiction_score": 0.142822265625,
+          "neutral_score": 0.63720703125
+        },
+        "normalized_premise_14f": "I had asthma as a child.",
+        "normalized_premise_14h": "I had asthma as a child.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-036",
+        "language": "en",
+        "category": "historical_statements",
+        "difficulty": "medium",
+        "premise": "I had asthma as a child.",
+        "claim": "Patient had asthma as a child.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9814453125,
+          "contradiction_score": 0.00087738037109375,
+          "neutral_score": 0.0177764892578125
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.9814453125,
+          "contradiction_score": 0.00087738037109375,
+          "neutral_score": 0.0177764892578125
+        },
+        "normalized_premise_14f": "I had asthma as a child.",
+        "normalized_premise_14h": "I had asthma as a child.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-033",
+        "language": "tanglish",
+        "category": "historical_statements",
+        "difficulty": "hard",
+        "premise": "Chinna vayasula asthma irundhudhu.",
+        "claim": "Patient had asthma during childhood.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.8330078125,
+          "contradiction_score": 0.005344390869140625,
+          "neutral_score": 0.16162109375
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.8330078125,
+          "contradiction_score": 0.005344390869140625,
+          "neutral_score": 0.16162109375
+        },
+        "normalized_premise_14f": "Patient had asthma during childhood.",
+        "normalized_premise_14h": "Patient had asthma during childhood.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_HISTORICAL",
+            "input_span": "asthma irundhudhu",
+            "normalized_span": "had asthma during childhood"
+          }
+        ]
+      },
+      {
+        "case_id": "EN-037",
+        "language": "en",
+        "category": "diagnosis_overreach",
+        "difficulty": "hard",
+        "premise": "Patient reports fever and cough.",
+        "claim": "Patient has pneumonia.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.01434326171875,
+          "contradiction_score": 0.208740234375,
+          "neutral_score": 0.77685546875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.01434326171875,
+          "contradiction_score": 0.208740234375,
+          "neutral_score": 0.77685546875
+        },
+        "normalized_premise_14f": "Patient reports fever and cough.",
+        "normalized_premise_14h": "Patient reports fever and cough.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-038",
+        "language": "en",
+        "category": "diagnosis_overreach",
+        "difficulty": "hard",
+        "premise": "Patient reports headache.",
+        "claim": "Patient has migraine.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0290069580078125,
+          "contradiction_score": 0.003765106201171875,
+          "neutral_score": 0.96728515625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0290069580078125,
+          "contradiction_score": 0.003765106201171875,
+          "neutral_score": 0.96728515625
+        },
+        "normalized_premise_14f": "Patient reports headache.",
+        "normalized_premise_14h": "Patient reports headache.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-039",
+        "language": "en",
+        "category": "diagnosis_overreach",
+        "difficulty": "hard",
+        "premise": "I have fever and cough.",
+        "claim": "Patient has pneumonia.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0253753662109375,
+          "contradiction_score": 0.3232421875,
+          "neutral_score": 0.6513671875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0253753662109375,
+          "contradiction_score": 0.3232421875,
+          "neutral_score": 0.6513671875
+        },
+        "normalized_premise_14f": "I have fever and cough.",
+        "normalized_premise_14h": "I have fever and cough.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-036",
+        "language": "tanglish",
+        "category": "diagnosis_overreach",
+        "difficulty": "hard",
+        "premise": "Enakku thalai vali irukku rendu naala.",
+        "claim": "Patient has a brain tumor.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0008873939514160156,
+          "contradiction_score": 0.0011844635009765625,
+          "neutral_score": 0.998046875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0008873939514160156,
+          "contradiction_score": 0.0011844635009765625,
+          "neutral_score": 0.998046875
+        },
+        "normalized_premise_14f": "Patient has headache for two days.",
+        "normalized_premise_14h": "Patient has headache for two days.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "thalai vali irukku",
+            "normalized_span": "has headache for two days"
+          },
+          {
+            "rule": "TANGLISH_DURATION",
+            "input_span": "rendu naala",
+            "normalized_span": "for two days"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-037",
+        "language": "tanglish",
+        "category": "diagnosis_overreach",
+        "difficulty": "hard",
+        "premise": "Vayitru vali romba irukku.",
+        "claim": "Patient has appendicitis.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0018892288208007812,
+          "contradiction_score": 0.00408935546875,
+          "neutral_score": 0.994140625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0018892288208007812,
+          "contradiction_score": 0.00408935546875,
+          "neutral_score": 0.994140625
+        },
+        "normalized_premise_14f": "Patient has stomach pain.",
+        "normalized_premise_14h": "Patient has stomach pain.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "Vayitru vali romba irukku",
+            "normalized_span": "has stomach pain"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-023",
+        "language": "mixed",
+        "category": "diagnosis_overreach",
+        "difficulty": "hard",
+        "premise": "Chest pain irukku and breathing konjam difficult.",
+        "claim": "Patient is having a heart attack.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.002117156982421875,
+          "contradiction_score": 0.0106964111328125,
+          "neutral_score": 0.9873046875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.002117156982421875,
+          "contradiction_score": 0.0106964111328125,
+          "neutral_score": 0.9873046875
+        },
+        "normalized_premise_14f": "Patient has chest pain and breathing konjam difficult.",
+        "normalized_premise_14h": "Patient has chest pain and breathing konjam difficult.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "Chest pain irukku",
+            "normalized_span": "has chest pain"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-024",
+        "language": "mixed",
+        "category": "diagnosis_overreach",
+        "difficulty": "hard",
+        "premise": "Joint pain irukku for two weeks, morning stiffness um irukku.",
+        "claim": "Patient has rheumatoid arthritis.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.001911163330078125,
+          "contradiction_score": 0.00045299530029296875,
+          "neutral_score": 0.99755859375
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0017833709716796875,
+          "contradiction_score": 0.00019228458404541016,
+          "neutral_score": 0.998046875
+        },
+        "normalized_premise_14f": "Patient has joint pain.",
+        "normalized_premise_14h": "Patient has joint pain for two weeks.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "Joint pain irukku",
+            "normalized_span": "has joint pain for two weeks"
+          },
+          {
+            "rule": "TANGLISH_DURATION",
+            "input_span": "two weeks",
+            "normalized_span": "for two weeks"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-025",
+        "language": "mixed",
+        "category": "diagnosis_overreach",
+        "difficulty": "hard",
+        "premise": "Skin-la rash varudhu, konjam itching irukku.",
+        "claim": "Patient has an allergic reaction to medication.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0033092498779296875,
+          "contradiction_score": 0.00029659271240234375,
+          "neutral_score": 0.99658203125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0033092498779296875,
+          "contradiction_score": 0.00029659271240234375,
+          "neutral_score": 0.99658203125
+        },
+        "normalized_premise_14f": "Patient has itching.",
+        "normalized_premise_14h": "Patient has itching.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "itching irukku",
+            "normalized_span": "has itching"
+          }
+        ]
+      }
+    ],
+    "unchanged_incorrect_cases": [
+      {
+        "case_id": "EN-002",
+        "language": "en",
+        "category": "symptoms",
+        "difficulty": "medium",
+        "premise": "I don't have any chest pain.",
+        "claim": "Patient reports chest pain.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.03240966796875,
+          "contradiction_score": 0.06463623046875,
+          "neutral_score": 0.90283203125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.03240966796875,
+          "contradiction_score": 0.06463623046875,
+          "neutral_score": 0.90283203125
+        },
+        "normalized_premise_14f": "I don't have any chest pain.",
+        "normalized_premise_14h": "I don't have any chest pain.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-003",
+        "language": "en",
+        "category": "symptoms",
+        "difficulty": "medium",
+        "premise": "I have a mild headache today.",
+        "claim": "Patient has a severe migraine.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00030231475830078125,
+          "contradiction_score": 0.99755859375,
+          "neutral_score": 0.0020122528076171875
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00030231475830078125,
+          "contradiction_score": 0.99755859375,
+          "neutral_score": 0.0020122528076171875
+        },
+        "normalized_premise_14f": "I have a mild headache today.",
+        "normalized_premise_14h": "I have a mild headache today.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-004",
+        "language": "en",
+        "category": "symptoms",
+        "difficulty": "medium",
+        "premise": "My throat has been sore since yesterday.",
+        "claim": "Patient reports a sore throat since yesterday.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.681640625,
+          "contradiction_score": 0.000415802001953125,
+          "neutral_score": 0.317626953125
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.681640625,
+          "contradiction_score": 0.000415802001953125,
+          "neutral_score": 0.317626953125
+        },
+        "normalized_premise_14f": "My throat has been sore since yesterday.",
+        "normalized_premise_14h": "My throat has been sore since yesterday.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-001",
+        "language": "tanglish",
+        "category": "symptoms",
+        "difficulty": "medium",
+        "premise": "Enakku fever rendu naala irukku.",
+        "claim": "Patient has had fever for two days.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.67724609375,
+          "contradiction_score": 0.07366943359375,
+          "neutral_score": 0.2489013671875
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.67724609375,
+          "contradiction_score": 0.07366943359375,
+          "neutral_score": 0.2489013671875
+        },
+        "normalized_premise_14f": "Patient has fever for two days.",
+        "normalized_premise_14h": "Patient has fever for two days.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "fever rendu naala irukku",
+            "normalized_span": "has fever for two days"
+          },
+          {
+            "rule": "TANGLISH_DURATION",
+            "input_span": "rendu naala",
+            "normalized_span": "for two days"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-003",
+        "language": "tanglish",
+        "category": "symptoms",
+        "difficulty": "medium",
+        "premise": "Enakku vayitru vali irukku.",
+        "claim": "Patient reports stomach pain.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.335693359375,
+          "contradiction_score": 0.0003147125244140625,
+          "neutral_score": 0.6640625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.335693359375,
+          "contradiction_score": 0.0003147125244140625,
+          "neutral_score": 0.6640625
+        },
+        "normalized_premise_14f": "Patient has stomach pain.",
+        "normalized_premise_14h": "Patient has stomach pain.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "vayitru vali irukku",
+            "normalized_span": "has stomach pain"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-001",
+        "language": "mixed",
+        "category": "symptoms",
+        "difficulty": "medium",
+        "premise": "Enakku cough irukku for three days.",
+        "claim": "Patient has had cough for three days.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00042939186096191406,
+          "contradiction_score": 0.0009636878967285156,
+          "neutral_score": 0.99853515625
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.66748046875,
+          "contradiction_score": 0.05596923828125,
+          "neutral_score": 0.276611328125
+        },
+        "normalized_premise_14f": "Patient has cough.",
+        "normalized_premise_14h": "Patient has cough for three days.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "cough irukku",
+            "normalized_span": "has cough for three days"
+          },
+          {
+            "rule": "TANGLISH_DURATION",
+            "input_span": "three days",
+            "normalized_span": "for three days"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-004",
+        "language": "mixed",
+        "category": "medications",
+        "difficulty": "hard",
+        "premise": "Naan insulin edukkamaatten, doctor.",
+        "claim": "Patient takes insulin.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.96728515625,
+          "contradiction_score": 0.005695343017578125,
+          "neutral_score": 0.027099609375
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.96728515625,
+          "contradiction_score": 0.005695343017578125,
+          "neutral_score": 0.027099609375
+        },
+        "normalized_premise_14f": "Naan insulin edukkamaatten, doctor.",
+        "normalized_premise_14h": "Naan insulin edukkamaatten, doctor.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-009",
+        "language": "en",
+        "category": "allergies",
+        "difficulty": "medium",
+        "premise": "I have no known drug allergies.",
+        "claim": "Patient is allergic to penicillin.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0001747608184814453,
+          "contradiction_score": 0.01119232177734375,
+          "neutral_score": 0.98876953125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0001747608184814453,
+          "contradiction_score": 0.01119232177734375,
+          "neutral_score": 0.98876953125
+        },
+        "normalized_premise_14f": "I have no known drug allergies.",
+        "normalized_premise_14h": "I have no known drug allergies.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-005",
+        "language": "mixed",
+        "category": "allergies",
+        "difficulty": "hard",
+        "premise": "Enakku edhuvum allergy kidayaadhu, no allergies.",
+        "claim": "Patient is allergic to peanuts.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0008392333984375,
+          "contradiction_score": 0.0021724700927734375,
+          "neutral_score": 0.9970703125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0008392333984375,
+          "contradiction_score": 0.0021724700927734375,
+          "neutral_score": 0.9970703125
+        },
+        "normalized_premise_14f": "Enakku edhuvum allergy kidayaadhu, no allergies.",
+        "normalized_premise_14h": "Enakku edhuvum allergy kidayaadhu, no allergies.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-010",
+        "language": "en",
+        "category": "measurements",
+        "difficulty": "easy",
+        "premise": "Temperature was 101.2 degrees Fahrenheit.",
+        "claim": "Patient's temperature was 101.2 degrees Fahrenheit.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.036285400390625,
+          "contradiction_score": 0.0019683837890625,
+          "neutral_score": 0.9619140625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.036285400390625,
+          "contradiction_score": 0.0019683837890625,
+          "neutral_score": 0.9619140625
+        },
+        "normalized_premise_14f": "Temperature was 101.2 degrees Fahrenheit.",
+        "normalized_premise_14h": "Temperature was 101.2 degrees Fahrenheit.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-013",
+        "language": "tanglish",
+        "category": "duration",
+        "difficulty": "medium",
+        "premise": "Enakku oru vaaramaa fever irukku.",
+        "claim": "Patient has had fever for one week.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0003228187561035156,
+          "contradiction_score": 0.004730224609375,
+          "neutral_score": 0.9951171875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0003228187561035156,
+          "contradiction_score": 0.004730224609375,
+          "neutral_score": 0.9951171875
+        },
+        "normalized_premise_14f": "Patient has fever.",
+        "normalized_premise_14h": "Patient has fever.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "fever irukku",
+            "normalized_span": "has fever"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-014",
+        "language": "tanglish",
+        "category": "duration",
+        "difficulty": "hard",
+        "premise": "Rendu naala than jaladosham irukku.",
+        "claim": "Patient has had cold for two weeks.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00921630859375,
+          "contradiction_score": 0.044342041015625,
+          "neutral_score": 0.9462890625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00921630859375,
+          "contradiction_score": 0.044342041015625,
+          "neutral_score": 0.9462890625
+        },
+        "normalized_premise_14f": "Rendu naala than jaladosham irukku.",
+        "normalized_premise_14h": "Rendu naala than jaladosham irukku.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-017",
+        "language": "tanglish",
+        "category": "medical_procedures",
+        "difficulty": "medium",
+        "premise": "Naan nethu ECG edutten.",
+        "claim": "Patient had an ECG done yesterday.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0079498291015625,
+          "contradiction_score": 0.003192901611328125,
+          "neutral_score": 0.98876953125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0079498291015625,
+          "contradiction_score": 0.003192901611328125,
+          "neutral_score": 0.98876953125
+        },
+        "normalized_premise_14f": "Naan nethu ECG edutten.",
+        "normalized_premise_14h": "Naan nethu ECG edutten.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-021",
+        "language": "en",
+        "category": "diagnoses",
+        "difficulty": "medium",
+        "premise": "This does not look like bronchitis, it's just a common cold.",
+        "claim": "Patient has been diagnosed with bronchitis.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0013647079467773438,
+          "contradiction_score": 0.401123046875,
+          "neutral_score": 0.59765625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0013647079467773438,
+          "contradiction_score": 0.401123046875,
+          "neutral_score": 0.59765625
+        },
+        "normalized_premise_14f": "This does not look like bronchitis, it's just a common cold.",
+        "normalized_premise_14h": "This does not look like bronchitis, it's just a common cold.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-021",
+        "language": "tanglish",
+        "category": "follow_up_instructions",
+        "difficulty": "medium",
+        "premise": "Rendu vaarathula follow-up-ku vaanga.",
+        "claim": "Patient was advised to return for a follow-up in two weeks.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.005298614501953125,
+          "contradiction_score": 0.002567291259765625,
+          "neutral_score": 0.9921875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.005298614501953125,
+          "contradiction_score": 0.002567291259765625,
+          "neutral_score": 0.9921875
+        },
+        "normalized_premise_14f": "Rendu vaarathula follow-up-ku vaanga.",
+        "normalized_premise_14h": "Rendu vaarathula follow-up-ku vaanga.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-022",
+        "language": "tanglish",
+        "category": "follow_up_instructions",
+        "difficulty": "hard",
+        "premise": "Follow-up ku vara vendam, idhu than final visit.",
+        "claim": "Patient was advised to schedule a follow-up visit.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.84716796875,
+          "contradiction_score": 0.01366424560546875,
+          "neutral_score": 0.1392822265625
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.84716796875,
+          "contradiction_score": 0.01366424560546875,
+          "neutral_score": 0.1392822265625
+        },
+        "normalized_premise_14f": "Follow-up ku vara vendam, idhu than final visit.",
+        "normalized_premise_14h": "Follow-up ku vara vendam, idhu than final visit.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-024",
+        "language": "tanglish",
+        "category": "referral_instructions",
+        "difficulty": "hard",
+        "premise": "Ippo specialist kitta refer panna vendiya avasiyam illa.",
+        "claim": "Patient was referred to a specialist.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.99609375,
+          "contradiction_score": 0.0005435943603515625,
+          "neutral_score": 0.0033168792724609375
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.99609375,
+          "contradiction_score": 0.0005435943603515625,
+          "neutral_score": 0.0033168792724609375
+        },
+        "normalized_premise_14f": "Ippo specialist kitta refer panna vendiya avasiyam illa.",
+        "normalized_premise_14h": "Ippo specialist kitta refer panna vendiya avasiyam illa.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-027",
+        "language": "en",
+        "category": "patient_history",
+        "difficulty": "medium",
+        "premise": "My father had heart disease.",
+        "claim": "Patient has a history of heart disease.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.7109375,
+          "contradiction_score": 0.0023212432861328125,
+          "neutral_score": 0.28662109375
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.7109375,
+          "contradiction_score": 0.0023212432861328125,
+          "neutral_score": 0.28662109375
+        },
+        "normalized_premise_14f": "My father had heart disease.",
+        "normalized_premise_14h": "My father had heart disease.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-025",
+        "language": "tanglish",
+        "category": "patient_history",
+        "difficulty": "medium",
+        "premise": "Enakku anju varusham diabetes irukku.",
+        "claim": "Patient has a history of diabetes.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0113677978515625,
+          "contradiction_score": 0.0007166862487792969,
+          "neutral_score": 0.98779296875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0113677978515625,
+          "contradiction_score": 0.0007166862487792969,
+          "neutral_score": 0.98779296875
+        },
+        "normalized_premise_14f": "Patient has diabetes.",
+        "normalized_premise_14h": "Patient has diabetes.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "diabetes irukku",
+            "normalized_span": "has diabetes"
+          }
+        ]
+      },
+      {
+        "case_id": "TL-026",
+        "language": "tanglish",
+        "category": "patient_history",
+        "difficulty": "hard",
+        "premise": "Enakku high BP history edhuvum illa, ippo dhaan first time.",
+        "claim": "Patient has a history of high blood pressure.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.83447265625,
+          "contradiction_score": 0.1402587890625,
+          "neutral_score": 0.0251007080078125
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.83447265625,
+          "contradiction_score": 0.1402587890625,
+          "neutral_score": 0.0251007080078125
+        },
+        "normalized_premise_14f": "Enakku high BP history edhuvum illa, ippo dhaan first time.",
+        "normalized_premise_14h": "Enakku high BP history edhuvum illa, ippo dhaan first time.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-015",
+        "language": "mixed",
+        "category": "patient_history",
+        "difficulty": "hard",
+        "premise": "Chinna vayasula irundhe naan asthma patient.",
+        "claim": "Patient has a history of asthma since childhood.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00035691261291503906,
+          "contradiction_score": 0.0002396106719970703,
+          "neutral_score": 0.99951171875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.00035691261291503906,
+          "contradiction_score": 0.0002396106719970703,
+          "neutral_score": 0.99951171875
+        },
+        "normalized_premise_14f": "Chinna vayasula irundhe naan asthma patient.",
+        "normalized_premise_14h": "Chinna vayasula irundhe naan asthma patient.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-028",
+        "language": "en",
+        "category": "doctor_assessment",
+        "difficulty": "easy",
+        "premise": "Your lungs sound clear on examination.",
+        "claim": "Doctor assessed that the patient's lungs sound clear.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.1702880859375,
+          "contradiction_score": 0.0003552436828613281,
+          "neutral_score": 0.8291015625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.1702880859375,
+          "contradiction_score": 0.0003552436828613281,
+          "neutral_score": 0.8291015625
+        },
+        "normalized_premise_14f": "Your lungs sound clear on examination.",
+        "normalized_premise_14h": "Your lungs sound clear on examination.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "EN-029",
+        "language": "en",
+        "category": "doctor_assessment",
+        "difficulty": "medium",
+        "premise": "I don't hear any wheezing in your chest.",
+        "claim": "Doctor assessed that the patient has wheezing.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0024127960205078125,
+          "contradiction_score": 0.05572509765625,
+          "neutral_score": 0.94189453125
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0024127960205078125,
+          "contradiction_score": 0.05572509765625,
+          "neutral_score": 0.94189453125
+        },
+        "normalized_premise_14f": "I don't hear any wheezing in your chest.",
+        "normalized_premise_14h": "I don't hear any wheezing in your chest.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-027",
+        "language": "tanglish",
+        "category": "doctor_assessment",
+        "difficulty": "medium",
+        "premise": "Un chest sound clear-aa irukku.",
+        "claim": "Doctor assessed that the patient's chest sounds clear.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.03857421875,
+          "contradiction_score": 0.0007715225219726562,
+          "neutral_score": 0.96044921875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.03857421875,
+          "contradiction_score": 0.0007715225219726562,
+          "neutral_score": 0.96044921875
+        },
+        "normalized_premise_14f": "Un chest sound clear-aa irukku.",
+        "normalized_premise_14h": "Un chest sound clear-aa irukku.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-017",
+        "language": "mixed",
+        "category": "doctor_assessment",
+        "difficulty": "medium",
+        "premise": "Throat konjam red-aa irukku on examination.",
+        "claim": "Doctor assessed that the patient's throat appeared red on examination.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.09808349609375,
+          "contradiction_score": 0.00023376941680908203,
+          "neutral_score": 0.90185546875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.09808349609375,
+          "contradiction_score": 0.00023376941680908203,
+          "neutral_score": 0.90185546875
+        },
+        "normalized_premise_14f": "Throat konjam red-aa irukku on examination.",
+        "normalized_premise_14h": "Throat konjam red-aa irukku on examination.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-018",
+        "language": "mixed",
+        "category": "doctor_assessment",
+        "difficulty": "hard",
+        "premise": "Belly-la edhuvum tenderness illa on palpation.",
+        "claim": "Doctor assessed abdominal tenderness on palpation.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0126953125,
+          "contradiction_score": 0.0006632804870605469,
+          "neutral_score": 0.98681640625
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.0126953125,
+          "contradiction_score": 0.0006632804870605469,
+          "neutral_score": 0.98681640625
+        },
+        "normalized_premise_14f": "Belly-la edhuvum tenderness illa on palpation.",
+        "normalized_premise_14h": "Belly-la edhuvum tenderness illa on palpation.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-020",
+        "language": "mixed",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Enakku theriyala fever irukka nu.",
+        "claim": "Patient has fever.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.97314453125,
+          "contradiction_score": 0.0030975341796875,
+          "neutral_score": 0.0235137939453125
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.97314453125,
+          "contradiction_score": 0.0030975341796875,
+          "neutral_score": 0.0235137939453125
+        },
+        "normalized_premise_14f": "Enakku theriyala fever irukka nu.",
+        "normalized_premise_14h": "Enakku theriyala fever irukka nu.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-034",
+        "language": "tanglish",
+        "category": "historical_statements",
+        "difficulty": "hard",
+        "premise": "Chinna vayasula asthma irundhudhu.",
+        "claim": "Patient currently has asthma.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00862884521484375,
+          "contradiction_score": 0.87646484375,
+          "neutral_score": 0.1148681640625
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00862884521484375,
+          "contradiction_score": 0.87646484375,
+          "neutral_score": 0.1148681640625
+        },
+        "normalized_premise_14f": "Patient had asthma during childhood.",
+        "normalized_premise_14h": "Patient had asthma during childhood.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_HISTORICAL",
+            "input_span": "asthma irundhudhu",
+            "normalized_span": "had asthma during childhood"
+          }
+        ]
+      },
+      {
+        "case_id": "MX-021",
+        "language": "mixed",
+        "category": "historical_statements",
+        "difficulty": "hard",
+        "premise": "Naan chinna vayasula TB treatment eduthirukken, adhu konjam years back.",
+        "claim": "Patient was treated for TB in childhood.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "UNGROUNDED",
+        "nli_scores_14f": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.28662109375,
+          "contradiction_score": 0.0184326171875,
+          "neutral_score": 0.69482421875
+        },
+        "nli_scores_14h": {
+          "nli_label": "NEUTRAL",
+          "entailment_score": 0.28662109375,
+          "contradiction_score": 0.0184326171875,
+          "neutral_score": 0.69482421875
+        },
+        "normalized_premise_14f": "Naan chinna vayasula TB treatment eduthirukken, adhu konjam years back.",
+        "normalized_premise_14h": "Naan chinna vayasula TB treatment eduthirukken, adhu konjam years back.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "MX-022",
+        "language": "mixed",
+        "category": "historical_statements",
+        "difficulty": "hard",
+        "premise": "Years back oru operation panniyirundhen stomach-ku.",
+        "claim": "Patient currently has stomach problems.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED",
+        "nli_scores_14f": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.80517578125,
+          "contradiction_score": 0.0880126953125,
+          "neutral_score": 0.10687255859375
+        },
+        "nli_scores_14h": {
+          "nli_label": "ENTAILMENT",
+          "entailment_score": 0.80517578125,
+          "contradiction_score": 0.0880126953125,
+          "neutral_score": 0.10687255859375
+        },
+        "normalized_premise_14f": "Years back oru operation panniyirundhen stomach-ku.",
+        "normalized_premise_14h": "Years back oru operation panniyirundhen stomach-ku.",
+        "transformation_trace_14h": []
+      },
+      {
+        "case_id": "TL-035",
+        "language": "tanglish",
+        "category": "diagnosis_overreach",
+        "difficulty": "hard",
+        "premise": "Enakku fever and cough irukku.",
+        "claim": "Patient has pneumonia.",
+        "ground_truth": "UNGROUNDED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED",
+        "nli_scores_14f": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.00405120849609375,
+          "contradiction_score": 0.97216796875,
+          "neutral_score": 0.023834228515625
+        },
+        "nli_scores_14h": {
+          "nli_label": "CONTRADICTION",
+          "entailment_score": 0.0008764266967773438,
+          "contradiction_score": 0.98974609375,
+          "neutral_score": 0.00936126708984375
+        },
+        "normalized_premise_14f": "Enakku fever and has cough.",
+        "normalized_premise_14h": "Enakku fever and Patient has cough.",
+        "transformation_trace_14h": [
+          {
+            "rule": "TANGLISH_CURRENT_STATE",
+            "input_span": "cough irukku",
+            "normalized_span": "has cough"
+          }
+        ]
+      }
+    ],
+    "counts": {
+      "fixed": 5,
+      "regressed": 1,
+      "unchanged_correct": 64,
+      "unchanged_incorrect": 31
+    }
+  },
+  "transition_highlight": {
+    "preserved_improvement__14b_wrong_14f_correct_14h_correct": [
+      {
+        "case_id": "TL-002",
+        "language": "tanglish",
+        "category": "symptoms",
+        "difficulty": "hard",
+        "premise": "Enakku chest pain illa.",
+        "claim": "Patient reports chest pain.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "SUPPORTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED"
+      },
+      {
+        "case_id": "TL-004",
+        "language": "tanglish",
+        "category": "symptoms",
+        "difficulty": "hard",
+        "premise": "Enakku ippo cough illa.",
+        "claim": "Patient reports cough.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "SUPPORTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED"
+      },
+      {
+        "case_id": "MX-002",
+        "language": "mixed",
+        "category": "symptoms",
+        "difficulty": "hard",
+        "premise": "Fever irundhudhu, but ippo illa.",
+        "claim": "Patient currently has fever.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "SUPPORTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED"
+      },
+      {
+        "case_id": "TL-006",
+        "language": "tanglish",
+        "category": "medications",
+        "difficulty": "hard",
+        "premise": "Naan aspirin edukkala.",
+        "claim": "Patient is taking aspirin.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "SUPPORTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED"
+      },
+      {
+        "case_id": "MX-012",
+        "language": "mixed",
+        "category": "diagnoses",
+        "difficulty": "hard",
+        "premise": "Idhu asthma illa, idhu just seasonal allergy than.",
+        "claim": "Patient has been diagnosed with asthma.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "UNGROUNDED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED"
+      },
+      {
+        "case_id": "TL-029",
+        "language": "tanglish",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Enakku ippo chest pain onnum illa.",
+        "claim": "Patient reports chest pain.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "SUPPORTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED"
+      },
+      {
+        "case_id": "TL-030",
+        "language": "tanglish",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Enakku fever illa.",
+        "claim": "Patient has fever.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "SUPPORTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED"
+      },
+      {
+        "case_id": "TL-031",
+        "language": "tanglish",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Naan ippo aspirin onnum edukkala.",
+        "claim": "Patient is taking aspirin.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "SUPPORTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED"
+      },
+      {
+        "case_id": "TL-032",
+        "language": "tanglish",
+        "category": "negation",
+        "difficulty": "hard",
+        "premise": "Enakku asthma history illa.",
+        "claim": "Patient has a history of asthma.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "SUPPORTED",
+        "prediction_14f": "CONTRADICTED",
+        "prediction_14h": "CONTRADICTED"
+      },
+      {
+        "case_id": "TL-033",
+        "language": "tanglish",
+        "category": "historical_statements",
+        "difficulty": "hard",
+        "premise": "Chinna vayasula asthma irundhudhu.",
+        "claim": "Patient had asthma during childhood.",
+        "ground_truth": "SUPPORTED",
+        "prediction_14b": "UNGROUNDED",
+        "prediction_14f": "SUPPORTED",
+        "prediction_14h": "SUPPORTED"
+      }
+    ],
+    "regression__14b_wrong_14f_correct_14h_wrong": [],
+    "new_gain_from_14h__14b_wrong_14f_wrong_14h_correct": [
+      {
+        "case_id": "MX-007",
+        "language": "mixed",
+        "category": "measurements",
+        "difficulty": "hard",
+        "premise": "Weight kammi aayidichu, ippo 60 kilos than irukku.",
+        "claim": "Patient's weight is 75 kilograms.",
+        "ground_truth": "CONTRADICTED",
+        "prediction_14b": "UNGROUNDED",
+        "prediction_14f": "UNGROUNDED",
+        "prediction_14h": "CONTRADICTED"
+      }
+    ]
+  },
+  "transition_counts": {
+    "correct_correct_correct": 54,
+    "correct_correct_wrong": 1,
+    "correct_wrong_correct": 4,
+    "correct_wrong_wrong": 1,
+    "wrong_correct_correct": 10,
+    "wrong_correct_wrong": 0,
+    "wrong_wrong_correct": 1,
+    "wrong_wrong_wrong": 30
+  }
+}

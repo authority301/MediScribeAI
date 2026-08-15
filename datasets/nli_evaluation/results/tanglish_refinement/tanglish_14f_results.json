@@ -1,0 +1,2984 @@
+{
+  "metadata": {
+    "model_provider": "local",
+    "model_name": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+    "device": "cpu",
+    "entailment_threshold": 0.7,
+    "contradiction_threshold": 0.7,
+    "system_14b_configuration": "raw premise, no Tanglish preprocessing (app.evaluation.runner, Step 14C, unmodified)",
+    "system_14f_configuration": "premise normalized by FROZEN Step 14F normalizer (app.evaluation_tanglish_refinement.frozen_14f, byte-identical-logic snapshot of commit 5563418)",
+    "system_14h_configuration": "premise normalized by CURRENT Step 14H normalizer (app.tanglish.normalizer, via app.evaluation_tanglish.runner.evaluate_case_mode(mode='tanglish_aware'), unmodified)",
+    "benchmark_path": "D:\\MediScribeAI\\MediScribeAI\\datasets\\nli_evaluation\\benchmark.json",
+    "benchmark_sha256": "db4d78a94879c2869d1abed423f46cbfd5a4a54e5d24d016c3c2f34faa4b0543",
+    "num_cases": 101,
+    "evaluation_timestamp_utc": "2026-08-15T08:41:39.697001+00:00",
+    "thresholds_tuned_against_benchmark": false,
+    "thresholds_tuned_separately_per_system": false,
+    "model_fine_tuned": false,
+    "python_version": "3.11.15",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "overall": {
+    "count": 101,
+    "accuracy": 0.6435643564356436,
+    "macro_precision": 0.6944996889310446,
+    "macro_recall": 0.6492739073384234,
+    "macro_f1": 0.6502164502164502,
+    "weighted_precision": 0.6997270207086798,
+    "weighted_recall": 0.6435643564356436,
+    "weighted_f1": 0.6506622090780507,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.7241379310344828,
+        "recall": 0.5675675675675675,
+        "f1": 0.6363636363636365,
+        "support": 37
+      },
+      "CONTRADICTED": {
+        "precision": 0.8695652173913043,
+        "recall": 0.6060606060606061,
+        "f1": 0.7142857142857143,
+        "support": 33
+      },
+      "UNGROUNDED": {
+        "precision": 0.4897959183673469,
+        "recall": 0.7741935483870968,
+        "f1": 0.6,
+        "support": 31
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 21,
+        "CONTRADICTED": 0,
+        "UNGROUNDED": 16
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 4,
+        "CONTRADICTED": 20,
+        "UNGROUNDED": 9
+      },
+      "UNGROUNDED": {
+        "SUPPORTED": 4,
+        "CONTRADICTED": 3,
+        "UNGROUNDED": 24
+      }
+    },
+    "ucr_prediction_based": 0.48514851485148514,
+    "ucr_gold_based": 0.3069306930693069,
+    "cr_prediction_based": 0.22772277227722773,
+    "cr_gold_based": 0.32673267326732675
+  },
+  "bootstrap_confidence_intervals": {
+    "note": "95% bootstrap CIs computed with a fixed seed (see 'seed') over n_resamples resamples of the evaluated cases. Optional per the Step 14C spec; included here for transparency, not as a substitute for a larger benchmark.",
+    "accuracy": {
+      "point_estimate": 0.6435643564356436,
+      "lower": 0.5445544554455446,
+      "upper": 0.7326732673267327,
+      "n_resamples": 2000,
+      "seed": 42,
+      "confidence_level": 0.95
+    },
+    "macro_f1": {
+      "point_estimate": 0.6502164502164502,
+      "lower": 0.5524679936976501,
+      "upper": 0.7390103237243464,
+      "n_resamples": 2000,
+      "seed": 42,
+      "confidence_level": 0.95
+    },
+    "ucr_prediction_based": {
+      "point_estimate": 0.48514851485148514,
+      "lower": 0.38613861386138615,
+      "upper": 0.5742574257425742,
+      "n_resamples": 2000,
+      "seed": 42,
+      "confidence_level": 0.95
+    }
+  },
+  "language_results": {
+    "en": {
+      "count": 39,
+      "accuracy": 0.7692307692307693,
+      "macro_precision": 0.8055555555555555,
+      "macro_recall": 0.7661782661782661,
+      "macro_f1": 0.7725786758044823,
+      "weighted_precision": 0.8062678062678063,
+      "weighted_recall": 0.7692307692307693,
+      "weighted_f1": 0.774738908733946,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.9166666666666666,
+          "recall": 0.7857142857142857,
+          "f1": 0.8461538461538461,
+          "support": 14
+        },
+        "CONTRADICTED": {
+          "precision": 0.8888888888888888,
+          "recall": 0.6666666666666666,
+          "f1": 0.761904761904762,
+          "support": 12
+        },
+        "UNGROUNDED": {
+          "precision": 0.6111111111111112,
+          "recall": 0.8461538461538461,
+          "f1": 0.7096774193548387,
+          "support": 13
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 11,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 3
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 8,
+          "UNGROUNDED": 4
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 11
+        }
+      },
+      "ucr_prediction_based": 0.46153846153846156,
+      "ucr_gold_based": 0.3333333333333333,
+      "cr_prediction_based": 0.23076923076923078,
+      "cr_gold_based": 0.3076923076923077
+    },
+    "tanglish": {
+      "count": 37,
+      "accuracy": 0.6216216216216216,
+      "macro_precision": 0.6568627450980392,
+      "macro_recall": 0.6384615384615385,
+      "macro_f1": 0.6238593666129898,
+      "weighted_precision": 0.6731319554848967,
+      "weighted_recall": 0.6216216216216216,
+      "weighted_f1": 0.6252992122557341,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.7,
+          "recall": 0.5,
+          "f1": 0.5833333333333334,
+          "support": 14
+        },
+        "CONTRADICTED": {
+          "precision": 0.8,
+          "recall": 0.6153846153846154,
+          "f1": 0.6956521739130435,
+          "support": 13
+        },
+        "UNGROUNDED": {
+          "precision": 0.47058823529411764,
+          "recall": 0.8,
+          "f1": 0.5925925925925927,
+          "support": 10
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 7,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 7
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 3,
+          "CONTRADICTED": 8,
+          "UNGROUNDED": 2
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 2,
+          "UNGROUNDED": 8
+        }
+      },
+      "ucr_prediction_based": 0.4594594594594595,
+      "ucr_gold_based": 0.2702702702702703,
+      "cr_prediction_based": 0.2702702702702703,
+      "cr_gold_based": 0.35135135135135137
+    },
+    "mixed": {
+      "count": 25,
+      "accuracy": 0.48,
+      "macro_precision": 0.5952380952380952,
+      "macro_recall": 0.4861111111111111,
+      "macro_f1": 0.4987373737373737,
+      "weighted_precision": 0.5885714285714286,
+      "weighted_recall": 0.48,
+      "weighted_f1": 0.4937878787878788,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.42857142857142855,
+          "recall": 0.3333333333333333,
+          "f1": 0.375,
+          "support": 9
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "support": 8
+        },
+        "UNGROUNDED": {
+          "precision": 0.35714285714285715,
+          "recall": 0.625,
+          "f1": 0.45454545454545453,
+          "support": 8
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 3,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 6
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 4,
+          "UNGROUNDED": 3
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 3,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 5
+        }
+      },
+      "ucr_prediction_based": 0.56,
+      "ucr_gold_based": 0.32,
+      "cr_prediction_based": 0.16,
+      "cr_gold_based": 0.32
+    }
+  },
+  "category_results": {
+    "allergies": {
+      "count": 5,
+      "accuracy": 0.6,
+      "macro_precision": 0.4444444444444444,
+      "macro_recall": 0.6666666666666666,
+      "macro_f1": 0.5,
+      "weighted_precision": 0.4666666666666667,
+      "weighted_recall": 0.6,
+      "weighted_f1": 0.5,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "UNGROUNDED": {
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 2,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        }
+      },
+      "ucr_prediction_based": 0.6,
+      "ucr_gold_based": 0.2,
+      "cr_prediction_based": 0.0,
+      "cr_gold_based": 0.4
+    },
+    "diagnoses": {
+      "count": 5,
+      "accuracy": 0.8,
+      "macro_precision": 0.8333333333333334,
+      "macro_recall": 0.8333333333333334,
+      "macro_f1": 0.7777777777777777,
+      "weighted_precision": 0.9,
+      "weighted_recall": 0.8,
+      "weighted_f1": 0.7999999999999999,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "support": 2
+        },
+        "UNGROUNDED": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 2,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 1
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        }
+      },
+      "ucr_prediction_based": 0.4,
+      "ucr_gold_based": 0.2,
+      "cr_prediction_based": 0.2,
+      "cr_gold_based": 0.4
+    },
+    "diagnosis_overreach": {
+      "count": 9,
+      "accuracy": 0.8888888888888888,
+      "macro_precision": 0.3333333333333333,
+      "macro_recall": 0.2962962962962963,
+      "macro_f1": 0.3137254901960784,
+      "weighted_precision": 1.0,
+      "weighted_recall": 0.8888888888888888,
+      "weighted_f1": 0.9411764705882353,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "UNGROUNDED": {
+          "precision": 1.0,
+          "recall": 0.8888888888888888,
+          "f1": 0.9411764705882353,
+          "support": 9
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 8
+        }
+      },
+      "ucr_prediction_based": 0.8888888888888888,
+      "ucr_gold_based": 1.0,
+      "cr_prediction_based": 0.1111111111111111,
+      "cr_gold_based": 0.0
+    },
+    "doctor_assessment": {
+      "count": 6,
+      "accuracy": 0.16666666666666666,
+      "macro_precision": 0.05555555555555555,
+      "macro_recall": 0.3333333333333333,
+      "macro_f1": 0.09523809523809523,
+      "weighted_precision": 0.027777777777777776,
+      "weighted_recall": 0.16666666666666666,
+      "weighted_f1": 0.047619047619047616,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "UNGROUNDED": {
+          "precision": 0.16666666666666666,
+          "recall": 1.0,
+          "f1": 0.2857142857142857,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 3
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        }
+      },
+      "ucr_prediction_based": 1.0,
+      "ucr_gold_based": 0.16666666666666666,
+      "cr_prediction_based": 0.0,
+      "cr_gold_based": 0.3333333333333333
+    },
+    "duration": {
+      "count": 7,
+      "accuracy": 0.5714285714285714,
+      "macro_precision": 0.7999999999999999,
+      "macro_recall": 0.611111111111111,
+      "macro_f1": 0.5793650793650794,
+      "weighted_precision": 0.8285714285714285,
+      "weighted_recall": 0.5714285714285714,
+      "weighted_f1": 0.5680272108843537,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1": 0.5,
+          "support": 3
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "support": 2
+        },
+        "UNGROUNDED": {
+          "precision": 0.4,
+          "recall": 1.0,
+          "f1": 0.5714285714285715,
+          "support": 2
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 1
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        }
+      },
+      "ucr_prediction_based": 0.7142857142857143,
+      "ucr_gold_based": 0.2857142857142857,
+      "cr_prediction_based": 0.14285714285714285,
+      "cr_gold_based": 0.2857142857142857
+    },
+    "follow_up_instructions": {
+      "count": 5,
+      "accuracy": 0.6,
+      "macro_precision": 0.38888888888888884,
+      "macro_recall": 0.5555555555555555,
+      "macro_f1": 0.4444444444444444,
+      "weighted_precision": 0.5,
+      "weighted_recall": 0.6,
+      "weighted_f1": 0.5333333333333333,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "f1": 0.6666666666666666,
+          "support": 3
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "UNGROUNDED": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 2,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        }
+      },
+      "ucr_prediction_based": 0.4,
+      "ucr_gold_based": 0.2,
+      "cr_prediction_based": 0.0,
+      "cr_gold_based": 0.2
+    },
+    "frequency": {
+      "count": 5,
+      "accuracy": 1.0,
+      "macro_precision": 1.0,
+      "macro_recall": 1.0,
+      "macro_f1": 1.0,
+      "weighted_precision": 1.0,
+      "weighted_recall": 1.0,
+      "weighted_f1": 1.0,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "UNGROUNDED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 2,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 2,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        }
+      },
+      "ucr_prediction_based": 0.2,
+      "ucr_gold_based": 0.2,
+      "cr_prediction_based": 0.4,
+      "cr_gold_based": 0.4
+    },
+    "historical_statements": {
+      "count": 6,
+      "accuracy": 0.5,
+      "macro_precision": 0.38888888888888884,
+      "macro_recall": 0.3333333333333333,
+      "macro_f1": 0.35555555555555557,
+      "weighted_precision": 0.5833333333333334,
+      "weighted_recall": 0.5,
+      "weighted_f1": 0.5333333333333333,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "f1": 0.6666666666666666,
+          "support": 3
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "UNGROUNDED": {
+          "precision": 0.5,
+          "recall": 0.3333333333333333,
+          "f1": 0.4,
+          "support": 3
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 2,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 1
+        }
+      },
+      "ucr_prediction_based": 0.3333333333333333,
+      "ucr_gold_based": 0.5,
+      "cr_prediction_based": 0.16666666666666666,
+      "cr_gold_based": 0.0
+    },
+    "measurements": {
+      "count": 8,
+      "accuracy": 0.5,
+      "macro_precision": 0.7777777777777778,
+      "macro_recall": 0.5555555555555555,
+      "macro_f1": 0.5,
+      "weighted_precision": 0.8333333333333334,
+      "weighted_recall": 0.5,
+      "weighted_f1": 0.5,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1": 0.5,
+          "support": 3
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1": 0.5,
+          "support": 3
+        },
+        "UNGROUNDED": {
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5,
+          "support": 2
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 2
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        }
+      },
+      "ucr_prediction_based": 0.75,
+      "ucr_gold_based": 0.25,
+      "cr_prediction_based": 0.125,
+      "cr_gold_based": 0.375
+    },
+    "medical_procedures": {
+      "count": 5,
+      "accuracy": 0.8,
+      "macro_precision": 0.8888888888888888,
+      "macro_recall": 0.8333333333333334,
+      "macro_f1": 0.8222222222222223,
+      "weighted_precision": 0.8666666666666666,
+      "weighted_recall": 0.8,
+      "weighted_f1": 0.7866666666666666,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "support": 2
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "UNGROUNDED": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        }
+      },
+      "ucr_prediction_based": 0.6,
+      "ucr_gold_based": 0.4,
+      "cr_prediction_based": 0.2,
+      "cr_gold_based": 0.2
+    },
+    "medications": {
+      "count": 8,
+      "accuracy": 0.875,
+      "macro_precision": 0.9166666666666666,
+      "macro_recall": 0.8888888888888888,
+      "macro_f1": 0.8857142857142857,
+      "weighted_precision": 0.90625,
+      "weighted_recall": 0.875,
+      "weighted_f1": 0.8714285714285714,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571428571428571,
+          "support": 3
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 0.6666666666666666,
+          "f1": 0.8,
+          "support": 3
+        },
+        "UNGROUNDED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 3,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 2,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        }
+      },
+      "ucr_prediction_based": 0.25,
+      "ucr_gold_based": 0.25,
+      "cr_prediction_based": 0.25,
+      "cr_gold_based": 0.375
+    },
+    "negation": {
+      "count": 11,
+      "accuracy": 0.9090909090909091,
+      "macro_precision": 0.6666666666666666,
+      "macro_recall": 0.5,
+      "macro_f1": 0.5555555555555555,
+      "weighted_precision": 1.0,
+      "weighted_recall": 0.9090909090909091,
+      "weighted_f1": 0.9393939393939394,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 9
+        },
+        "UNGROUNDED": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "support": 2
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 9,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        }
+      },
+      "ucr_prediction_based": 0.09090909090909091,
+      "ucr_gold_based": 0.18181818181818182,
+      "cr_prediction_based": 0.8181818181818182,
+      "cr_gold_based": 0.8181818181818182
+    },
+    "patient_history": {
+      "count": 6,
+      "accuracy": 0.16666666666666666,
+      "macro_precision": 0.08333333333333333,
+      "macro_recall": 0.1111111111111111,
+      "macro_f1": 0.09523809523809525,
+      "weighted_precision": 0.125,
+      "weighted_recall": 0.16666666666666666,
+      "weighted_f1": 0.14285714285714288,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.25,
+          "recall": 0.3333333333333333,
+          "f1": 0.28571428571428575,
+          "support": 3
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "UNGROUNDED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 2,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        }
+      },
+      "ucr_prediction_based": 0.3333333333333333,
+      "ucr_gold_based": 0.3333333333333333,
+      "cr_prediction_based": 0.0,
+      "cr_gold_based": 0.16666666666666666
+    },
+    "referral_instructions": {
+      "count": 5,
+      "accuracy": 0.8,
+      "macro_precision": 0.5833333333333334,
+      "macro_recall": 0.6666666666666666,
+      "macro_f1": 0.6190476190476191,
+      "weighted_precision": 0.65,
+      "weighted_recall": 0.8,
+      "weighted_f1": 0.7142857142857142,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571428571428571,
+          "support": 3
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "UNGROUNDED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 3,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 1
+        }
+      },
+      "ucr_prediction_based": 0.2,
+      "ucr_gold_based": 0.2,
+      "cr_prediction_based": 0.0,
+      "cr_gold_based": 0.2
+    },
+    "symptoms": {
+      "count": 10,
+      "accuracy": 0.4,
+      "macro_precision": 0.5833333333333334,
+      "macro_recall": 0.31666666666666665,
+      "macro_f1": 0.36111111111111116,
+      "weighted_precision": 0.8,
+      "weighted_recall": 0.4,
+      "weighted_f1": 0.4666666666666667,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.2,
+          "f1": 0.33333333333333337,
+          "support": 5
+        },
+        "CONTRADICTED": {
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75,
+          "support": 4
+        },
+        "UNGROUNDED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 4
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 3,
+          "UNGROUNDED": 1
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 0
+        }
+      },
+      "ucr_prediction_based": 0.5,
+      "ucr_gold_based": 0.1,
+      "cr_prediction_based": 0.4,
+      "cr_gold_based": 0.4
+    }
+  },
+  "difficulty_results": {
+    "easy": {
+      "count": 16,
+      "accuracy": 0.875,
+      "macro_precision": 0.8666666666666667,
+      "macro_recall": 0.9444444444444445,
+      "macro_f1": 0.8863636363636364,
+      "weighted_precision": 0.925,
+      "weighted_recall": 0.875,
+      "weighted_f1": 0.8849431818181818,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.8333333333333334,
+          "f1": 0.9090909090909091,
+          "support": 12
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "UNGROUNDED": {
+          "precision": 0.6,
+          "recall": 1.0,
+          "f1": 0.7499999999999999,
+          "support": 3
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 10,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 0
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 3
+        }
+      },
+      "ucr_prediction_based": 0.3125,
+      "ucr_gold_based": 0.1875,
+      "cr_prediction_based": 0.0625,
+      "cr_gold_based": 0.0625
+    },
+    "medium": {
+      "count": 43,
+      "accuracy": 0.5581395348837209,
+      "macro_precision": 0.6919191919191919,
+      "macro_recall": 0.6052188552188552,
+      "macro_f1": 0.5767676767676768,
+      "weighted_precision": 0.7703488372093024,
+      "weighted_recall": 0.5581395348837209,
+      "weighted_f1": 0.5942212825933757,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.9090909090909091,
+          "recall": 0.45454545454545453,
+          "f1": 0.6060606060606061,
+          "support": 22
+        },
+        "CONTRADICTED": {
+          "precision": 0.875,
+          "recall": 0.5833333333333334,
+          "f1": 0.7000000000000001,
+          "support": 12
+        },
+        "UNGROUNDED": {
+          "precision": 0.2916666666666667,
+          "recall": 0.7777777777777778,
+          "f1": 0.42424242424242425,
+          "support": 9
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 10,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 12
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 7,
+          "UNGROUNDED": 5
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 1,
+          "UNGROUNDED": 7
+        }
+      },
+      "ucr_prediction_based": 0.5581395348837209,
+      "ucr_gold_based": 0.20930232558139536,
+      "cr_prediction_based": 0.18604651162790697,
+      "cr_gold_based": 0.27906976744186046
+    },
+    "hard": {
+      "count": 42,
+      "accuracy": 0.6428571428571429,
+      "macro_precision": 0.5607142857142856,
+      "macro_recall": 0.5567251461988304,
+      "macro_f1": 0.5352164175693588,
+      "weighted_precision": 0.7337585034013605,
+      "weighted_recall": 0.6428571428571429,
+      "weighted_f1": 0.6739077915548504,
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.125,
+          "recall": 0.3333333333333333,
+          "f1": 0.18181818181818182,
+          "support": 3
+        },
+        "CONTRADICTED": {
+          "precision": 0.8571428571428571,
+          "recall": 0.6,
+          "f1": 0.7058823529411764,
+          "support": 20
+        },
+        "UNGROUNDED": {
+          "precision": 0.7,
+          "recall": 0.7368421052631579,
+          "f1": 0.717948717948718,
+          "support": 19
+        }
+      },
+      "confusion_matrix": {
+        "SUPPORTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 0,
+          "UNGROUNDED": 2
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 4,
+          "CONTRADICTED": 12,
+          "UNGROUNDED": 4
+        },
+        "UNGROUNDED": {
+          "SUPPORTED": 3,
+          "CONTRADICTED": 2,
+          "UNGROUNDED": 14
+        }
+      },
+      "ucr_prediction_based": 0.47619047619047616,
+      "ucr_gold_based": 0.4523809523809524,
+      "cr_prediction_based": 0.3333333333333333,
+      "cr_gold_based": 0.47619047619047616
+    }
+  },
+  "predictions": [
+    {
+      "case_id": "EN-001",
+      "language": "en",
+      "category": "symptoms",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.9384765625,
+      "contradiction_score": 0.0030517578125,
+      "neutral_score": 0.058685302734375,
+      "premise": "I have had fever for two days.",
+      "normalized_premise": "I have had fever for two days.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-002",
+      "language": "en",
+      "category": "symptoms",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.03240966796875,
+      "contradiction_score": 0.06463623046875,
+      "neutral_score": 0.90283203125,
+      "premise": "I don't have any chest pain.",
+      "normalized_premise": "I don't have any chest pain.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-003",
+      "language": "en",
+      "category": "symptoms",
+      "difficulty": "medium",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.00030231475830078125,
+      "contradiction_score": 0.99755859375,
+      "neutral_score": 0.0020122528076171875,
+      "premise": "I have a mild headache today.",
+      "normalized_premise": "I have a mild headache today.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-004",
+      "language": "en",
+      "category": "symptoms",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.681640625,
+      "contradiction_score": 0.000415802001953125,
+      "neutral_score": 0.317626953125,
+      "premise": "My throat has been sore since yesterday.",
+      "normalized_premise": "My throat has been sore since yesterday.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-001",
+      "language": "tanglish",
+      "category": "symptoms",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.67724609375,
+      "contradiction_score": 0.07366943359375,
+      "neutral_score": 0.2489013671875,
+      "premise": "Enakku fever rendu naala irukku.",
+      "normalized_premise": "Patient has fever for two days.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "fever rendu naala irukku",
+          "normalized_span": "has fever for two days"
+        },
+        {
+          "rule": "TANGLISH_DURATION",
+          "input_span": "rendu naala",
+          "normalized_span": "for two days"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-002",
+      "language": "tanglish",
+      "category": "symptoms",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.00214385986328125,
+      "contradiction_score": 0.94775390625,
+      "neutral_score": 0.049957275390625,
+      "premise": "Enakku chest pain illa.",
+      "normalized_premise": "Patient does not have chest pain.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_NEGATION_STATE",
+          "input_span": "chest pain illa",
+          "normalized_span": "does not have chest pain"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-003",
+      "language": "tanglish",
+      "category": "symptoms",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.335693359375,
+      "contradiction_score": 0.0003147125244140625,
+      "neutral_score": 0.6640625,
+      "premise": "Enakku vayitru vali irukku.",
+      "normalized_premise": "Patient has stomach pain.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "vayitru vali irukku",
+          "normalized_span": "has stomach pain"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-004",
+      "language": "tanglish",
+      "category": "symptoms",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.002353668212890625,
+      "contradiction_score": 0.94921875,
+      "neutral_score": 0.048187255859375,
+      "premise": "Enakku ippo cough illa.",
+      "normalized_premise": "Patient does not have cough.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_NEGATION_STATE",
+          "input_span": "cough illa",
+          "normalized_span": "does not have cough"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-001",
+      "language": "mixed",
+      "category": "symptoms",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.00042939186096191406,
+      "contradiction_score": 0.0009636878967285156,
+      "neutral_score": 0.99853515625,
+      "premise": "Enakku cough irukku for three days.",
+      "normalized_premise": "Patient has cough.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "cough irukku",
+          "normalized_span": "has cough"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-002",
+      "language": "mixed",
+      "category": "symptoms",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.01349639892578125,
+      "contradiction_score": 0.97802734375,
+      "neutral_score": 0.00839996337890625,
+      "premise": "Fever irundhudhu, but ippo illa.",
+      "normalized_premise": "Patient had fever but ippo illa.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_HISTORICAL",
+          "input_span": "Fever irundhudhu",
+          "normalized_span": "had fever"
+        }
+      ]
+    },
+    {
+      "case_id": "EN-005",
+      "language": "en",
+      "category": "medications",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.9892578125,
+      "contradiction_score": 0.0007176399230957031,
+      "neutral_score": 0.01016998291015625,
+      "premise": "I take paracetamol for the pain.",
+      "normalized_premise": "I take paracetamol for the pain.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-006",
+      "language": "en",
+      "category": "medications",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.15185546875,
+      "contradiction_score": 0.77587890625,
+      "neutral_score": 0.072509765625,
+      "premise": "I do not take paracetamol.",
+      "normalized_premise": "I do not take paracetamol.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-007",
+      "language": "en",
+      "category": "medications",
+      "difficulty": "easy",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.00360107421875,
+      "contradiction_score": 0.002033233642578125,
+      "neutral_score": 0.994140625,
+      "premise": "I have a headache.",
+      "normalized_premise": "I have a headache.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-005",
+      "language": "tanglish",
+      "category": "medications",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.95263671875,
+      "contradiction_score": 0.0081634521484375,
+      "neutral_score": 0.039459228515625,
+      "premise": "Naan paracetamol eduthen.",
+      "normalized_premise": "Naan paracetamol eduthen.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-006",
+      "language": "tanglish",
+      "category": "medications",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.004688262939453125,
+      "contradiction_score": 0.9794921875,
+      "neutral_score": 0.015716552734375,
+      "premise": "Naan aspirin edukkala.",
+      "normalized_premise": "Patient does not take aspirin.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_NEGATION_ACTION",
+          "input_span": "aspirin edukkala",
+          "normalized_span": "does not take aspirin"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-007",
+      "language": "tanglish",
+      "category": "medications",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0007576942443847656,
+      "contradiction_score": 0.0007939338684082031,
+      "neutral_score": 0.99853515625,
+      "premise": "Doctor sonna maari medicine continue panren.",
+      "normalized_premise": "Doctor sonna maari medicine continue panren.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-003",
+      "language": "mixed",
+      "category": "medications",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.99755859375,
+      "contradiction_score": 0.00022733211517333984,
+      "neutral_score": 0.00225067138671875,
+      "premise": "Naan ippo antibiotics course continue pandren, started three days ago.",
+      "normalized_premise": "Naan ippo antibiotics course continue pandren, started three days ago.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-004",
+      "language": "mixed",
+      "category": "medications",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.96728515625,
+      "contradiction_score": 0.005695343017578125,
+      "neutral_score": 0.027099609375,
+      "premise": "Naan insulin edukkamaatten, doctor.",
+      "normalized_premise": "Naan insulin edukkamaatten, doctor.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-008",
+      "language": "en",
+      "category": "allergies",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.87939453125,
+      "contradiction_score": 0.0016231536865234375,
+      "neutral_score": 0.1187744140625,
+      "premise": "I am allergic to penicillin.",
+      "normalized_premise": "I am allergic to penicillin.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-009",
+      "language": "en",
+      "category": "allergies",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0001747608184814453,
+      "contradiction_score": 0.01119232177734375,
+      "neutral_score": 0.98876953125,
+      "premise": "I have no known drug allergies.",
+      "normalized_premise": "I have no known drug allergies.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-008",
+      "language": "tanglish",
+      "category": "allergies",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.98779296875,
+      "contradiction_score": 0.0009059906005859375,
+      "neutral_score": 0.0111541748046875,
+      "premise": "Enakku penicillin allergy irukku.",
+      "normalized_premise": "Enakku penicillin allergy irukku.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-009",
+      "language": "tanglish",
+      "category": "allergies",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.001987457275390625,
+      "contradiction_score": 0.000762939453125,
+      "neutral_score": 0.9970703125,
+      "premise": "Enakku sila medicine-ku reaction vandhudhu munnaadi.",
+      "normalized_premise": "Enakku sila medicine-ku reaction vandhudhu munnaadi.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-005",
+      "language": "mixed",
+      "category": "allergies",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0008392333984375,
+      "contradiction_score": 0.0021724700927734375,
+      "neutral_score": 0.9970703125,
+      "premise": "Enakku edhuvum allergy kidayaadhu, no allergies.",
+      "normalized_premise": "Enakku edhuvum allergy kidayaadhu, no allergies.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-010",
+      "language": "en",
+      "category": "measurements",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.036285400390625,
+      "contradiction_score": 0.0019683837890625,
+      "neutral_score": 0.9619140625,
+      "premise": "Temperature was 101.2 degrees Fahrenheit.",
+      "normalized_premise": "Temperature was 101.2 degrees Fahrenheit.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-011",
+      "language": "en",
+      "category": "measurements",
+      "difficulty": "easy",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.00701141357421875,
+      "contradiction_score": 0.86474609375,
+      "neutral_score": 0.12841796875,
+      "premise": "My temperature was 98.4 degrees.",
+      "normalized_premise": "My temperature was 98.4 degrees.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-012",
+      "language": "en",
+      "category": "measurements",
+      "difficulty": "easy",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.59326171875,
+      "contradiction_score": 0.00982666015625,
+      "neutral_score": 0.396728515625,
+      "premise": "My blood pressure was checked this morning.",
+      "normalized_premise": "My blood pressure was checked this morning.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-010",
+      "language": "tanglish",
+      "category": "measurements",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.92919921875,
+      "contradiction_score": 0.00638580322265625,
+      "neutral_score": 0.064453125,
+      "premise": "En weight ippo 68 kilos.",
+      "normalized_premise": "En weight ippo 68 kilos.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-011",
+      "language": "tanglish",
+      "category": "measurements",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.002239227294921875,
+      "contradiction_score": 0.0006437301635742188,
+      "neutral_score": 0.9970703125,
+      "premise": "En oxygen level 98 percent irundhudhu.",
+      "normalized_premise": "Patient had oxygen saturation.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_HISTORICAL",
+          "input_span": "oxygen level 98 percent irundhudhu",
+          "normalized_span": "had oxygen saturation"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-012",
+      "language": "tanglish",
+      "category": "measurements",
+      "difficulty": "medium",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0251922607421875,
+      "contradiction_score": 0.0014238357543945312,
+      "neutral_score": 0.97314453125,
+      "premise": "Doctor blood pressure check pannaanga.",
+      "normalized_premise": "Doctor blood pressure check pannaanga.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-006",
+      "language": "mixed",
+      "category": "measurements",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.05718994140625,
+      "contradiction_score": 0.0015783309936523438,
+      "neutral_score": 0.94140625,
+      "premise": "Heart rate ippo 88 beats per minute irukku.",
+      "normalized_premise": "Patient has heart rate.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "Heart rate ippo 88 beats per minute irukku",
+          "normalized_span": "has heart rate"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-007",
+      "language": "mixed",
+      "category": "measurements",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.002773284912109375,
+      "contradiction_score": 0.0001951456069946289,
+      "neutral_score": 0.9970703125,
+      "premise": "Weight kammi aayidichu, ippo 60 kilos than irukku.",
+      "normalized_premise": "Patient has weight.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "Weight kammi aayidichu, ippo 60 kilos than irukku",
+          "normalized_span": "has weight"
+        }
+      ]
+    },
+    {
+      "case_id": "EN-013",
+      "language": "en",
+      "category": "duration",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.98974609375,
+      "contradiction_score": 0.0005526542663574219,
+      "neutral_score": 0.00969696044921875,
+      "premise": "I've had this cough for three days.",
+      "normalized_premise": "I've had this cough for three days.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-014",
+      "language": "en",
+      "category": "duration",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.001102447509765625,
+      "contradiction_score": 0.99462890625,
+      "neutral_score": 0.00433349609375,
+      "premise": "I've had this cough for three days.",
+      "normalized_premise": "I've had this cough for three days.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-015",
+      "language": "en",
+      "category": "duration",
+      "difficulty": "medium",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0009512901306152344,
+      "contradiction_score": 0.0170135498046875,
+      "neutral_score": 0.98193359375,
+      "premise": "I've had a cold recently.",
+      "normalized_premise": "I've had a cold recently.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-013",
+      "language": "tanglish",
+      "category": "duration",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0003228187561035156,
+      "contradiction_score": 0.004730224609375,
+      "neutral_score": 0.9951171875,
+      "premise": "Enakku oru vaaramaa fever irukku.",
+      "normalized_premise": "Patient has fever.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "fever irukku",
+          "normalized_span": "has fever"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-014",
+      "language": "tanglish",
+      "category": "duration",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.00921630859375,
+      "contradiction_score": 0.044342041015625,
+      "neutral_score": 0.9462890625,
+      "premise": "Rendu naala than jaladosham irukku.",
+      "normalized_premise": "Rendu naala than jaladosham irukku.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-008",
+      "language": "mixed",
+      "category": "duration",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.00027680397033691406,
+      "contradiction_score": 0.00022029876708984375,
+      "neutral_score": 0.99951171875,
+      "premise": "Back pain irukku for one week already.",
+      "normalized_premise": "Patient has back pain.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "Back pain irukku",
+          "normalized_span": "has back pain"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-009",
+      "language": "mixed",
+      "category": "duration",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0004355907440185547,
+      "contradiction_score": 0.00414276123046875,
+      "neutral_score": 0.99560546875,
+      "premise": "Konjam naala fever irukku.",
+      "normalized_premise": "Patient has fever.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "fever irukku",
+          "normalized_span": "has fever"
+        }
+      ]
+    },
+    {
+      "case_id": "EN-016",
+      "language": "en",
+      "category": "frequency",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.9814453125,
+      "contradiction_score": 0.0007638931274414062,
+      "neutral_score": 0.0176849365234375,
+      "premise": "I take this tablet twice daily.",
+      "normalized_premise": "I take this tablet twice daily.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-017",
+      "language": "en",
+      "category": "frequency",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.0006623268127441406,
+      "contradiction_score": 0.99853515625,
+      "neutral_score": 0.0006356239318847656,
+      "premise": "I take the medicine once a day, every morning.",
+      "normalized_premise": "I take the medicine once a day, every morning.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-015",
+      "language": "tanglish",
+      "category": "frequency",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.97412109375,
+      "contradiction_score": 0.009857177734375,
+      "neutral_score": 0.0159454345703125,
+      "premise": "Naan andha tablet-a rendu velai saapduven, morning and night.",
+      "normalized_premise": "Naan andha tablet-a rendu velai saapduven, morning and night.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-016",
+      "language": "tanglish",
+      "category": "frequency",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0079193115234375,
+      "contradiction_score": 0.044097900390625,
+      "neutral_score": 0.94775390625,
+      "premise": "Doctor sonna maari medicine saapdaren.",
+      "normalized_premise": "Doctor sonna maari medicine saapdaren.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-010",
+      "language": "mixed",
+      "category": "frequency",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.0004906654357910156,
+      "contradiction_score": 0.9951171875,
+      "neutral_score": 0.004352569580078125,
+      "premise": "Naan andha eye drops-a once a day than podren.",
+      "normalized_premise": "Naan andha eye drops-a once a day than podren.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-018",
+      "language": "en",
+      "category": "medical_procedures",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.98046875,
+      "contradiction_score": 0.0009918212890625,
+      "neutral_score": 0.018768310546875,
+      "premise": "I had a blood test done yesterday.",
+      "normalized_premise": "I had a blood test done yesterday.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-019",
+      "language": "en",
+      "category": "medical_procedures",
+      "difficulty": "easy",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0007677078247070312,
+      "contradiction_score": 0.00016951560974121094,
+      "neutral_score": 0.9990234375,
+      "premise": "I went to the lab for some tests.",
+      "normalized_premise": "I went to the lab for some tests.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-017",
+      "language": "tanglish",
+      "category": "medical_procedures",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0079498291015625,
+      "contradiction_score": 0.003192901611328125,
+      "neutral_score": 0.98876953125,
+      "premise": "Naan nethu ECG edutten.",
+      "normalized_premise": "Naan nethu ECG edutten.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-018",
+      "language": "tanglish",
+      "category": "medical_procedures",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.001659393310546875,
+      "contradiction_score": 0.96630859375,
+      "neutral_score": 0.03204345703125,
+      "premise": "Naan innum scan edukkala.",
+      "normalized_premise": "Patient does not have scan.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_NEGATION_ACTION",
+          "input_span": "scan edukkala",
+          "normalized_span": "does not have scan"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-011",
+      "language": "mixed",
+      "category": "medical_procedures",
+      "difficulty": "medium",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.01427459716796875,
+      "contradiction_score": 0.309814453125,
+      "neutral_score": 0.67578125,
+      "premise": "Naan konjam lab work pannen last week.",
+      "normalized_premise": "Naan konjam lab work pannen last week.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-020",
+      "language": "en",
+      "category": "diagnoses",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.7294921875,
+      "contradiction_score": 0.0015649795532226562,
+      "neutral_score": 0.268798828125,
+      "premise": "You have a mild case of bronchitis.",
+      "normalized_premise": "You have a mild case of bronchitis.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-021",
+      "language": "en",
+      "category": "diagnoses",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0013647079467773438,
+      "contradiction_score": 0.401123046875,
+      "neutral_score": 0.59765625,
+      "premise": "This does not look like bronchitis, it's just a common cold.",
+      "normalized_premise": "This does not look like bronchitis, it's just a common cold.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-019",
+      "language": "tanglish",
+      "category": "diagnoses",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.9091796875,
+      "contradiction_score": 0.001850128173828125,
+      "neutral_score": 0.08880615234375,
+      "premise": "Ungalukku mild bronchitis irukku.",
+      "normalized_premise": "Patient has bronchitis.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "bronchitis irukku",
+          "normalized_span": "has bronchitis"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-020",
+      "language": "tanglish",
+      "category": "diagnoses",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0268096923828125,
+      "contradiction_score": 0.0088653564453125,
+      "neutral_score": 0.96435546875,
+      "premise": "Naanga konjam tests edukkanum, confirm pannunga apparam than sollalam.",
+      "normalized_premise": "Naanga konjam tests edukkanum, confirm pannunga apparam than sollalam.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-012",
+      "language": "mixed",
+      "category": "diagnoses",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.00030159950256347656,
+      "contradiction_score": 0.9970703125,
+      "neutral_score": 0.002407073974609375,
+      "premise": "Idhu asthma illa, idhu just seasonal allergy than.",
+      "normalized_premise": "Patient does not have asthma.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_NEGATION_STATE",
+          "input_span": "asthma illa",
+          "normalized_span": "does not have asthma"
+        }
+      ]
+    },
+    {
+      "case_id": "EN-022",
+      "language": "en",
+      "category": "follow_up_instructions",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.9853515625,
+      "contradiction_score": 0.0001989603042602539,
+      "neutral_score": 0.01450347900390625,
+      "premise": "Please come back for a follow-up in two weeks.",
+      "normalized_premise": "Please come back for a follow-up in two weeks.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-023",
+      "language": "en",
+      "category": "follow_up_instructions",
+      "difficulty": "medium",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.000274658203125,
+      "contradiction_score": 0.0008482933044433594,
+      "neutral_score": 0.9990234375,
+      "premise": "Let's see how you feel over the next few days.",
+      "normalized_premise": "Let's see how you feel over the next few days.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-021",
+      "language": "tanglish",
+      "category": "follow_up_instructions",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.005298614501953125,
+      "contradiction_score": 0.002567291259765625,
+      "neutral_score": 0.9921875,
+      "premise": "Rendu vaarathula follow-up-ku vaanga.",
+      "normalized_premise": "Rendu vaarathula follow-up-ku vaanga.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-022",
+      "language": "tanglish",
+      "category": "follow_up_instructions",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.84716796875,
+      "contradiction_score": 0.01366424560546875,
+      "neutral_score": 0.1392822265625,
+      "premise": "Follow-up ku vara vendam, idhu than final visit.",
+      "normalized_premise": "Follow-up ku vara vendam, idhu than final visit.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-013",
+      "language": "mixed",
+      "category": "follow_up_instructions",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.97509765625,
+      "contradiction_score": 0.0005984306335449219,
+      "neutral_score": 0.024169921875,
+      "premise": "Next week vaanga, wound dressing check pannanum.",
+      "normalized_premise": "Next week vaanga, wound dressing check pannanum.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-024",
+      "language": "en",
+      "category": "referral_instructions",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.99658203125,
+      "contradiction_score": 0.00015735626220703125,
+      "neutral_score": 0.0031452178955078125,
+      "premise": "I'm referring you to a cardiologist for further evaluation.",
+      "normalized_premise": "I'm referring you to a cardiologist for further evaluation.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-025",
+      "language": "en",
+      "category": "referral_instructions",
+      "difficulty": "medium",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.00044536590576171875,
+      "contradiction_score": 0.00017523765563964844,
+      "neutral_score": 0.99951171875,
+      "premise": "You may need to see a specialist depending on the test results.",
+      "normalized_premise": "You may need to see a specialist depending on the test results.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-023",
+      "language": "tanglish",
+      "category": "referral_instructions",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.998046875,
+      "contradiction_score": 0.00022876262664794922,
+      "neutral_score": 0.0016069412231445312,
+      "premise": "Ungala cardiologist kitta refer pandren.",
+      "normalized_premise": "Ungala cardiologist kitta refer pandren.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-024",
+      "language": "tanglish",
+      "category": "referral_instructions",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.99609375,
+      "contradiction_score": 0.0005435943603515625,
+      "neutral_score": 0.0033168792724609375,
+      "premise": "Ippo specialist kitta refer panna vendiya avasiyam illa.",
+      "normalized_premise": "Ippo specialist kitta refer panna vendiya avasiyam illa.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-014",
+      "language": "mixed",
+      "category": "referral_instructions",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.99853515625,
+      "contradiction_score": 0.00041031837463378906,
+      "neutral_score": 0.0011148452758789062,
+      "premise": "Naan ungala ENT specialist kitta refer pandren, next week appointment eduthukonga.",
+      "normalized_premise": "Naan ungala ENT specialist kitta refer pandren, next week appointment eduthukonga.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-026",
+      "language": "en",
+      "category": "patient_history",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.9755859375,
+      "contradiction_score": 0.0013751983642578125,
+      "neutral_score": 0.022979736328125,
+      "premise": "I was diagnosed with diabetes five years ago.",
+      "normalized_premise": "I was diagnosed with diabetes five years ago.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-027",
+      "language": "en",
+      "category": "patient_history",
+      "difficulty": "medium",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.7109375,
+      "contradiction_score": 0.0023212432861328125,
+      "neutral_score": 0.28662109375,
+      "premise": "My father had heart disease.",
+      "normalized_premise": "My father had heart disease.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-025",
+      "language": "tanglish",
+      "category": "patient_history",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0113677978515625,
+      "contradiction_score": 0.0007166862487792969,
+      "neutral_score": 0.98779296875,
+      "premise": "Enakku anju varusham diabetes irukku.",
+      "normalized_premise": "Patient has diabetes.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "diabetes irukku",
+          "normalized_span": "has diabetes"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-026",
+      "language": "tanglish",
+      "category": "patient_history",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.83447265625,
+      "contradiction_score": 0.1402587890625,
+      "neutral_score": 0.0251007080078125,
+      "premise": "Enakku high BP history edhuvum illa, ippo dhaan first time.",
+      "normalized_premise": "Enakku high BP history edhuvum illa, ippo dhaan first time.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-015",
+      "language": "mixed",
+      "category": "patient_history",
+      "difficulty": "hard",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.00035691261291503906,
+      "contradiction_score": 0.0002396106719970703,
+      "neutral_score": 0.99951171875,
+      "premise": "Chinna vayasula irundhe naan asthma patient.",
+      "normalized_premise": "Chinna vayasula irundhe naan asthma patient.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-016",
+      "language": "mixed",
+      "category": "patient_history",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.916015625,
+      "contradiction_score": 0.004913330078125,
+      "neutral_score": 0.07891845703125,
+      "premise": "Family-la sila peruku diabetes irukku.",
+      "normalized_premise": "Patient has diabetes.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "diabetes irukku",
+          "normalized_span": "has diabetes"
+        }
+      ]
+    },
+    {
+      "case_id": "EN-028",
+      "language": "en",
+      "category": "doctor_assessment",
+      "difficulty": "easy",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.1702880859375,
+      "contradiction_score": 0.0003552436828613281,
+      "neutral_score": 0.8291015625,
+      "premise": "Your lungs sound clear on examination.",
+      "normalized_premise": "Your lungs sound clear on examination.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-029",
+      "language": "en",
+      "category": "doctor_assessment",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0024127960205078125,
+      "contradiction_score": 0.05572509765625,
+      "neutral_score": 0.94189453125,
+      "premise": "I don't hear any wheezing in your chest.",
+      "normalized_premise": "I don't hear any wheezing in your chest.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-027",
+      "language": "tanglish",
+      "category": "doctor_assessment",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.03857421875,
+      "contradiction_score": 0.0007715225219726562,
+      "neutral_score": 0.96044921875,
+      "premise": "Un chest sound clear-aa irukku.",
+      "normalized_premise": "Un chest sound clear-aa irukku.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-028",
+      "language": "tanglish",
+      "category": "doctor_assessment",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0648193359375,
+      "contradiction_score": 0.28759765625,
+      "neutral_score": 0.6474609375,
+      "premise": "Konjam observation pannanum innum, clear-aa sollala.",
+      "normalized_premise": "Konjam observation pannanum innum, clear-aa sollala.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-017",
+      "language": "mixed",
+      "category": "doctor_assessment",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.09808349609375,
+      "contradiction_score": 0.00023376941680908203,
+      "neutral_score": 0.90185546875,
+      "premise": "Throat konjam red-aa irukku on examination.",
+      "normalized_premise": "Throat konjam red-aa irukku on examination.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-018",
+      "language": "mixed",
+      "category": "doctor_assessment",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0126953125,
+      "contradiction_score": 0.0006632804870605469,
+      "neutral_score": 0.98681640625,
+      "premise": "Belly-la edhuvum tenderness illa on palpation.",
+      "normalized_premise": "Belly-la edhuvum tenderness illa on palpation.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-030",
+      "language": "en",
+      "category": "negation",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.01448822021484375,
+      "contradiction_score": 0.9375,
+      "neutral_score": 0.0479736328125,
+      "premise": "I do not have chest pain.",
+      "normalized_premise": "I do not have chest pain.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-031",
+      "language": "en",
+      "category": "negation",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.0083465576171875,
+      "contradiction_score": 0.9541015625,
+      "neutral_score": 0.037750244140625,
+      "premise": "I have no fever.",
+      "normalized_premise": "I have no fever.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-032",
+      "language": "en",
+      "category": "negation",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.07757568359375,
+      "contradiction_score": 0.7919921875,
+      "neutral_score": 0.1304931640625,
+      "premise": "I am not taking aspirin.",
+      "normalized_premise": "I am not taking aspirin.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-033",
+      "language": "en",
+      "category": "negation",
+      "difficulty": "medium",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.00033473968505859375,
+      "contradiction_score": 0.99755859375,
+      "neutral_score": 0.002124786376953125,
+      "premise": "I have never had asthma.",
+      "normalized_premise": "I have never had asthma.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-034",
+      "language": "en",
+      "category": "negation",
+      "difficulty": "medium",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.00209808349609375,
+      "contradiction_score": 0.01398468017578125,
+      "neutral_score": 0.98388671875,
+      "premise": "I'm not sure if I have a fever.",
+      "normalized_premise": "I'm not sure if I have a fever.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-029",
+      "language": "tanglish",
+      "category": "negation",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.00214385986328125,
+      "contradiction_score": 0.94775390625,
+      "neutral_score": 0.049957275390625,
+      "premise": "Enakku ippo chest pain onnum illa.",
+      "normalized_premise": "Patient does not have chest pain.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_NEGATION_STATE",
+          "input_span": "chest pain onnum illa",
+          "normalized_span": "does not have chest pain"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-030",
+      "language": "tanglish",
+      "category": "negation",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.0005145072937011719,
+      "contradiction_score": 0.99853515625,
+      "neutral_score": 0.0011472702026367188,
+      "premise": "Enakku fever illa.",
+      "normalized_premise": "Patient does not have fever.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_NEGATION_STATE",
+          "input_span": "fever illa",
+          "normalized_span": "does not have fever"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-031",
+      "language": "tanglish",
+      "category": "negation",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.004688262939453125,
+      "contradiction_score": 0.9794921875,
+      "neutral_score": 0.015716552734375,
+      "premise": "Naan ippo aspirin onnum edukkala.",
+      "normalized_premise": "Patient does not take aspirin.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_NEGATION_ACTION",
+          "input_span": "aspirin onnum edukkala",
+          "normalized_span": "does not take aspirin"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-032",
+      "language": "tanglish",
+      "category": "negation",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.00018203258514404297,
+      "contradiction_score": 0.94873046875,
+      "neutral_score": 0.05108642578125,
+      "premise": "Enakku asthma history illa.",
+      "normalized_premise": "Patient does not have asthma.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_NEGATION_STATE",
+          "input_span": "asthma history illa",
+          "normalized_span": "does not have asthma"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-019",
+      "language": "mixed",
+      "category": "negation",
+      "difficulty": "hard",
+      "ground_truth": "CONTRADICTED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.004543304443359375,
+      "contradiction_score": 0.98291015625,
+      "neutral_score": 0.012603759765625,
+      "premise": "Enakku sugar problem kidayaadhu, no diabetes.",
+      "normalized_premise": "Enakku sugar problem kidayaadhu, no diabetes.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-020",
+      "language": "mixed",
+      "category": "negation",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.97314453125,
+      "contradiction_score": 0.0030975341796875,
+      "neutral_score": 0.0235137939453125,
+      "premise": "Enakku theriyala fever irukka nu.",
+      "normalized_premise": "Enakku theriyala fever irukka nu.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-035",
+      "language": "en",
+      "category": "historical_statements",
+      "difficulty": "medium",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.219970703125,
+      "contradiction_score": 0.142822265625,
+      "neutral_score": 0.63720703125,
+      "premise": "I had asthma as a child.",
+      "normalized_premise": "I had asthma as a child.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-036",
+      "language": "en",
+      "category": "historical_statements",
+      "difficulty": "medium",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.9814453125,
+      "contradiction_score": 0.00087738037109375,
+      "neutral_score": 0.0177764892578125,
+      "premise": "I had asthma as a child.",
+      "normalized_premise": "I had asthma as a child.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-033",
+      "language": "tanglish",
+      "category": "historical_statements",
+      "difficulty": "hard",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.8330078125,
+      "contradiction_score": 0.005344390869140625,
+      "neutral_score": 0.16162109375,
+      "premise": "Chinna vayasula asthma irundhudhu.",
+      "normalized_premise": "Patient had asthma during childhood.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_HISTORICAL",
+          "input_span": "asthma irundhudhu",
+          "normalized_span": "had asthma during childhood"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-034",
+      "language": "tanglish",
+      "category": "historical_statements",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.00862884521484375,
+      "contradiction_score": 0.87646484375,
+      "neutral_score": 0.1148681640625,
+      "premise": "Chinna vayasula asthma irundhudhu.",
+      "normalized_premise": "Patient had asthma during childhood.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_HISTORICAL",
+          "input_span": "asthma irundhudhu",
+          "normalized_span": "had asthma during childhood"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-021",
+      "language": "mixed",
+      "category": "historical_statements",
+      "difficulty": "hard",
+      "ground_truth": "SUPPORTED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.28662109375,
+      "contradiction_score": 0.0184326171875,
+      "neutral_score": 0.69482421875,
+      "premise": "Naan chinna vayasula TB treatment eduthirukken, adhu konjam years back.",
+      "normalized_premise": "Naan chinna vayasula TB treatment eduthirukken, adhu konjam years back.",
+      "transformations": []
+    },
+    {
+      "case_id": "MX-022",
+      "language": "mixed",
+      "category": "historical_statements",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "SUPPORTED",
+      "nli_label": "ENTAILMENT",
+      "entailment_score": 0.80517578125,
+      "contradiction_score": 0.0880126953125,
+      "neutral_score": 0.10687255859375,
+      "premise": "Years back oru operation panniyirundhen stomach-ku.",
+      "normalized_premise": "Years back oru operation panniyirundhen stomach-ku.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-037",
+      "language": "en",
+      "category": "diagnosis_overreach",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.01434326171875,
+      "contradiction_score": 0.208740234375,
+      "neutral_score": 0.77685546875,
+      "premise": "Patient reports fever and cough.",
+      "normalized_premise": "Patient reports fever and cough.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-038",
+      "language": "en",
+      "category": "diagnosis_overreach",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0290069580078125,
+      "contradiction_score": 0.003765106201171875,
+      "neutral_score": 0.96728515625,
+      "premise": "Patient reports headache.",
+      "normalized_premise": "Patient reports headache.",
+      "transformations": []
+    },
+    {
+      "case_id": "EN-039",
+      "language": "en",
+      "category": "diagnosis_overreach",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0253753662109375,
+      "contradiction_score": 0.3232421875,
+      "neutral_score": 0.6513671875,
+      "premise": "I have fever and cough.",
+      "normalized_premise": "I have fever and cough.",
+      "transformations": []
+    },
+    {
+      "case_id": "TL-035",
+      "language": "tanglish",
+      "category": "diagnosis_overreach",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "CONTRADICTED",
+      "nli_label": "CONTRADICTION",
+      "entailment_score": 0.00405120849609375,
+      "contradiction_score": 0.97216796875,
+      "neutral_score": 0.023834228515625,
+      "premise": "Enakku fever and cough irukku.",
+      "normalized_premise": "Enakku fever and has cough.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "cough irukku",
+          "normalized_span": "has cough"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-036",
+      "language": "tanglish",
+      "category": "diagnosis_overreach",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0008873939514160156,
+      "contradiction_score": 0.0011844635009765625,
+      "neutral_score": 0.998046875,
+      "premise": "Enakku thalai vali irukku rendu naala.",
+      "normalized_premise": "Patient has headache for two days.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "thalai vali irukku",
+          "normalized_span": "has headache for two days"
+        },
+        {
+          "rule": "TANGLISH_DURATION",
+          "input_span": "rendu naala",
+          "normalized_span": "for two days"
+        }
+      ]
+    },
+    {
+      "case_id": "TL-037",
+      "language": "tanglish",
+      "category": "diagnosis_overreach",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0018892288208007812,
+      "contradiction_score": 0.00408935546875,
+      "neutral_score": 0.994140625,
+      "premise": "Vayitru vali romba irukku.",
+      "normalized_premise": "Patient has stomach pain.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "Vayitru vali romba irukku",
+          "normalized_span": "has stomach pain"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-023",
+      "language": "mixed",
+      "category": "diagnosis_overreach",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.002117156982421875,
+      "contradiction_score": 0.0106964111328125,
+      "neutral_score": 0.9873046875,
+      "premise": "Chest pain irukku and breathing konjam difficult.",
+      "normalized_premise": "Patient has chest pain and breathing konjam difficult.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "Chest pain irukku",
+          "normalized_span": "has chest pain"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-024",
+      "language": "mixed",
+      "category": "diagnosis_overreach",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.001911163330078125,
+      "contradiction_score": 0.00045299530029296875,
+      "neutral_score": 0.99755859375,
+      "premise": "Joint pain irukku for two weeks, morning stiffness um irukku.",
+      "normalized_premise": "Patient has joint pain.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "Joint pain irukku",
+          "normalized_span": "has joint pain"
+        }
+      ]
+    },
+    {
+      "case_id": "MX-025",
+      "language": "mixed",
+      "category": "diagnosis_overreach",
+      "difficulty": "hard",
+      "ground_truth": "UNGROUNDED",
+      "system": "14F",
+      "prediction": "UNGROUNDED",
+      "nli_label": "NEUTRAL",
+      "entailment_score": 0.0033092498779296875,
+      "contradiction_score": 0.00029659271240234375,
+      "neutral_score": 0.99658203125,
+      "premise": "Skin-la rash varudhu, konjam itching irukku.",
+      "normalized_premise": "Patient has itching.",
+      "transformations": [
+        {
+          "rule": "TANGLISH_CURRENT_STATE",
+          "input_span": "itching irukku",
+          "normalized_span": "has itching"
+        }
+      ]
+    }
+  ]
+}

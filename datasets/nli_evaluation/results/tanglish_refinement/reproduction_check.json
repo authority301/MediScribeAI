@@ -1,0 +1,30 @@
+{
+  "tolerance": 1e-06,
+  "checks": {
+    "14b_accuracy": {
+      "current": 0.594059405940594,
+      "historical": 0.594059405940594,
+      "diff": 0.0,
+      "matched": true
+    },
+    "14b_macro_f1": {
+      "current": 0.5829376160573801,
+      "historical": 0.5829376160573801,
+      "diff": 0.0,
+      "matched": true
+    },
+    "14f_accuracy": {
+      "current": 0.6435643564356436,
+      "historical": 0.6435643564356436,
+      "diff": 0.0,
+      "matched": true
+    },
+    "14f_macro_f1": {
+      "current": 0.6502164502164502,
+      "historical": 0.6502164502164502,
+      "diff": 0.0,
+      "matched": true
+    }
+  },
+  "all_matched": true
+}
