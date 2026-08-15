@@ -47,6 +47,8 @@ CLINICAL_TERMS: dict[str, tuple[str, str]] = {
     "migraine": ("migraine", "diagnosis"),
     "pneumonia": ("pneumonia", "diagnosis"),
     "tb": ("TB", "diagnosis"),
+    "hypertension": ("hypertension", "diagnosis"),
+    "allergy": ("allergy", "diagnosis"),
     # medications
     "paracetamol": ("paracetamol", "medication"),
     "aspirin": ("aspirin", "medication"),
@@ -62,6 +64,9 @@ CLINICAL_TERMS: dict[str, tuple[str, str]] = {
     "oxygen level": ("oxygen saturation", "measurement"),
     "heart rate": ("heart rate", "measurement"),
     "weight": ("weight", "measurement"),
+    "blood sugar": ("blood sugar", "measurement"),
+    "sugar level": ("blood sugar", "measurement"),
+    "sugar": ("blood sugar", "measurement"),
     # procedures
     "ecg": ("ECG", "procedure"),
     "x-ray": ("X-ray", "procedure"),
@@ -169,8 +174,15 @@ ENGLISH_NUMBER_WORDS: dict[int, str] = {
     6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten",
 }
 
-# Duration unit words that indicate "day" or "week" when preceded by a
-# recognized numeral (Tamil or digit).
+# Reverse of ENGLISH_NUMBER_WORDS -- lets numerals that were ALREADY written
+# in English (e.g. "three days" inside an otherwise Tanglish/mixed clause,
+# Step 14G regression cases MX-001/MX-008) be recognized the same way Tamil
+# numeral words are, instead of only recognizing Tamil numerals or bare
+# digits.
+ENGLISH_NUMBER_WORD_VALUES: dict[str, int] = {word: value for value, word in ENGLISH_NUMBER_WORDS.items()}
+
+# Duration unit words that indicate "day"/"week"/"month" when preceded by a
+# recognized numeral (Tamil, English word, or digit).
 DURATION_UNIT_WORDS: dict[str, str] = {
     "naala": "day",
     "naal": "day",
@@ -181,7 +193,80 @@ DURATION_UNIT_WORDS: dict[str, str] = {
     "days": "day",
     "week": "week",
     "weeks": "week",
+    "month": "month",
+    "months": "month",
 }
+
+# ---------------------------------------------------------------------------
+# Measurement values (Step 14H). Deliberately narrow: this recognizes a
+# NUMBER (Arabic, optionally decimal) followed by a small, fixed set of
+# common clinical measurement units, and preserves the matched span
+# verbatim (no unit conversion/translation is attempted -- see README).
+# Ordered longest-phrase-first so "beats per minute" is preferred over any
+# shorter alternative.
+# ---------------------------------------------------------------------------
+MEASUREMENT_UNIT_TERMS: list[str] = [
+    "beats per minute",
+    "degrees fahrenheit",
+    "degrees celsius",
+    "percent",
+    "bpm",
+    "degrees",
+    "degree",
+    "°f",
+    "°c",
+    "mg",
+    "ml",
+    "g",
+    "kg",
+    "cm",
+    "mm",
+    "%",
+]
+
+# ---------------------------------------------------------------------------
+# Family / third-person attribution markers (Step 14H).
+#
+# SPECIFIC relation markers name an identifiable family member -- the
+# normalizer preserves that specific relation ("Patient's mother ...").
+# PLURAL relation markers name an identifiable but inherently plural
+# relation ("parents").
+# GENERIC markers signal "someone other than the patient" WITHOUT naming a
+# specific relationship (a bare "family", a plain third-person pronoun,
+# etc.) -- the normalizer deliberately does NOT invent a specific relation
+# for these; it uses a generic "Family members" subject instead (see
+# README: "do not fabricate a family member's exact relationship if the
+# source does not specify it").
+# ---------------------------------------------------------------------------
+FAMILY_SPECIFIC_RELATION_MARKERS: dict[str, str] = {
+    "amma": "mother",
+    "amma-ku": "mother",
+    "mother": "mother",
+    "appa": "father",
+    "appa-ku": "father",
+    "father": "father",
+    "brother": "brother",
+    "sister": "sister",
+    "husband": "husband",
+    "wife": "wife",
+    "son": "son",
+    "daughter": "daughter",
+}
+
+FAMILY_PLURAL_RELATION_MARKERS: dict[str, str] = {
+    "parents": "parents",
+}
+
+FAMILY_GENERIC_MARKERS: list[str] = [
+    "family-la",
+    "family",
+    "relatives",
+    "avanga-ku",
+    "avangalukku",
+    "avanga",
+    "avar",
+    "aval",
+]
 
 # ---------------------------------------------------------------------------
 # Frequency.

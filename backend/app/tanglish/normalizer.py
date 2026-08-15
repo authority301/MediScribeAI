@@ -117,7 +117,14 @@ _HIST_VERB_PATTERN = _compile_term_pattern(lexicon.HISTORICAL_VERB_TRIGGERS)
 _HIST_TIME_CHILDHOOD_PATTERN = _compile_term_pattern(lexicon.HISTORICAL_TIME_MARKERS_CHILDHOOD)
 _HIST_TIME_PAST_PATTERN = _compile_term_pattern(lexicon.HISTORICAL_TIME_MARKERS_PAST)
 
-_numeral_alternatives = sorted(list(lexicon.TAMIL_NUMERALS.keys()), key=len, reverse=True) + [r"\d+"]
+# Numeral word alternatives shared by duration/frequency extraction. Tamil
+# numeral words AND already-English numeral words (e.g. "three" inside an
+# otherwise Tanglish/mixed clause -- Step 14H) are both recognized, plus a
+# bare-digit fallback for arbitrary Arabic numerals.
+_numeral_alternatives = (
+    sorted(list(lexicon.TAMIL_NUMERALS.keys()) + list(lexicon.ENGLISH_NUMBER_WORD_VALUES.keys()), key=len, reverse=True)
+    + [r"\d+"]
+)
 _duration_unit_alternatives = sorted(lexicon.DURATION_UNIT_WORDS.keys(), key=len, reverse=True)
 _DURATION_PATTERN = re.compile(
     r"\b(?P<num>" + "|".join(_numeral_alternatives) + r")\s*-?\s*"
@@ -132,6 +139,29 @@ _FREQUENCY_PATTERN = re.compile(
 )
 
 _TIME_OF_DAY_PATTERN = _compile_term_pattern(list(lexicon.TIME_OF_DAY_MARKERS.keys()))
+
+# ---------------------------------------------------------------------------
+# Measurement values (Step 14H). A NUMBER (Arabic, optionally decimal)
+# followed by a recognized measurement unit word/symbol. Deliberately
+# conservative: no unit conversion is attempted, the matched span is
+# preserved verbatim. See _measurement_phrase_for_entity for the (narrower)
+# bare-number fallback used when no unit word is present at all.
+# ---------------------------------------------------------------------------
+_measurement_unit_alternatives = sorted(lexicon.MEASUREMENT_UNIT_TERMS, key=len, reverse=True)
+_MEASUREMENT_PATTERN = re.compile(
+    r"\b(?P<num>\d+(?:\.\d+)?)\s*(?P<unit>" + "|".join(re.escape(u) for u in _measurement_unit_alternatives) + r")",
+    re.IGNORECASE,
+)
+_BARE_NUMBER_PATTERN = re.compile(r"\b\d+(?:\.\d+)?\b")
+
+# ---------------------------------------------------------------------------
+# Family / third-person attribution (Step 14H). See lexicon.py for the
+# marker vocabulary and the specific-vs-generic distinction.
+# ---------------------------------------------------------------------------
+_FAMILY_SPECIFIC_PATTERN = _compile_term_pattern(list(lexicon.FAMILY_SPECIFIC_RELATION_MARKERS.keys()))
+_FAMILY_PLURAL_PATTERN = _compile_term_pattern(list(lexicon.FAMILY_PLURAL_RELATION_MARKERS.keys()))
+_FAMILY_GENERIC_PATTERN = _compile_term_pattern(lexicon.FAMILY_GENERIC_MARKERS)
+_FIRST_PERSON_PATTERN = _compile_term_pattern(list(_FIRST_PERSON_MARKERS))
 
 
 def _find_entities(clause: str) -> list[_EntityMatch]:
@@ -211,6 +241,8 @@ def _numeral_value(token: str) -> int | None:
     token = token.lower()
     if token in lexicon.TAMIL_NUMERALS:
         return lexicon.TAMIL_NUMERALS[token]
+    if token in lexicon.ENGLISH_NUMBER_WORD_VALUES:
+        return lexicon.ENGLISH_NUMBER_WORD_VALUES[token]
     if token.isdigit():
         return int(token)
     return None
@@ -258,16 +290,115 @@ def _historical_qualifier(clause: str) -> str | None:
 
 
 # ---------------------------------------------------------------------------
+# Measurement value preservation (Step 14H).
+#
+# Scoped deliberately narrowly: only fires for entities already typed
+# "measurement" in the lexicon (heart rate, temperature, oxygen
+# saturation/level, blood pressure, weight, blood sugar), and only searches
+# a bounded window AFTER that specific entity -- never a bare clause-wide
+# scan -- so it cannot accidentally attach an unrelated number (e.g. a
+# duration count) to the wrong entity. Preference order: a number
+# immediately paired with a recognized unit word/symbol (most reliable);
+# otherwise a bare number with no unit at all (e.g. "sugar 98") is still
+# preserved rather than silently dropped, since losing the value entirely
+# was the original failure mode this addresses. No unit conversion is
+# attempted -- the matched span is preserved verbatim.
+# ---------------------------------------------------------------------------
+def _measurement_phrase_for_entity(clause: str, entity: "_EntityMatch") -> tuple[str, str] | None:
+    if entity.entity_type != "measurement":
+        return None
+    window_end = min(len(clause), entity.end + ENTITY_TRIGGER_WINDOW_CHARS)
+    search_region = clause[entity.end:window_end]
+
+    m = _MEASUREMENT_PATTERN.search(search_region)
+    if m:
+        return m.group(0), f"of {m.group(0)}"
+
+    m_bare = _BARE_NUMBER_PATTERN.search(search_region)
+    if m_bare:
+        return m_bare.group(0), f"of {m_bare.group(0)}"
+
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Family / third-person attribution safety (Step 14H).
+#
+# Default is PATIENT (matches the pre-existing Step 14F behavior for every
+# clause with no attribution marker at all, so existing regression cases
+# are unaffected). A recognized family/third-person marker overrides that
+# default. A clause naming BOTH a first-person marker AND a family marker
+# (e.g. "Enakku appa-ku sugar irukku") is genuinely ambiguous for this
+# rule-based system -- rather than guessing which reading is correct, it is
+# reported UNKNOWN rather than defaulting to Patient (safety-first, per
+# README). A specific relation marker (mother/father/brother/... ) is
+# preferred over a generic marker (family/relatives/avanga/...) when both
+# are present in the same clause, since the specific relation is more
+# informative and was actually stated -- not fabricated.
+# ---------------------------------------------------------------------------
+def _determine_attribution(clause: str) -> tuple[str, str, bool]:
+    """Returns (attribution_label, subject_text, subject_is_plural)."""
+    has_first_person = bool(_FIRST_PERSON_MARKERS & set(_tokens(clause)))
+    specific_match = _FAMILY_SPECIFIC_PATTERN.search(clause)
+    plural_match = _FAMILY_PLURAL_PATTERN.search(clause)
+    generic_match = _FAMILY_GENERIC_PATTERN.search(clause)
+    has_family_marker = bool(specific_match or plural_match or generic_match)
+
+    if has_first_person and has_family_marker:
+        return "UNKNOWN", "Someone", False
+    if specific_match:
+        relation = lexicon.FAMILY_SPECIFIC_RELATION_MARKERS[specific_match.group(0).lower()]
+        return "FAMILY_THIRD_PERSON", f"Patient's {relation}", False
+    if plural_match:
+        relation = lexicon.FAMILY_PLURAL_RELATION_MARKERS[plural_match.group(0).lower()]
+        return "FAMILY_THIRD_PERSON", f"Patient's {relation}", True
+    if generic_match:
+        return "FAMILY_THIRD_PERSON", "Family members", True
+    return "PATIENT", "Patient", False
+
+
+def _attribution_marker_span(clause: str, attribution_label: str) -> str | None:
+    """Best-effort source span for the attribution transformation trace."""
+    if attribution_label == "UNKNOWN":
+        first_person_match = _FIRST_PERSON_PATTERN.search(clause)
+        family_match = (
+            _FAMILY_SPECIFIC_PATTERN.search(clause)
+            or _FAMILY_PLURAL_PATTERN.search(clause)
+            or _FAMILY_GENERIC_PATTERN.search(clause)
+        )
+        spans = [m.group(0) for m in (first_person_match, family_match) if m]
+        return " / ".join(spans) if spans else None
+    if attribution_label == "FAMILY_THIRD_PERSON":
+        match = (
+            _FAMILY_SPECIFIC_PATTERN.search(clause)
+            or _FAMILY_PLURAL_PATTERN.search(clause)
+            or _FAMILY_GENERIC_PATTERN.search(clause)
+        )
+        return match.group(0) if match else None
+    return None
+
+
+# ---------------------------------------------------------------------------
 # Verb-phrase composition
 # ---------------------------------------------------------------------------
-def _verb_phrase(entity_type: str, canonical_entity: str, category: str) -> str:
+def _verb_phrase(entity_type: str, canonical_entity: str, category: str, is_plural: bool) -> str:
     is_medication = entity_type == "medication"
     if category in ("NEG_STATE", "NEG_ACTION"):
-        return f"does not take {canonical_entity}" if is_medication else f"does not have {canonical_entity}"
+        if is_medication:
+            verb = "do not take" if is_plural else "does not take"
+        else:
+            verb = "do not have" if is_plural else "does not have"
+        return f"{verb} {canonical_entity}"
     if category == "HIST_VERB":
-        return f"took {canonical_entity}" if is_medication else f"had {canonical_entity}"
+        # Past tense has no singular/plural distinction in English.
+        verb = "took" if is_medication else "had"
+        return f"{verb} {canonical_entity}"
     # CURRENT
-    return f"takes {canonical_entity}" if is_medication else f"has {canonical_entity}"
+    if is_medication:
+        verb = "take" if is_plural else "takes"
+    else:
+        verb = "have" if is_plural else "has"
+    return f"{verb} {canonical_entity}"
 
 
 _RULE_NAME_BY_CATEGORY = {
@@ -278,7 +409,17 @@ _RULE_NAME_BY_CATEGORY = {
 }
 
 
-def _compose_clause(clause: str, include_subject: bool) -> tuple[str, list[Transformation], SemanticFeatures]:
+def _compose_clause(
+    clause: str, include_subject: bool, subject: str, is_plural: bool
+) -> tuple[str, list[Transformation], SemanticFeatures, bool]:
+    """Returns (composed_text, transformations, features, facts_found).
+
+    `subject`/`is_plural` are determined by the caller (via
+    _determine_attribution) BEFORE this function runs, since that
+    determination is independent of entity/trigger extraction -- this keeps
+    attribution detection and clinical-fact extraction as two separate,
+    independently testable concerns.
+    """
     features = SemanticFeatures()
     transformations: list[Transformation] = []
 
@@ -291,7 +432,7 @@ def _compose_clause(clause: str, include_subject: bool) -> tuple[str, list[Trans
     facts = _associate_entities_with_triggers(entities, triggers)
 
     if not facts:
-        return clause.strip(), transformations, features
+        return clause.strip(), transformations, features, False
 
     duration = _duration_phrase(clause)
     frequency = _frequency_phrase(clause)
@@ -299,13 +440,23 @@ def _compose_clause(clause: str, include_subject: bool) -> tuple[str, list[Trans
 
     phrases = []
     for fact in facts:
-        phrase = _verb_phrase(fact.entity.entity_type, fact.entity.canonical, fact.trigger.category)
+        phrase = _verb_phrase(fact.entity.entity_type, fact.entity.canonical, fact.trigger.category, is_plural)
 
         if fact.trigger.category == "HIST_VERB" and historical_qualifier:
             phrase = f"{phrase} {historical_qualifier}"
 
         if duration:
             phrase = f"{phrase} {duration[1]}"
+
+        measurement = _measurement_phrase_for_entity(clause, fact.entity)
+        if measurement:
+            phrase = f"{phrase} {measurement[1]}"
+            if measurement[1] not in features.measurements:
+                features.measurements.append(measurement[1])
+            transformations.append(
+                Transformation(rule="TANGLISH_MEASUREMENT", input_span=measurement[0], normalized_span=measurement[1])
+            )
+
         if frequency:
             phrase = f"{phrase} {frequency[1]}"
 
@@ -333,11 +484,8 @@ def _compose_clause(clause: str, include_subject: bool) -> tuple[str, list[Trans
         transformations.append(Transformation(rule="TANGLISH_FREQUENCY", input_span=frequency[0], normalized_span=frequency[1]))
 
     joined = " and ".join(phrases)
-    if include_subject:
-        composed = f"Patient {joined}"
-    else:
-        composed = joined
-    return composed, transformations, features
+    composed = f"{subject} {joined}" if include_subject else joined
+    return composed, transformations, features, True
 
 
 # ---------------------------------------------------------------------------
@@ -361,7 +509,10 @@ def _split_clauses(text: str) -> list[tuple[str, str | None]]:
 
 
 def _merge_semantic_features(accumulated: SemanticFeatures, new: SemanticFeatures) -> None:
-    for field_name in ("negations", "historical_mentions", "current_mentions", "durations", "frequencies", "clinical_entities"):
+    for field_name in (
+        "negations", "historical_mentions", "current_mentions", "durations", "frequencies",
+        "measurements", "clinical_entities",
+    ):
         getattr(accumulated, field_name).extend(getattr(new, field_name))
 
 
@@ -390,12 +541,39 @@ def normalize(text: str) -> NormalizedTextResult:
     composed_parts: list[str] = []
     all_transformations: list[Transformation] = []
     aggregated_features = SemanticFeatures()
+    previous_subject: str | None = None
 
     for index, (clause_text, conjunction) in enumerate(clauses):
-        composed, transformations, features = _compose_clause(clause_text, include_subject=(index == 0))
+        # Attribution is determined BEFORE fact extraction (it only depends
+        # on clause text, not on which entities/triggers fire) so subject
+        # continuity across "but"/"and" can be decided up front: the first
+        # clause always states its subject; a later clause only repeats the
+        # subject if attribution actually changed (e.g. patient -> family),
+        # matching the pre-existing single-subject behavior whenever every
+        # clause's attribution is the same (the common case).
+        attribution_label, subject, is_plural = _determine_attribution(clause_text)
+        include_subject = (index == 0) or (subject != previous_subject)
+
+        composed, transformations, features, facts_found = _compose_clause(
+            clause_text, include_subject, subject, is_plural
+        )
         composed_parts.append(composed)
         all_transformations.extend(transformations)
         _merge_semantic_features(aggregated_features, features)
+
+        if facts_found:
+            previous_subject = subject
+            if attribution_label != "PATIENT":
+                aggregated_features.attributions.append(attribution_label)
+                marker_span = _attribution_marker_span(clause_text, attribution_label)
+                if marker_span:
+                    all_transformations.append(
+                        Transformation(
+                            rule=f"TANGLISH_ATTRIBUTION_{attribution_label}",
+                            input_span=marker_span,
+                            normalized_span=subject,
+                        )
+                    )
 
         if index > 0 and conjunction:
             composed_parts[-1] = composed_parts[-1]  # placeholder for readability; join handled below

@@ -26,7 +26,11 @@ class SemanticFeatures:
     current_mentions: list[str] = field(default_factory=list)
     durations: list[str] = field(default_factory=list)
     frequencies: list[str] = field(default_factory=list)
+    measurements: list[str] = field(default_factory=list)
     clinical_entities: list[str] = field(default_factory=list)
+    # PATIENT_SELF_REPORT (whole-text first-person marker present) plus, per
+    # clause, FAMILY_THIRD_PERSON / UNKNOWN when that clause's subject is not
+    # the patient (Step 14H attribution safety -- see README).
     attributions: list[str] = field(default_factory=list)
 
 
